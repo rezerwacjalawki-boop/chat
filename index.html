@@ -176,17 +176,15 @@
     import { getAuth, FacebookAuthProvider, signInWithRedirect, getRedirectResult, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
     import { getFirestore, collection, addDoc, query, where, orderBy, limit, onSnapshot, serverTimestamp, setDoc, doc, getDocs } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
-    // --- UZUPEŁNIJ SWOJĄ KONFIGURACJĘ FIREBASE ---
+    // --- TWOJA KONFIGURACJA FIREBASE ---
     const firebaseConfig = {
-  apiKey: "AIzaSyBBU7MXXucUbvtf1kEACLVLn9dVzXOIe7o",
-  authDomain: "czacik-24d94.firebaseapp.com",
-  projectId: "czacik-24d94",
-  storageBucket: "czacik-24d94.firebasestorage.app",
-  messagingSenderId: "728180059739",
-  appId: "1:728180059739:web:d0a70cd02c8ef96700d97e"
-};
-
-    const configured = firebaseConfig.apiKey && firebaseConfig.apiKey !== "TUTAJ_WKLEJ_API_KEY";
+      apiKey: "AIzaSyBBU7MXXucUbvtf1kEACLVLn9dVzXOIe7o",
+      authDomain: "czacik-24d94.firebaseapp.com",
+      projectId: "czacik-24d94",
+      storageBucket: "czacik-24d94.firebasestorage.app",
+      messagingSenderId: "728180059739",
+      appId: "1:728180059739:web:d0a70cd02c8ef96700d97e"
+    };
 
     let app, auth, db;
     let currentUser = null;
@@ -196,47 +194,43 @@
     const $ = (s) => document.querySelector(s);
 
     async function initFirebase() {
-      if (!configured) {
-        $('#loginNotice').innerHTML = '<span class="error">Uzupełnij konfigurację firebaseConfig w kodzie!</span>';
-        return;
-      }
-      app = initializeApp(firebaseConfig);
-      auth = getAuth(app);
-      db = getFirestore(app);
-
-      // Odbieranie wyniku logowania przez przekierowanie
       try {
+        app = initializeApp(firebaseConfig);
+        auth = getAuth(app);
+        db = getFirestore(app);
+
+        // Odbieranie wyniku logowania przez przekierowanie
         const result = await getRedirectResult(auth);
         if (result && result.user) {
           currentUser = result.user;
         }
+
+        onAuthStateChanged(auth, async (user) => {
+          currentUser = user;
+          if (user) {
+            $('#login').classList.remove('show');
+            $('#loginNotice').textContent = '';
+            
+            // Zapisujemy profil użytkownika do Firestore
+            const userRef = doc(db, 'users', user.uid);
+            await setDoc(userRef, {
+              uid: user.uid,
+              displayName: user.displayName || 'Użytkownik',
+              photoURL: user.photoURL || '',
+              lastLogin: serverTimestamp()
+            }, { merge: true });
+
+            setUserUI(user);
+            subscribeMessages(currentChannel);
+          } else {
+            setUserUI(null);
+            $('#login').classList.add('show');
+          }
+        });
       } catch (e) {
-        console.error("Błąd przekierowania:", e);
-        $('#loginNotice').innerHTML = '<span class="error">Błąd:</span> ' + e.message;
+        console.error("Błąd inicjalizacji Firebase:", e);
+        $('#loginNotice').innerHTML = '<span class="error">Błąd bazy:</span> ' + e.message;
       }
-
-      onAuthStateChanged(auth, async (user) => {
-        currentUser = user;
-        if (user) {
-          $('#login').classList.remove('show');
-          $('#loginNotice').textContent = '';
-          
-          // Zapisujemy profil użytkownika do Firestore
-          const userRef = doc(db, 'users', user.uid);
-          await setDoc(userRef, {
-            uid: user.uid,
-            displayName: user.displayName || 'Użytkownik',
-            photoURL: user.photoURL || '',
-            lastLogin: serverTimestamp()
-          }, { merge: true });
-
-          setUserUI(user);
-          subscribeMessages(currentChannel);
-        } else {
-          setUserUI(null);
-          $('#login').classList.add('show');
-        }
-      });
     }
 
     function setUserUI(user) {
@@ -257,10 +251,6 @@
 
     // Przycisk logowania Facebookiem (Redirect)
     $('#fb').onclick = async () => {
-      if (!configured) {
-        $('#loginNotice').innerHTML = '<span class="error">Najpierw uzupełnij firebaseConfig.</span>';
-        return;
-      }
       try {
         const provider = new FacebookAuthProvider();
         provider.addScope('email');
@@ -297,7 +287,7 @@
     $('#sendBtn').onclick = sendMessage;
     $('#msgInput').onkeydown = (e) => { if (e.key === 'Enter') sendMessage(); };
 
-    // Subskrypcja wiadomości (z limitem 50, chroniącym limity Firebase)
+    // Subskrypcja wiadomości
     function subscribeMessages(channel) {
       if (unsubscribeMessages) unsubscribeMessages();
       if (!db) return;
