@@ -1,175 +1,371 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ClassHub — prywatna przestrzeń klasy</title>
-<style>
-:root{--bg:#f4f7fb;--p:#fff;--p2:#f8faff;--t:#101725;--m:#6f7b90;--l:#e5eaf2;--a:#356dff;--g:#28b979;--r:18px;--s:0 18px 50px rgba(17,31,61,.08)}
-body.dark{--bg:#090d16;--p:#101722;--p2:#151e2c;--t:#f4f7ff;--m:#8e9aad;--l:#202b3b;--a:#5b8cff;--s:0 22px 60px rgba(0,0,0,.26)}
-*{box-sizing:border-box}body{margin:0;height:100vh;background:var(--bg);color:var(--t);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;overflow:hidden;transition:.25s}button,input,textarea{font:inherit;color:inherit}button{border:0;background:none;cursor:pointer}.app{height:100vh;display:grid;grid-template-columns:248px minmax(0,1fr) 302px;gap:14px;padding:14px}.panel{background:var(--p);border:1px solid var(--l);border-radius:var(--r);box-shadow:var(--s);min-height:0}.side{display:flex;flex-direction:column;padding:16px;overflow:hidden}.brand{display:flex;gap:12px;align-items:center;padding:4px 5px 18px}.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--a),#7b61ff);color:#fff;display:grid;place-items:center;font-weight:900}.brand b{font-size:17px}.brand small{display:block;color:var(--m);font-size:11px}.class{padding:12px;border:1px solid var(--l);background:var(--p2);border-radius:15px}.ey{font-size:10px;color:var(--m);text-transform:uppercase;letter-spacing:.12em}.class strong{display:flex;justify-content:space-between;margin-top:4px}.on{width:8px;height:8px;border-radius:50%;background:var(--g);display:inline-block}.sec{margin:16px 7px 7px;font-size:10px;color:var(--m);font-weight:800;letter-spacing:.12em}.ch{display:flex;align-items:center;gap:10px;padding:10px 11px;border-radius:12px;color:var(--m);margin:3px 0;width:100%;text-align:left}.ch:hover{background:var(--p2);color:var(--t)}.ch.active{color:var(--t);background:linear-gradient(90deg,rgba(53,109,255,.14),transparent);box-shadow:inset 3px 0 var(--a)}.ch span:nth-child(2){flex:1}.count{font-size:10px;background:var(--a);color:#fff;padding:3px 7px;border-radius:999px;font-weight:800}.voice-badge{font-size:10px;padding:3px 7px;border-radius:999px;background:rgba(40,185,121,.12);color:var(--g)}.grow{flex:1}.theme{border:1px solid var(--l);padding:9px;border-radius:11px;color:var(--m);margin-top:10px}.me{display:flex;gap:10px;align-items:center;padding:11px 5px 2px;border-top:1px solid var(--l);margin-top:10px}.av{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,#78a2ff,#7b61ff);display:grid;place-items:center;color:#fff;font-weight:800;flex:0 0 auto}.ava{width:30px;height:30px}.mi{min-width:0;flex:1}.mi b{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mi small{color:var(--m);font-size:11px}.icon{width:35px;height:35px;border-radius:11px;display:grid;place-items:center;color:var(--m)}.icon:hover{background:var(--p2);color:var(--t)}.chat{display:flex;flex-direction:column;overflow:hidden}.head{height:70px;display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--l)}.ct{min-width:0;flex:1}.ct b{display:block;font-size:16px}.ct small{display:block;color:var(--m);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.msgs{padding:18px 20px 10px;overflow:auto;flex:1}.empty{height:100%;display:grid;place-items:center;text-align:center;color:var(--m)}.empty > div{max-width:420px}.empty .empty-icon{width:64px;height:64px;border-radius:20px;background:var(--p2);border:1px solid var(--l);display:grid;place-items:center;margin:0 auto 12px;font-size:28px}.day{font-size:10px;color:var(--m);display:flex;gap:10px;align-items:center;margin:0 0 18px}.day:before,.day:after{content:"";height:1px;background:var(--l);flex:1}.msg{display:flex;gap:11px;margin-bottom:16px;animation:in .25s ease}.msgbody{flex:1;min-width:0}.meta{display:flex;gap:7px;align-items:center;margin-bottom:3px}.meta b{font-size:13px}.role{font-size:9px;padding:2px 6px;border-radius:999px;background:var(--p2)}.owner{color:#c13b47;background:rgba(239,90,103,.12)}.time{font-size:10px;color:var(--m)}.text{font-size:13px;white-space:pre-wrap}.reacts{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}.react{border:1px solid var(--l);background:var(--p2);padding:4px 8px;border-radius:999px;font-size:11px}.react.active{border-color:var(--a);background:rgba(53,109,255,.1)}.thread{color:var(--a);font-size:11px;margin-top:7px;font-weight:750}.wrap{position:relative}.actions{position:absolute;right:5px;top:-10px;opacity:0;transition:.15s;background:var(--p);border:1px solid var(--l);border-radius:11px;padding:3px;box-shadow:0 8px 24px rgba(0,0,0,.10)}.msg:hover .actions{opacity:1}.actions button{width:28px;height:27px;border-radius:8px}.actions button:hover{background:var(--p2)}.composer{padding:12px 18px 16px;border-top:1px solid var(--l)}.box{display:flex;align-items:flex-end;gap:8px;background:var(--p2);border:1px solid var(--l);border-radius:15px;padding:8px}.box textarea{flex:1;background:none;border:0;outline:0;resize:none;min-height:38px;max-height:120px;padding:7px 2px}.send{width:38px;height:38px;border-radius:11px;background:var(--a);color:#fff;box-shadow:0 8px 18px rgba(53,109,255,.25)}.hint{font-size:10px;color:var(--m);margin-top:7px}.right{padding:16px;overflow:auto}.title{font-size:10px;color:var(--m);letter-spacing:.12em;font-weight:800;display:flex;justify-content:space-between}.member{display:flex;gap:9px;align-items:center;padding:9px 7px;border-radius:12px;width:100%;text-align:left}.member:hover{background:var(--p2)}.status{font-size:10px;color:var(--g)}.away{color:#d79a25}.off{color:var(--m)}.sect{border-top:1px solid var(--l);padding-top:15px;margin-top:15px}.event{display:flex;gap:9px;padding:8px 0}.date{width:34px;height:37px;border-radius:10px;background:var(--p2);display:grid;place-items:center;color:var(--m);font-size:9px;text-align:center}.date b{display:block;font-size:14px;color:var(--t)}.event b{display:block;font-size:12px}.event small{color:var(--m);font-size:10px}.quick{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}.quick button,.admin{border:1px solid var(--l);background:var(--p2);border-radius:11px;padding:10px 8px;font-size:10px;text-align:left}.quiet{margin-top:15px;padding:11px;border-radius:13px;background:rgba(123,97,255,.10);border:1px solid rgba(123,97,255,.18)}.quiet b{font-size:11px}.quiet small{display:block;color:var(--m);font-size:10px;margin-top:4px}.voice{margin-top:15px;padding:12px;border-radius:14px;background:var(--p2);border:1px solid var(--l)}.voice-top{display:flex;justify-content:space-between;align-items:center}.voice b{font-size:12px}.voice small{display:block;color:var(--m);font-size:10px;margin-top:3px}.pill{font-size:9px;border-radius:999px;padding:4px 7px;background:rgba(40,185,121,.12);color:var(--g)}.voice button.primary{width:100%;margin-top:10px;padding:9px;border-radius:11px;background:var(--a);color:#fff;font-weight:750}.voice button.secondary{width:100%;margin-top:7px;padding:8px;border-radius:11px;border:1px solid var(--l);background:var(--p);font-size:11px}.overlay{position:fixed;inset:0;background:rgba(4,8,16,.56);display:none;align-items:center;justify-content:center;padding:18px;z-index:50}.overlay.show{display:flex}.modal{width:min(580px,100%);background:var(--p);border:1px solid var(--l);border-radius:20px;overflow:hidden;box-shadow:0 25px 80px rgba(0,0,0,.35)}.mh{padding:17px 18px;border-bottom:1px solid var(--l);display:flex;justify-content:space-between}.mb{padding:18px}.profile{display:flex;gap:15px;align-items:center}.big{width:76px;height:76px;border-radius:22px;font-size:26px}.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:18px}.stat{border:1px solid var(--l);border-radius:13px;padding:12px}.stat b{display:block;font-size:18px}.stat small{color:var(--m);font-size:10px}.login{max-width:440px}.login .mb{padding:28px}.login h1{font-size:27px;margin:16px 0 6px}.login p{color:var(--m);margin-top:0}.fb{width:100%;background:#1877f2;color:#fff;padding:12px;border-radius:12px;font-weight:800}.notice{font-size:11px;color:var(--m);margin-top:12px;padding:10px;border-radius:11px;border:1px solid var(--l);background:var(--p2)}.error{color:#d34c56}.voice-users{display:grid;gap:7px;margin-top:12px}.voice-user{display:flex;gap:9px;align-items:center;padding:8px;border:1px solid var(--l);border-radius:12px}.voice-user small{color:var(--m);margin-left:auto}.device-row{display:flex;gap:8px;margin-top:12px}.device-row button{flex:1;border:1px solid var(--l);background:var(--p2);border-radius:10px;padding:9px}.admin-panel{display:grid;gap:10px}.admin-panel .row{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--l);border-radius:12px;padding:12px}.menu{display:none}@keyframes in{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}@media(max-width:1120px){.app{grid-template-columns:235px minmax(0,1fr)}.right{display:none}}@media(max-width:760px){body{overflow:auto}.app{grid-template-columns:1fr;height:100dvh;padding:8px}.side{position:fixed;z-index:40;left:8px;top:8px;bottom:8px;width:270px;transform:translateX(-110%);transition:.22s}.side.open{transform:translateX(0)}.menu{display:grid}.head{padding-left:10px}.msgs{padding:14px 12px}.composer{padding:9px 10px 12px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClassHub — Przestrzeń Klasy</title>
+  <style>
+    :root {
+      --bg-main: #13131a;
+      --bg-sidebar: #0d0d11;
+      --bg-panel: #181820;
+      --bg-hover: #22222d;
+      --accent: #5865f2;
+      --accent-hover: #4752c4;
+      --text-main: #dbdee1;
+      --text-muted: #949ba4;
+      --border: #232428;
+      --danger: #f23f43;
+      --success: #23a55a;
+    }
+    
+    .light-theme {
+      --bg-main: #ffffff;
+      --bg-sidebar: #f2f3f5;
+      --bg-panel: #e3e5e8;
+      --bg-hover: #dbdee1;
+      --accent: #5865f2;
+      --accent-hover: #4752c4;
+      --text-main: #060607;
+      --text-muted: #4e5058;
+      --border: #d8d8d8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background: var(--bg-main); color: var(--text-main); height: 100vh; display: flex; overflow: hidden; }
+
+    /* LAYOUT */
+    .sidebar-left { width: 260px; background: var(--bg-sidebar); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+    .chat-area { flex: 1; display: flex; flex-direction: column; background: var(--bg-main); position: relative; }
+    .sidebar-right { width: 280px; background: var(--bg-sidebar); border-left: 1px solid var(--border); display: flex; flex-direction: column; padding: 16px; gap: 16px; overflow-y: auto; }
+
+    /* BRANDING & CHANNELS */
+    .brand { padding: 16px; font-weight: bold; font-size: 1.1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+    .brand span { background: var(--accent); color: white; padding: 4px 8px; border-radius: 6px; }
+    .nav-section { padding: 12px; overflow-y: auto; flex: 1; }
+    .nav-title { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: bold; margin-bottom: 8px; letter-spacing: 0.5px; }
+    .nav-item { padding: 8px 12px; border-radius: 6px; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; gap: 8px; margin-bottom: 2px; transition: 0.2s; }
+    .nav-item:hover, .nav-item.active { background: var(--bg-hover); color: var(--text-main); }
+
+    /* HEADER & CHAT MESSAGES */
+    .chat-header { padding: 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--bg-main); }
+    .messages-container { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+    .message { display: flex; gap: 12px; align-items: flex-start; }
+    .message img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+    .message-content { display: flex; flex-direction: column; gap: 4px; }
+    .message-header { display: flex; gap: 8px; align-items: baseline; }
+    .message-username { font-weight: 600; font-size: 0.95rem; }
+    .message-time { font-size: 0.75rem; color: var(--text-muted); }
+    .message-text { font-size: 0.9rem; color: var(--text-main); line-height: 1.4; word-break: break-word; }
+    .day { text-align: center; font-size: 0.75rem; color: var(--text-muted); border-bottom: 1px solid var(--border); line-height: 0.1em; margin: 15px 0; }
+    .day span { background: var(--bg-main); padding: 0 10px; }
+
+    /* INPUT AREA */
+    .chat-input-area { padding: 20px; background: var(--bg-main); }
+    .input-box { background: var(--bg-panel); border-radius: 8px; display: flex; align-items: center; padding: 10px 16px; gap: 12px; border: 1px solid var(--border); }
+    .input-box input { flex: 1; background: none; border: none; color: var(--text-main); font-size: 0.95rem; outline: none; }
+    .input-box button { background: var(--accent); border: none; color: white; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+    .input-box button:hover { background: var(--accent-hover); }
+
+    /* PANELS & SIDEBAR RIGHT */
+    .panel-card { background: var(--bg-panel); border-radius: 8px; padding: 12px; border: 1px solid var(--border); }
+    .panel-title { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; font-weight: bold; }
+    .action-btn { width: 100%; padding: 8px; background: var(--bg-hover); border: none; border-radius: 6px; color: var(--text-main); cursor: pointer; text-align: left; margin-bottom: 6px; font-size: 0.85rem; transition: 0.2s; }
+    .action-btn:hover { background: var(--border); }
+
+    /* USER PROFILE FOOTER */
+    .user-footer { padding: 12px; background: var(--bg-sidebar); border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .user-info { display: flex; align-items: center; gap: 10px; }
+    .user-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; overflow: hidden; }
+    .user-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .user-details { display: flex; flex-direction: column; }
+    .user-name { font-size: 0.85rem; font-weight: 600; }
+    .user-status { font-size: 0.7rem; color: var(--text-muted); }
+
+    /* MODAL LOGIN OVERLAY */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: 0.3s; }
+    .modal-overlay.show { opacity: 1; pointer-events: auto; }
+    .modal { background: var(--bg-panel); padding: 30px; border-radius: 12px; width: 350px; text-align: center; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 16px; }
+    .btn-fb { background: #1877f2; color: white; border: none; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%; transition: 0.2s; }
+    .btn-fb:hover { background: #145dbf; }
+    .error { color: var(--danger); font-size: 0.8rem; }
+    
+    .empty-state { text-align: center; color: var(--text-muted); margin: auto; padding: 40px; }
+  </style>
 </head>
 <body>
-<div class="app">
-<aside class="panel side" id="side">
-  <div class="brand"><div class="logo">C</div><div><b>ClassHub</b><small>prywatna przestrzeń klasy</small></div></div>
-  <div class="class"><div class="ey">Klasa / serwer</div><strong>◆ KLASA 8B <span class="on"></span></strong></div>
-  <div class="sec">Nawigacja</div>
-  <button class="ch active" data-c="ogólny"><span>#</span><span>ogólny</span></button>
-  <button class="ch" data-c="ogłoszenia"><span>📢</span><span>ogłoszenia</span></button>
-  <button class="ch" data-c="szkoła"><span>📚</span><span>szkoła</span></button>
-  <button class="ch" data-c="po lekcjach"><span>🎮</span><span>po lekcjach</span></button>
-  <button class="ch" data-c="memy"><span>🎬</span><span>memy</span></button>
-  <div class="sec">Strefy</div>
-  <button class="ch" data-c="cichy pokój"><span>🔕</span><span>cichy pokój</span></button>
-  <button class="ch" data-c="prywatny"><span>🔒</span><span>prywatny</span></button>
-  <div class="sec">Głos</div>
-  <button class="ch" data-voice="Pogaduchy"><span>🔊</span><span>Pogaduchy</span><span class="voice-badge" id="voiceCount">0</span></button>
-  <button class="ch" data-voice="Nauka"><span>🔊</span><span>Nauka</span><span class="voice-badge">0</span></button>
-  <div class="grow"></div>
-  <button class="theme" id="theme">☀️ / 🌙 &nbsp; Przełącz motyw</button>
-  <div class="me"><div class="av" id="meAv">?</div><div class="mi"><b id="meName">Niezalogowany</b><small id="meNick">Zaloguj przez Facebook</small></div><button class="icon" id="profile">⚙</button></div>
-</aside>
-<main class="panel chat">
-  <header class="head"><button class="icon menu" id="menu">☰</button><div class="av ava" id="channelIcon">#</div><div class="ct"><b id="chname">ogólny</b><small id="desc">Luźna rozmowa dla całej klasy</small></div><button class="icon">⌕</button><button class="icon">🔔</button><button class="icon">☷</button></header>
-  <section class="msgs" id="msgs">
-    <div class="empty" id="emptyState"><div><div class="empty-icon">💬</div><b id="emptyTitle">Brak wiadomości</b><div id="emptyText">To miejsce jest puste. Napisz pierwszą wiadomość.</div></div></div>
-  </section>
-  <div class="composer"><div class="box"><button class="icon">☺</button><button class="icon">＋</button><textarea id="input" rows="1" placeholder="Napisz wiadomość…"></textarea><button class="send" id="send">➤</button></div><div class="hint">ENTER = wyślij · SHIFT + ENTER = nowa linia</div></div>
-</main>
-<aside class="panel right">
-  <div class="title"><span>ONLINE TERAZ</span><span id="onlineCount">0</span></div>
-  <div id="members"></div>
-  <div class="sect"><div class="title"><span>NAJBLIŻEJ</span><span>wrzesień</span></div><div class="event"><div class="date">WRZ<b>06</b></div><div><b>Matematyka — sprawdzian</b><small>08:00 · sala 12</small></div></div><div class="event"><div class="date">WRZ<b>07</b></div><div><b>Projekt grupowy</b><small>Termin oddania</small></div></div></div>
-  <div class="sect"><div class="title"><span>SZYBKIE AKCJE</span></div><div class="quick"><button>📝 Potrzebuję notatek</button><button>📊 Nowa ankieta</button><button>💡 Mam pomysł</button><button>📣 @klasa</button></div></div>
-  <div class="voice"><div class="voice-top"><div><b>🔊 Kanał głosowy</b><small id="voiceStatus">Nie jesteś w kanale</small></div><span class="pill" id="voicePill">OFF</span></div><button class="primary" id="voiceJoin">Dołącz do Pogaduchy</button><button class="secondary" id="voiceLeave" disabled>Rozłącz</button></div>
-  <div class="quiet"><b>🔕 CICHY POKÓJ</b><small>Wejdź, czytaj i zostań bez wysyłania całej klasie alarmu o dołączeniu.</small></div>
-  <div class="sect"><button class="admin" id="admin">Otwórz panel administratora</button></div>
-</aside>
-</div>
 
-<div class="overlay show" id="login"><div class="modal login"><div class="mb"><div class="logo">C</div><h1>Witaj w ClassHub</h1><p>Prywatna przestrzeń klasy. Tożsamość potwierdzamy przez połączone konto Facebook, a pseudonim nie zastępuje danych tożsamości.</p><button class="fb" id="fb">Zaloguj przez Facebook</button><div class="notice" id="loginNotice">Ładowanie Firebase…</div></div></div></div>
-<div class="overlay" id="modal"><div class="modal"><div class="mh"><b>Panel administratora</b><button class="icon" data-close>✕</button></div><div class="mb admin-panel"><div class="row"><div><b>Użytkownicy</b><small style="display:block;color:var(--m)">Statystyki i role</small></div><button class="admin">Zarządzaj</button></div><div class="row"><div><b>Oczekujące konta</b><small style="display:block;color:var(--m)">Zatwierdzanie / odrzucanie</small></div><button class="admin">Zatwierdź</button></div><div class="row"><div><b>Kanały</b><small style="display:block;color:var(--m)">Tekstowe i głosowe</small></div><button class="admin">Zarządzaj</button></div><div class="notice">Dostęp administratora powinien być wymuszany przez Firebase Security Rules / backend. Ten interfejs nie nadaje uprawnień sam z siebie.</div></div></div></div>
-<div class="overlay" id="prof"><div class="modal"><div class="mh"><b>Profil użytkownika</b><button class="icon" data-close>✕</button></div><div class="mb"><div class="profile"><div class="av big" id="bigAv">?</div><div><h2 style="margin:0" id="profileName">Niezalogowany</h2><div style="color:var(--m)" id="profileSub">—</div><span class="role" style="display:inline-block;margin-top:6px" id="profileStatus">⚪ Offline</span></div></div><p style="color:var(--m)" id="profileBio">Zaloguj się, aby zobaczyć profil.</p><div class="stats"><div class="stat"><b id="statMessages">0</b><small>wiadomości</small></div><div class="stat"><b id="statReactions">0</b><small>reakcji</small></div><div class="stat"><b>—</b><small>data dołączenia</small></div></div><p style="font-size:11px;color:var(--m)" id="identityText">Tożsamość zostanie pobrana z Firebase Authentication.</p></div></div></div>
-<div class="overlay" id="voiceModal"><div class="modal"><div class="mh"><b>🔊 Kanał głosowy: <span id="voiceModalName">Pogaduchy</span></b><button class="icon" data-close>✕</button></div><div class="mb"><div class="voice-users" id="voiceUsers"><div style="color:var(--m);font-size:11px">Łączenie…</div></div><div class="device-row"><button id="muteBtn">🎙️ Wycisz</button><button id="soundBtn">🔊 Dźwięk</button></div><div class="notice" id="voiceNotice">WebRTC używa mikrofonu. Przeglądarka poprosi o zgodę.</div></div></div></div>
+  <!-- MODAL LOGOWANIA -->
+  <div id="login" class="modal-overlay show">
+    <div class="modal">
+      <h2>Witaj w ClassHub</h2>
+      <p style="font-size: 0.85rem; color: var(--text-muted);">Zaloguj się przez konto społecznościowe, aby móc pisać wiadomości na czacie.</p>
+      <button id="fb" class="btn-fb">Zaloguj przez Facebook</button>
+      <div id="loginNotice" class="error"></div>
+    </div>
+  </div>
 
-<script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js';
-import { getAuth, FacebookAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js';
-import { getFirestore, collection, addDoc, doc, setDoc, deleteDoc, onSnapshot, query, orderBy, serverTimestamp, where, getDocs } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js';
+  <!-- LEWY PANEL (NAWIGACJA) -->
+  <div class="sidebar-left">
+    <div class="brand">
+      <span>C</span> ClassHub
+    </div>
+    <div class="nav-section">
+      <div class="nav-title">Kanały</div>
+      <div class="nav-item active" data-channel="ogólny"># ogólny</div>
+      <div class="nav-item" data-channel="ogłoszenia">📢 ogłoszenia</div>
+      <div class="nav-item" data-channel="szkoła">🏫 szkoła</div>
+      <div class="nav-item" data-channel="memy">🎨 memy</div>
+      
+      <div class="nav-title" style="margin-top: 20px;">Strefy</div>
+      <div class="nav-item" data-channel="cichy-pokoj">🌙 cichy pokój</div>
+    </div>
+    
+    <div style="padding: 10px 12px;">
+      <button id="themeToggle" class="action-btn" style="text-align: center;">☀️ / 🌙 Przełącz motyw</button>
+    </div>
 
- const firebaseConfig = {
-  apiKey: "AIzaSyBBU7MXXucUbvtf1kEACLVLn9dVzXOIe7o",
-  authDomain: "czacik-24d94.firebaseapp.com",
-  projectId: "czacik-24d94",
-  storageBucket: "czacik-24d94.firebasestorage.app",
-  messagingSenderId: "728180059739",
-  appId: "1:728180059739:web:d0a70cd02c8ef96700d97e"
-};
+    <div class="user-footer">
+      <div class="user-info">
+        <div id="userAvatar" class="user-avatar">?</div>
+        <div class="user-details">
+          <span id="userName" class="user-name">Niezalogowany</span>
+          <span id="userStatusTag" class="user-status">Offline</span>
+        </div>
+      </div>
+      <button id="logoutBtn" style="background:none; border:none; color:var(--text-muted); cursor:pointer;" title="Wyloguj">🚪</button>
+    </div>
+  </div>
 
-const configured = !Object.values(firebaseConfig).some(v=>String(v).startsWith('YOUR_'));
-const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
-let app,auth,db,currentUser=null,currentChannel='ogólny',unsubscribeMessages=null,unsubscribeVoice=null;
-let localStream=null, voiceRoom=null, muted=false;
-const peers=new Map(); const pendingCandidates=new Map();
+  <!-- GŁÓWNY OBSZAR CZATU -->
+  <div class="chat-area">
+    <div class="chat-header">
+      <span id="currentChannelName" style="font-weight: 600;"># ogólny</span>
+    </div>
+    
+    <div id="msgs" class="messages-container">
+      <div class="empty-state">Ładowanie wiadomości...</div>
+    </div>
 
-if(localStorage.getItem('theme')==='dark')document.body.classList.add('dark');
-$('#theme').onclick=()=>{document.body.classList.toggle('dark');localStorage.setItem('theme',document.body.classList.contains('dark')?'dark':'light')};
-$('#menu').onclick=()=>$('#side').classList.toggle('open');
-$('#admin').onclick=()=>$('#modal').classList.add('show');
-$('#profile').onclick=()=>$('#prof').classList.add('show');
-$$('[data-close]').forEach(b=>b.onclick=()=>b.closest('.overlay').classList.remove('show'));
-$$('.overlay').forEach(o=>o.onclick=e=>{if(e.target===o)o.classList.remove('show')});
+    <div class="chat-input-area">
+      <div class="input-box">
+        <input type="text" id="msgInput" placeholder="Napisz wiadomość na #ogólny...">
+        <button id="sendBtn">➤</button>
+      </div>
+    </div>
+  </div>
 
-const initials=name=>String(name||'?').split(/\s+/).slice(0,2).map(x=>x[0]).join('').toUpperCase()||'?';
-function setUserUI(user, profile={}){
-  if(!user){$('#meName').textContent='Niezalogowany';$('#meNick').textContent='Zaloguj przez Facebook';$('#meAv').textContent='?';$('#bigAv').textContent='?';$('#profileName').textContent='Niezalogowany';$('#profileSub').textContent='—';$('#profileStatus').textContent='⚪ Offline';$('#identityText').textContent='Tożsamość zostanie pobrana z Firebase Authentication.';return;}
-  const name=profile.displayName||user.displayName||user.email||'Użytkownik'; const nick=profile.nickname||'@'+name.toLowerCase().replace(/[^a-z0-9]+/gi,'').slice(0,14);
-  $('#meName').textContent=name;$('#meNick').textContent=nick;$('#meAv').textContent=initials(name);$('#bigAv').textContent=initials(name);$('#profileName').textContent=name;$('#profileSub').textContent=nick;$('#profileStatus').textContent='🟢 Online';$('#profileBio').textContent=profile.bio||'Prywatna przestrzeń klasy.';$('#identityText').innerHTML=`UID Firebase: <b>${user.uid}</b>`;
-}
+  <!-- PRAWY PANEL (WIDGETY) -->
+  <div class="sidebar-right">
+    <div class="panel-card">
+      <div class="panel-title">Najbliższe wydarzenia</div>
+      <div style="font-size: 0.85rem; font-weight: 600;">Matematyka — sprawdzian</div>
+      <div style="font-size: 0.75rem; color: var(--text-muted);">06.09 · sala 12</div>
+    </div>
+    
+    <div class="panel-card">
+      <div class="panel-title">Szybkie akcje</div>
+      <button class="action-btn">📊 Nowa ankieta</button>
+      <button class="action-btn">💡 Mam pomysł</button>
+    </div>
+  </div>
 
-async function initFirebase(){
-  if(!configured){$('#loginNotice').innerHTML='<span class="error">Firebase nie jest jeszcze skonfigurowany.</span><br>Wstaw dane projektu do <b>firebaseConfig</b> w index.html.';return;}
-  app=initializeApp(firebaseConfig);auth=getAuth(app);db=getFirestore(app);
-  onAuthStateChanged(auth, async user=>{
-    currentUser=user;
-    if(user){
-      $('#login').classList.remove('show');
-      $('#loginNotice').textContent='';
-      const ref=doc(db,'users',user.uid); const snap=await getDocs(query(collection(db,'users'),where('__name__','==',user.uid)));
-      if(snap.empty) await setDoc(ref,{uid:user.uid,displayName:user.displayName||'',email:user.email||'',photoURL:user.photoURL||'',status:'active',createdAt:serverTimestamp()},{merge:true});
-      const saved=await getUserProfile(user.uid); setUserUI(user,saved||{}); subscribeMembers(); subscribeMessages(currentChannel);
-    } else {setUserUI(null);$('#login').classList.add('show');}
-  });
-}
-async function getUserProfile(uid){try{const snap=await getDocs(query(collection(db,'users'),where('__name__','==',uid)));return snap.empty?null:snap.docs[0].data()}catch{return null}}
+  <!-- LOGIKA FIREBASE (MODUŁ) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+    import { getAuth, FacebookAuthProvider, signInWithRedirect, getRedirectResult, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, query, where, orderBy, limit, onSnapshot, serverTimestamp, setDoc, doc, getDocs } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
-$('#fb').onclick=async()=>{
-  if(!configured){$('#loginNotice').innerHTML='<span class="error">Najpierw uzupełnij firebaseConfig.</span>';return}
-  try{const provider=new FacebookAuthProvider();provider.addScope('public_profile');await signInWithPopup(auth,provider)}catch(e){$('#loginNotice').innerHTML='<span class="error">Logowanie nieudane:</span> '+(e?.message||'Nieznany błąd')}};
+    // --- UZUPEŁNIJ SWOJĄ KONFIGURACJĘ FIREBASE ---
+    const firebaseConfig = {
+      apiKey: "TUTAJ_WKLEJ_API_KEY",
+      authDomain: "TUTAJ_WKLEJ_AUTH_DOMAIN",
+      projectId: "TUTAJ_WKLEJ_PROJECT_ID",
+      storageBucket: "TUTAJ_WKLEJ_STORAGE_BUCKET",
+      messagingSenderId: "TUTAJ_WKLEJ_MESSAGING_SENDER_ID",
+      appId: "TUTAJ_WKLEJ_APP_ID"
+    };
 
-function renderEmpty(title='Brak wiadomości',text='To miejsce jest puste. Napisz pierwszą wiadomość.'){$('#msgs').innerHTML=`<div class="empty"><div><div class="empty-icon">💬</div><b>${title}</b><div>${text}</div></div></div>`}
-function subscribeMessages(channel){if(unsubscribeMessages)unsubscribeMessages(); if(!db||!currentUser){renderEmpty();return} unsubscribeMessages=onSnapshot(query(collection(db,'messages'),where('channel','==',channel)),snap=>{const docs=snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(a.createdAt?.seconds||0)-(b.createdAt?.seconds||0));$('#msgs').innerHTML=docs.length?'<div class="day">DZISIAJ</div>':''; if(!docs.length){renderEmpty();return;} for(const m of docs) appendMessage(m);},err=>{renderEmpty('Brak dostępu do wiadomości','Sprawdź reguły Firestore dla kolekcji messages.');console.warn(err)});
-}
-function appendMessage(m){const a=document.createElement('article');a.className='msg';const t=m.createdAt?.toDate?.()||new Date();const time=t.toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'});a.innerHTML=`<div class="av">${initials(m.displayName)}</div><div class="msgbody"><div class="wrap"><div class="meta"><b>${escapeHtml(m.displayName||'Użytkownik')}</b>${m.role?`<span class="role">${escapeHtml(m.role)}</span>`:''}<span class="time">${time}</span></div><div class="text"></div><div class="actions"><button>❤️</button><button>😂</button><button>👍</button><button>🔥</button><button>↩</button><button>⋯</button></div></div></div>`;a.querySelector('.text').textContent=m.text||'';$('#msgs').appendChild(a)}
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-async function send(){const t=$('#input').value.trim();if(!t||!currentUser||!db)return;const p=await getUserProfile(currentUser.uid)||{};await addDoc(collection(db,'messages'),{channel:currentChannel,text:t,uid:currentUser.uid,displayName:p.displayName||currentUser.displayName||currentUser.email||'Użytkownik',role:p.role||'🎓 Uczeń',createdAt:serverTimestamp()});$('#input').value='';$('#input').style.height='38px'}
-$('#send').onclick=send;$('#input').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}};$('#input').oninput=()=>{$('#input').style.height='38px';$('#input').style.height=Math.min(120,$('#input').scrollHeight)+'px'};
+    const configured = firebaseConfig.apiKey && firebaseConfig.apiKey !== "TUTAJ_WKLEJ_API_KEY";
 
-$$('.ch[data-c]').forEach(b=>b.onclick=()=>{ $$('.ch[data-c]').forEach(x=>x.classList.remove('active'));b.classList.add('active');currentChannel=b.dataset.c;$('#chname').textContent=currentChannel;$('#channelIcon').textContent=currentChannel==='ogólny'?'#':'•';$('#desc').textContent=currentChannel==='cichy pokój'?'Spokojny kanał bez komunikatu o dołączeniu · aktywność widoczna dla administratorów':'Rozmowa klasy';$('#side').classList.remove('open');subscribeMessages(currentChannel)});
-$$('.ch[data-voice]').forEach(b=>b.onclick=()=>{joinVoice(b.dataset.voice);});
+    let app, auth, db;
+    let currentUser = null;
+    let currentChannel = 'ogólny';
+    let unsubscribeMessages = null;
 
-$$('.quick button').forEach(b=>b.onclick=()=>{if(!currentUser)return;$('#input').focus();$('#input').value=b.textContent.replace(/^\S+\s*/,'')+': ';$('#input').dispatchEvent(new Event('input'))});
+    const $ = (s) => document.querySelector(s);
 
-async function subscribeMembers(){if(!db)return;const unsub=onSnapshot(collection(db,'users'),snap=>{const items=snap.docs.map(d=>d.data()).filter(u=>u.status!=='blocked').slice(0,20);$('#onlineCount').textContent=items.length+' osób';$('#members').innerHTML=items.map(u=>`<button class="member"><div class="av ava">${initials(u.displayName)}</div><div class="mi"><b>${escapeHtml(u.nickname||u.displayName||'Użytkownik')}</b><small class="status">● online</small></div>${u.role?.includes('👑')?'👑':''}</button>`).join('')||'<div style="padding:10px;color:var(--m);font-size:11px">Brak użytkowników.</div>'});}
+    async function initFirebase() {
+      if (!configured) {
+        $('#loginNotice').innerHTML = '<span class="error">Uzupełnij konfigurację firebaseConfig w kodzie!</span>';
+        return;
+      }
+      app = initializeApp(firebaseConfig);
+      auth = getAuth(app);
+      db = getFirestore(app);
 
-const voicePeers=new Map();
-let unsubscribeSignals=null;
-async function joinVoice(channel='Pogaduchy'){
-  if(!currentUser||!db){$('#voiceNotice').innerHTML='<span class="error">Zaloguj się i skonfiguruj Firebase.</span>';$('#voiceModal').classList.add('show');return}
-  if(voiceRoom===channel){$('#voiceModal').classList.add('show');return}
-  if(voiceRoom) await leaveVoice();
-  voiceRoom=channel; $('#voiceStatus').textContent='Dołączono do '+channel; $('#voicePill').textContent='LIVE'; $('#voiceModalName').textContent=channel; $('#voiceModal').classList.add('show');
-  $('#voiceJoin').textContent='Jesteś w '+channel; $('#voiceJoin').disabled=true;$('#voiceLeave').disabled=false;
-  try{localStream=await navigator.mediaDevices.getUserMedia({audio:true,video:false});}catch(e){$('#voiceNotice').innerHTML='<span class="error">Brak dostępu do mikrofonu. Zezwól przeglądarce na użycie mikrofonu.</span>';return}
-  const roomRef=doc(db,'voiceRooms',channel); const presenceRef=doc(collection(roomRef,'participants'),currentUser.uid);
-  await setDoc(presenceRef,{uid:currentUser.uid,displayName:currentUser.displayName||currentUser.email||'Użytkownik',joinedAt:serverTimestamp()});
-  unsubscribeVoice=onSnapshot(collection(roomRef,'participants'),async snap=>{
-    const participants=snap.docs.filter(d=>d.id!==currentUser.uid).map(d=>({uid:d.id,...d.data()}));
-    renderVoiceUsers([{uid:currentUser.uid,displayName:currentUser.displayName||currentUser.email||'Ty'},...participants]);
-    for(const person of participants){if(!voicePeers.has(person.uid) && currentUser.uid < person.uid) await createVoicePeer(person.uid,channel,true)}
-    for(const [uid] of voicePeers){if(!participants.some(p=>p.uid===uid)){voicePeers.get(uid).pc.close();voicePeers.delete(uid)}}
-  });
-  unsubscribeSignals=onSnapshot(collection(roomRef,'signals'),async snap=>{
-    for(const d of snap.docs){const s=d.data(); if(s.to!==currentUser.uid) continue; try{await handleSignal(d.id,s,channel)}catch(e){console.warn('voice signal',e)}}
-  });
-}
-function renderVoiceUsers(items){$('#voiceCount').textContent=items.length;$('#voiceUsers').innerHTML=items.length?items.map(x=>`<div class="voice-user"><div class="av ava">${initials(x.displayName)}</div><b>${escapeHtml(x.displayName)}</b><small>${x.uid===currentUser?.uid?'Ty':'🎙️'}</small></div>`).join(''):'<div style="color:var(--m);font-size:11px">Nikt jeszcze nie dołączył.</div>'}
-async function createVoicePeer(remoteUid,channel,initiator=false){
-  const pc=new RTCPeerConnection({iceServers:[{urls:'stun:stun.l.google.com:19302'}]});
-  const entry={pc,remoteUid,channel}; voicePeers.set(remoteUid,entry);
-  localStream?.getTracks().forEach(t=>pc.addTrack(t,localStream));
-  pc.ontrack=e=>{let audio=document.getElementById('audio-'+remoteUid);if(!audio){audio=document.createElement('audio');audio.id='audio-'+remoteUid;audio.autoplay=true;document.body.appendChild(audio)}audio.srcObject=e.streams[0]};
-  pc.onicecandidate=async e=>{if(!e.candidate)return;await addDoc(collection(db,'voiceRooms',channel,'signals'),{from:currentUser.uid,to:remoteUid,type:'candidate',candidate:e.candidate.toJSON(),createdAt:serverTimestamp()})};
-  pc.onconnectionstatechange=()=>{if(['failed','closed','disconnected'].includes(pc.connectionState)){try{pc.close()}catch{};voicePeers.delete(remoteUid)}};
-  if(initiator){const offer=await pc.createOffer();await pc.setLocalDescription(offer);await addDoc(collection(db,'voiceRooms',channel,'signals'),{from:currentUser.uid,to:remoteUid,type:'offer',sdp:offer.sdp,createdAt:serverTimestamp()})}
-}
-async function handleSignal(id,s,channel){
-  if(s.from===currentUser.uid)return;
-  let entry=voicePeers.get(s.from);
-  if(s.type==='offer'){
-    if(!entry){await createVoicePeer(s.from,channel,false);entry=voicePeers.get(s.from)}
-    await entry.pc.setRemoteDescription({type:'offer',sdp:s.sdp});
-    const answer=await entry.pc.createAnswer(); await entry.pc.setLocalDescription(answer);
-    await addDoc(collection(db,'voiceRooms',channel,'signals'),{from:currentUser.uid,to:s.from,type:'answer',sdp:answer.sdp,createdAt:serverTimestamp()});
-  }else if(s.type==='answer' && entry){await entry.pc.setRemoteDescription({type:'answer',sdp:s.sdp})}
-  else if(s.type==='candidate' && entry){try{await entry.pc.addIceCandidate(s.candidate)}catch(e){console.warn('ice',e)}}
-  try{await deleteDoc(doc(db,'voiceRooms',channel,'signals',id))}catch{}
-}
-async function leaveVoice(){if(!voiceRoom)return;const room=voiceRoom;try{await deleteDoc(doc(db,'voiceRooms',room,'participants',currentUser.uid))}catch{};unsubscribeVoice?.();unsubscribeVoice=null;unsubscribeSignals?.();unsubscribeSignals=null;voicePeers.forEach(p=>p.pc.close());voicePeers.clear();localStream?.getTracks().forEach(t=>t.stop());localStream=null;voiceRoom=null;$('#voiceStatus').textContent='Nie jesteś w kanale';$('#voicePill').textContent='OFF';$('#voiceJoin').textContent='Dołącz do Pogaduchy';$('#voiceJoin').disabled=false;$('#voiceLeave').disabled=true;$('#voiceModal').classList.remove('show')}
-$('#voiceJoin').onclick=()=>joinVoice('Pogaduchy');$('#voiceLeave').onclick=leaveVoice;$('#muteBtn').onclick=()=>{muted=!muted;localStream?.getAudioTracks().forEach(t=>t.enabled=!muted);$('#muteBtn').textContent=muted?'🔇 Włącz mikrofon':'🎙️ Wycisz'};$('#soundBtn').onclick=()=>document.querySelectorAll('audio').forEach(a=>a.muted=!a.muted);
+      // Odbieranie wyniku logowania przez przekierowanie
+      try {
+        const result = await getRedirectResult(auth);
+        if (result && result.user) {
+          currentUser = result.user;
+        }
+      } catch (e) {
+        console.error("Błąd przekierowania:", e);
+        $('#loginNotice').innerHTML = '<span class="error">Błąd:</span> ' + e.message;
+      }
 
-initFirebase();
-</script>
+      onAuthStateChanged(auth, async (user) => {
+        currentUser = user;
+        if (user) {
+          $('#login').classList.remove('show');
+          $('#loginNotice').textContent = '';
+          
+          // Zapisujemy profil użytkownika do Firestore
+          const userRef = doc(db, 'users', user.uid);
+          await setDoc(userRef, {
+            uid: user.uid,
+            displayName: user.displayName || 'Użytkownik',
+            photoURL: user.photoURL || '',
+            lastLogin: serverTimestamp()
+          }, { merge: true });
+
+          setUserUI(user);
+          subscribeMessages(currentChannel);
+        } else {
+          setUserUI(null);
+          $('#login').classList.add('show');
+        }
+      });
+    }
+
+    function setUserUI(user) {
+      if (user) {
+        $('#userName').textContent = user.displayName || 'Użytkownik';
+        $('#userStatusTag').textContent = 'Online';
+        $('#userStatusTag').style.color = 'var(--success)';
+        if (user.photoURL) {
+          $('#userAvatar').innerHTML = `<img src="${user.photoURL}" alt="Avatar">`;
+        }
+      } else {
+        $('#userName').textContent = 'Niezalogowany';
+        $('#userStatusTag').textContent = 'Offline';
+        $('#userStatusTag').style.color = 'var(--text-muted)';
+        $('#userAvatar').textContent = '?';
+      }
+    }
+
+    // Przycisk logowania Facebookiem (Redirect)
+    $('#fb').onclick = async () => {
+      if (!configured) {
+        $('#loginNotice').innerHTML = '<span class="error">Najpierw uzupełnij firebaseConfig.</span>';
+        return;
+      }
+      try {
+        const provider = new FacebookAuthProvider();
+        provider.addScope('email');
+        provider.addScope('public_profile');
+        await signInWithRedirect(auth, provider);
+      } catch (e) {
+        $('#loginNotice').innerHTML = '<span class="error">Logowanie nieudane:</span> ' + (e?.message || 'Błąd');
+      }
+    };
+
+    $('#logoutBtn').onclick = () => signOut(auth);
+
+    // Wysyłanie wiadomości
+    async function sendMessage() {
+      const text = $('#msgInput').value.trim();
+      if (!text || !currentUser || !db) return;
+
+      try {
+        $('#msgInput').value = '';
+        await addDoc(collection(db, 'messages'), {
+          text: text,
+          channel: currentChannel,
+          uid: currentUser.uid,
+          displayName: currentUser.displayName || 'Użytkownik',
+          photoURL: currentUser.photoURL || '',
+          createdAt: serverTimestamp()
+        });
+      } catch (e) {
+        console.error("Błąd wysyłania:", e);
+        alert("Nie udało się wysłać wiadomości.");
+      }
+    }
+
+    $('#sendBtn').onclick = sendMessage;
+    $('#msgInput').onkeydown = (e) => { if (e.key === 'Enter') sendMessage(); };
+
+    // Subskrypcja wiadomości (z limitem 50, chroniącym limity Firebase)
+    function subscribeMessages(channel) {
+      if (unsubscribeMessages) unsubscribeMessages();
+      if (!db) return;
+
+      const q = query(
+        collection(db, 'messages'),
+        where('channel', '==', channel),
+        orderBy('createdAt', 'desc'),
+        limit(50)
+      );
+
+      unsubscribeMessages = onSnapshot(q, (snapshot) => {
+        const docs = snapshot.docs.map(d => ({ id: d.id, ...d.data() })).reverse();
+        const container = $('#msgs');
+        
+        if (docs.length === 0) {
+          container.innerHTML = `<div class="empty-state">Brak wiadomości. Napisz pierwszą!</div>`;
+          return;
+        }
+
+        container.innerHTML = '<div class="day"><span>DZISIAJ</span></div>';
+        for (const msg of docs) {
+          const timeStr = msg.createdAt?.toDate ? msg.createdAt.toDate().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'przed chwilą';
+          const avatarHtml = msg.photoURL ? `<img src="${msg.photoURL}" alt="">` : `<div class="user-avatar" style="width:40px;height:40px;">?</div>`;
+          
+          const el = document.createElement('div');
+          el.className = 'message';
+          el.innerHTML = `
+            ${avatarHtml}
+            <div class="message-content">
+              <div class="message-header">
+                <span class="message-username">${escapeHtml(msg.displayName)}</span>
+                <span class="message-time">${timeStr}</span>
+              </div>
+              <div class="message-text">${escapeHtml(msg.text)}</div>
+            </div>
+          `;
+          container.appendChild(el);
+        }
+        container.scrollTop = container.scrollHeight;
+      }, (err) => {
+        console.error("Błąd pobierania wiadomości:", err);
+        $('#msgs').innerHTML = `<div class="empty-state">Brak uprawnień lub błąd bazy danych. Sprawdź reguły Firestore.</div>`;
+      });
+    }
+
+    // Zmiana kanałów w menu
+    document.querySelectorAll('.nav-item[data-channel]').forEach(item => {
+      item.onclick = () => {
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        currentChannel = item.getAttribute('data-channel');
+        $('#currentChannelName').textContent = `# ${currentChannel}`;
+        $('#msgInput').placeholder = `Napisz wiadomość na #${currentChannel}...`;
+        subscribeMessages(currentChannel);
+      };
+    });
+
+    // Przełączanie motywu jasny/ciemny
+    $('#themeToggle').onclick = () => {
+      document.body.classList.toggle('light-theme');
+    };
+
+    function escapeHtml(text) {
+      return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    initFirebase();
+  </script>
 </body>
 </html>
