@@ -292,6 +292,7 @@
       if (unsubscribeMessages) unsubscribeMessages();
       if (!db) return;
 
+      // Pobieramy wiadomości posortowane po dacie
       const q = query(
         collection(db, 'messages'),
         where('channel', '==', channel),
@@ -310,7 +311,12 @@
 
         container.innerHTML = '<div class="day"><span>DZISIAJ</span></div>';
         for (const msg of docs) {
-          const timeStr = msg.createdAt?.toDate ? msg.createdAt.toDate().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'przed chwilą';
+          // Bezpieczne pobieranie godziny (jeśli createdAt jeszcze nie doszło z serwera, pokazuje "przed chwilą")
+          let timeStr = 'przed chwilą';
+          if (msg.createdAt && typeof msg.createdAt.toDate === 'function') {
+            timeStr = msg.createdAt.toDate().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+          }
+
           const avatarHtml = msg.photoURL ? `<img src="${msg.photoURL}" alt="">` : `<div class="user-avatar" style="width:40px;height:40px;">?</div>`;
           
           const el = document.createElement('div');
@@ -319,10 +325,10 @@
             ${avatarHtml}
             <div class="message-content">
               <div class="message-header">
-                <span class="message-username">${escapeHtml(msg.displayName)}</span>
+                <span class="message-username">${escapeHtml(msg.displayName || 'Użytkownik')}</span>
                 <span class="message-time">${timeStr}</span>
               </div>
-              <div class="message-text">${escapeHtml(msg.text)}</div>
+              <div class="message-text">${escapeHtml(msg.text || '')}</div>
             </div>
           `;
           container.appendChild(el);
@@ -330,7 +336,7 @@
         container.scrollTop = container.scrollHeight;
       }, (err) => {
         console.error("Błąd pobierania wiadomości:", err);
-        $('#msgs').innerHTML = `<div class="empty-state">Brak uprawnień lub błąd bazy danych. Sprawdź reguły Firestore.</div>`;
+        $('#msgs').innerHTML = `<div class="empty-state" style="color:var(--danger)">Błąd pobierania: ${err.message}</div>`;
       });
     }
 
