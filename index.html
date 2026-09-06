@@ -10,10 +10,6 @@
 <style>
 :root{
   --bg:#04050b;
-  --bg-deep:#020309;
-  --sidebar:rgba(6,8,16,.96);
-  --panel:rgba(14,18,31,.76);
-  --panel-solid:#101420;
   --text:#f7f8ff;
   --muted:#8992a7;
   --muted-2:#626b80;
@@ -353,7 +349,10 @@ button{-webkit-tap-highlight-color:transparent}
   transition:.28s ease;
 }
 
-.avatar img,.message-avatar img,.profile-big-avatar img,.profile-modal-avatar img{
+.avatar img,
+.message-avatar img,
+.profile-big-avatar img,
+.profile-modal-avatar img{
   width:100%;
   height:100%;
   object-fit:cover;
@@ -689,6 +688,7 @@ button{-webkit-tap-highlight-color:transparent}
 
 .reply-preview strong{color:#e7eaff}
 
+/* FIRE */
 .effect-fire{
   border-left:2px solid rgba(255,92,30,.55);
   background:linear-gradient(90deg,rgba(255,65,20,.075),rgba(255,120,20,.025),transparent 85%);
@@ -721,6 +721,7 @@ button{-webkit-tap-highlight-color:transparent}
   50%{filter:brightness(1.23) saturate(1.18)}
 }
 
+/* ICE */
 .effect-ice{
   border-left:2px solid rgba(78,220,255,.58);
   background:linear-gradient(90deg,rgba(55,207,255,.07),rgba(110,240,255,.025),transparent 85%);
@@ -737,6 +738,7 @@ button{-webkit-tap-highlight-color:transparent}
   50%{filter:brightness(1.25)}
 }
 
+/* ELECTRIC */
 .effect-electric{
   border:1px solid rgba(111,105,255,.26);
   background:linear-gradient(90deg,rgba(79,67,255,.10),rgba(0,220,255,.05),transparent 88%);
@@ -802,6 +804,7 @@ button{-webkit-tap-highlight-color:transparent}
   86%{filter:brightness(1.1)}
 }
 
+/* NEON */
 .effect-neon{
   border-left:2px solid rgba(114,102,255,.65);
   background:linear-gradient(90deg,rgba(114,102,255,.10),rgba(0,221,255,.045),transparent 90%);
@@ -818,6 +821,7 @@ button{-webkit-tap-highlight-color:transparent}
   50%{filter:brightness(1.32)}
 }
 
+/* RAINBOW */
 .effect-rainbow{
   background:linear-gradient(90deg,rgba(255,69,215,.055),rgba(114,102,255,.035),rgba(0,221,255,.035),transparent);
 }
@@ -835,6 +839,7 @@ button{-webkit-tap-highlight-color:transparent}
   to{background-position:400% center}
 }
 
+/* GLITCH */
 .effect-glitch{
   border-left:2px solid rgba(255,69,215,.55);
   background:linear-gradient(90deg,rgba(255,69,215,.065),rgba(0,221,255,.045),transparent 88%);
@@ -855,6 +860,7 @@ button{-webkit-tap-highlight-color:transparent}
   85%{transform:translate(0,0)}
 }
 
+/* PLASMA */
 .effect-plasma{
   background:linear-gradient(90deg,rgba(112,100,255,.07),rgba(255,69,215,.06),rgba(0,221,255,.03),transparent 90%);
   border-left:2px solid rgba(194,96,255,.60);
@@ -871,6 +877,7 @@ button{-webkit-tap-highlight-color:transparent}
   50%{filter:hue-rotate(35deg) brightness(1.3)}
 }
 
+/* SPARKLE */
 .effect-sparkle .message-text{
   color:#fff8db;
   text-shadow:0 0 8px rgba(255,209,102,.58);
@@ -882,6 +889,7 @@ button{-webkit-tap-highlight-color:transparent}
   50%{filter:brightness(1.35)}
 }
 
+/* VOID */
 .effect-void{
   border:1px solid rgba(144,120,255,.24);
   background:
@@ -901,6 +909,7 @@ button{-webkit-tap-highlight-color:transparent}
   50%{opacity:1;text-shadow:0 0 22px rgba(137,105,255,.88)}
 }
 
+/* HOLOGRAM */
 .effect-hologram{
   border-left:2px solid rgba(0,221,255,.55);
   background:linear-gradient(90deg,rgba(0,221,255,.055),rgba(114,102,255,.035),transparent 90%);
@@ -921,6 +930,7 @@ button{-webkit-tap-highlight-color:transparent}
   50%{filter:brightness(1.3) saturate(1.25)}
 }
 
+/* GOLD */
 .effect-gold{
   border-left:2px solid rgba(255,209,102,.58);
   background:linear-gradient(90deg,rgba(255,209,102,.055),rgba(255,156,40,.02),transparent 90%);
@@ -937,6 +947,7 @@ button{-webkit-tap-highlight-color:transparent}
   50%{filter:brightness(1.28)}
 }
 
+/* TOXIC */
 .effect-toxic{
   border-left:2px solid rgba(121,255,78,.56);
   background:linear-gradient(90deg,rgba(88,255,67,.055),rgba(188,255,70,.02),transparent 90%);
@@ -953,6 +964,7 @@ button{-webkit-tap-highlight-color:transparent}
   50%{filter:hue-rotate(-10deg) brightness(1.27)}
 }
 
+/* COSMIC */
 .effect-cosmic{
   border:1px solid rgba(139,112,255,.25);
   background:
@@ -971,6 +983,7 @@ button{-webkit-tap-highlight-color:transparent}
   50%{transform:translateY(-1px)}
 }
 
+/* RUBY */
 .effect-ruby{
   border-left:2px solid rgba(255,61,104,.58);
   background:linear-gradient(90deg,rgba(255,61,104,.06),rgba(255,20,85,.02),transparent 90%);
@@ -987,6 +1000,7 @@ button{-webkit-tap-highlight-color:transparent}
   50%{filter:brightness(1.27)}
 }
 
+/* MATRIX */
 .effect-matrix{
   border-left:2px solid rgba(48,255,144,.58);
   background:linear-gradient(90deg,rgba(28,255,137,.055),transparent 90%);
@@ -1003,6 +1017,262 @@ button{-webkit-tap-highlight-color:transparent}
   90%{opacity:.72}
   92%{opacity:1}
   94%{opacity:.82}
+}
+
+/* =========================================================
+   GALAXY — NOWY
+   ========================================================= */
+
+.effect-galaxy{
+  border:1px solid rgba(136,103,255,.30);
+  background:
+    radial-gradient(circle at 18% 40%,rgba(255,70,213,.14),transparent 18%),
+    radial-gradient(circle at 80% 60%,rgba(0,221,255,.13),transparent 20%),
+    radial-gradient(circle at 52% 25%,rgba(126,89,255,.18),transparent 28%),
+    linear-gradient(120deg,rgba(28,9,62,.28),rgba(8,18,53,.18),rgba(15,3,34,.30));
+  box-shadow:
+    inset 0 0 34px rgba(119,82,255,.08),
+    0 0 24px rgba(120,80,255,.08);
+  overflow:hidden;
+}
+
+.effect-galaxy::before{
+  content:"";
+  position:absolute;
+  inset:-35%;
+  background:
+    radial-gradient(circle at 22% 28%,#fff 0 1px,transparent 2px),
+    radial-gradient(circle at 47% 62%,#8cecff 0 1px,transparent 2px),
+    radial-gradient(circle at 72% 30%,#ff9eea 0 1px,transparent 2px),
+    radial-gradient(circle at 81% 73%,#fff 0 1px,transparent 2px),
+    radial-gradient(circle at 35% 82%,#b9b0ff 0 1px,transparent 2px),
+    radial-gradient(circle at 63% 49%,#fff 0 1px,transparent 2px);
+  background-size:140px 100px;
+  opacity:.75;
+  animation:galaxyStars 5s linear infinite;
+}
+
+.effect-galaxy::after{
+  content:"";
+  position:absolute;
+  width:75%;
+  height:160%;
+  left:12%;
+  top:-30%;
+  border-radius:50%;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,75,214,.06),
+      rgba(123,88,255,.20),
+      rgba(0,221,255,.08),
+      transparent
+    );
+  filter:blur(12px);
+  transform:rotate(-18deg);
+  animation:galaxyNebula 3.8s ease-in-out infinite;
+}
+
+.effect-galaxy .message-text{
+  position:relative;
+  z-index:2;
+  color:#f7f0ff;
+  background:linear-gradient(90deg,#ffb3f0,#c9c2ff,#9feaff,#ffffff,#ffb3f0);
+  background-size:280% auto;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:none;
+  animation:galaxyText 3s linear infinite;
+}
+
+.effect-galaxy .message-avatar{
+  position:relative;
+  z-index:2;
+  box-shadow:
+    0 0 16px rgba(122,95,255,.72),
+    0 0 35px rgba(255,75,214,.24),
+    0 0 45px rgba(0,221,255,.18);
+  animation:galaxyAvatar 3s ease-in-out infinite;
+}
+
+@keyframes galaxyStars{
+  0%{transform:rotate(0deg) translate(0,0) scale(1)}
+  50%{transform:rotate(8deg) translate(6px,-4px) scale(1.04)}
+  100%{transform:rotate(16deg) translate(0,0) scale(1)}
+}
+
+@keyframes galaxyNebula{
+  0%,100%{transform:rotate(-18deg) translateX(-2%) scale(1)}
+  50%{transform:rotate(-12deg) translateX(4%) scale(1.08)}
+}
+
+@keyframes galaxyText{
+  to{background-position:280% center}
+}
+
+@keyframes galaxyAvatar{
+  0%,100%{filter:hue-rotate(0deg) brightness(1)}
+  50%{filter:hue-rotate(28deg) brightness(1.32)}
+}
+
+/* =========================================================
+   SUPERNOVA — AUTORSKI / MOCNY
+   ========================================================= */
+
+.effect-supernova{
+  border:1px solid rgba(255,132,62,.34);
+  background:
+    radial-gradient(circle at 50% 50%,rgba(255,244,196,.15),transparent 12%),
+    radial-gradient(circle at 48% 50%,rgba(255,115,48,.12),transparent 28%),
+    radial-gradient(circle at 25% 50%,rgba(255,40,143,.08),transparent 24%),
+    radial-gradient(circle at 78% 45%,rgba(120,90,255,.10),transparent 26%),
+    linear-gradient(90deg,rgba(64,10,28,.23),rgba(39,8,48,.16),rgba(15,10,38,.22));
+  box-shadow:
+    inset 0 0 45px rgba(255,90,60,.07),
+    0 0 28px rgba(255,104,50,.10);
+  overflow:hidden;
+}
+
+.effect-supernova::before{
+  content:"";
+  position:absolute;
+  width:22px;
+  height:22px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle,
+      #ffffff 0%,
+      #fff5ba 18%,
+      #ffcf70 34%,
+      #ff7d3b 55%,
+      rgba(255,45,122,.25) 72%,
+      transparent 100%
+    );
+  box-shadow:
+    0 0 14px #fff3bd,
+    0 0 30px rgba(255,105,45,.90),
+    0 0 65px rgba(255,40,140,.55),
+    0 0 105px rgba(116,79,255,.30);
+  animation:supernovaCore 1.55s ease-in-out infinite;
+}
+
+.effect-supernova::after{
+  content:"";
+  position:absolute;
+  left:-15%;
+  top:50%;
+  width:130%;
+  height:3px;
+  transform:translateY(-50%);
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,66,145,.0),
+      rgba(255,210,114,.95),
+      rgba(255,255,255,1),
+      rgba(255,122,71,.95),
+      rgba(110,85,255,.55),
+      transparent
+    );
+  filter:blur(1px);
+  box-shadow:
+    0 0 14px rgba(255,123,72,.75),
+    0 0 28px rgba(255,72,146,.35);
+  animation:supernovaShock 1.55s ease-in-out infinite;
+  pointer-events:none;
+}
+
+.effect-supernova .message-text{
+  position:relative;
+  z-index:2;
+  color:#fff6e9;
+  text-shadow:
+    0 0 6px rgba(255,226,166,.95),
+    0 0 15px rgba(255,115,50,.72),
+    0 0 28px rgba(255,45,130,.42),
+    0 0 44px rgba(122,91,255,.25);
+  animation:supernovaText 1.55s ease-in-out infinite;
+}
+
+.effect-supernova .message-avatar{
+  position:relative;
+  z-index:2;
+  box-shadow:
+    0 0 17px rgba(255,194,96,.72),
+    0 0 38px rgba(255,78,133,.42),
+    0 0 55px rgba(109,84,255,.22);
+  animation:supernovaAvatar 1.55s ease-in-out infinite;
+}
+
+@keyframes supernovaCore{
+  0%,100%{
+    transform:translate(-50%,-50%) scale(.80);
+    filter:brightness(1);
+    opacity:.78;
+  }
+  45%{
+    transform:translate(-50%,-50%) scale(1.65);
+    filter:brightness(1.8);
+    opacity:1;
+  }
+  70%{
+    transform:translate(-50%,-50%) scale(1.05);
+    filter:brightness(1.25);
+    opacity:.92;
+  }
+}
+
+@keyframes supernovaShock{
+  0%,100%{
+    transform:translateY(-50%) scaleX(.52);
+    opacity:.35;
+  }
+  45%{
+    transform:translateY(-50%) scaleX(1);
+    opacity:1;
+  }
+  70%{
+    transform:translateY(-50%) scaleX(.72);
+    opacity:.62;
+  }
+}
+
+@keyframes supernovaText{
+  0%,100%{
+    filter:brightness(1) saturate(1);
+    transform:translateX(0);
+  }
+  12%{transform:translateX(-1px)}
+  16%{transform:translateX(2px)}
+  20%{transform:translateX(0)}
+  45%{
+    filter:brightness(1.38) saturate(1.14);
+  }
+  65%{
+    filter:brightness(1.1) saturate(1.05);
+  }
+}
+
+@keyframes supernovaAvatar{
+  0%,100%{
+    transform:scale(1);
+    filter:brightness(1);
+  }
+  45%{
+    transform:scale(1.10);
+    filter:brightness(1.55);
+  }
+  70%{
+    transform:scale(1.03);
+    filter:brightness(1.15);
+  }
 }
 
 .reply-composer{
@@ -1027,6 +1297,7 @@ button{-webkit-tap-highlight-color:transparent}
 }
 
 .reply-main{min-width:0;flex:1}
+
 .reply-title{
   color:var(--accent-2);
   font-size:9px;
@@ -1763,7 +2034,9 @@ body.light .message-text{
     <span class="label">memy</span>
   </div>
 
-  <div class="nav-title" style="margin-top:22px;">Strefy</div>
+  <div class="nav-title" style="margin-top:22px;">
+    Strefy
+  </div>
 
   <div class="nav-item" data-channel="cichy-pokoj">
     🌙
@@ -1789,13 +2062,22 @@ body.light .message-text{
     </div>
 
     <div class="user-details">
-      <div id="userName" class="user-name">Niezalogowany</div>
-      <div id="userRole" class="user-role">Offline</div>
+      <div id="userName" class="user-name">
+        Niezalogowany
+      </div>
+
+      <div id="userRole" class="user-role">
+        Offline
+      </div>
     </div>
 
   </div>
 
-  <button id="logoutBtn" class="logout-btn" title="Wyloguj">
+  <button
+    id="logoutBtn"
+    class="logout-btn"
+    title="Wyloguj"
+  >
     🚪
   </button>
 
@@ -1811,11 +2093,18 @@ body.light .message-text{
 
   <div class="channel">
 
-    <div id="channelIcon" class="channel-icon">#</div>
+    <div id="channelIcon" class="channel-icon">
+      #
+    </div>
 
     <div>
-      <div id="channelName" class="channel-name">ogólny</div>
-      <div id="channelDesc" class="channel-desc">Rozmowy całej klasy</div>
+      <div id="channelName" class="channel-name">
+        ogólny
+      </div>
+
+      <div id="channelDesc" class="channel-desc">
+        Rozmowy całej klasy
+      </div>
     </div>
 
   </div>
@@ -1843,13 +2132,18 @@ body.light .message-text{
   <div id="replyComposer" class="reply-composer">
 
     <div class="reply-main">
+      <div class="reply-title">
+        ↩ Odpowiadasz na wiadomość
+      </div>
 
-      <div class="reply-title">↩ Odpowiadasz na wiadomość</div>
       <div id="replyText" class="reply-text"></div>
-
     </div>
 
-    <button id="cancelReply" class="cancel-reply" title="Anuluj">
+    <button
+      id="cancelReply"
+      class="cancel-reply"
+      title="Anuluj"
+    >
       ✕
     </button>
 
@@ -1857,68 +2151,130 @@ body.light .message-text{
 
   <div class="effect-bar">
 
-    <button class="effect-chip active" data-effect="none">
+    <button
+      class="effect-chip active"
+      data-effect="none"
+    >
       ✦ Normalna
     </button>
 
-    <button class="effect-chip" data-effect="fire">
+    <button
+      class="effect-chip"
+      data-effect="fire"
+    >
       🔥 Fire
     </button>
 
-    <button class="effect-chip" data-effect="ice">
+    <button
+      class="effect-chip"
+      data-effect="ice"
+    >
       ❄️ Ice
     </button>
 
-    <button class="effect-chip" data-effect="electric">
+    <button
+      class="effect-chip"
+      data-effect="electric"
+    >
       ⚡ ELECTRIC
     </button>
 
-    <button class="effect-chip" data-effect="neon">
+    <button
+      class="effect-chip"
+      data-effect="neon"
+    >
       💜 Neon
     </button>
 
-    <button class="effect-chip" data-effect="rainbow">
+    <button
+      class="effect-chip"
+      data-effect="rainbow"
+    >
       🌈 Rainbow
     </button>
 
-    <button class="effect-chip" data-effect="glitch">
+    <button
+      class="effect-chip"
+      data-effect="glitch"
+    >
       👾 Glitch
     </button>
 
-    <button class="effect-chip" data-effect="plasma">
+    <button
+      class="effect-chip"
+      data-effect="plasma"
+    >
       🔮 Plasma
     </button>
 
-    <button class="effect-chip" data-effect="sparkle">
+    <button
+      class="effect-chip"
+      data-effect="sparkle"
+    >
       ✨ Sparkle
     </button>
 
-    <button class="effect-chip" data-effect="void">
+    <button
+      class="effect-chip"
+      data-effect="void"
+    >
       🕳️ Void
     </button>
 
-    <button class="effect-chip" data-effect="hologram">
+    <button
+      class="effect-chip"
+      data-effect="hologram"
+    >
       🧊 Hologram
     </button>
 
-    <button class="effect-chip" data-effect="gold">
+    <button
+      class="effect-chip"
+      data-effect="gold"
+    >
       🏆 Gold
     </button>
 
-    <button class="effect-chip" data-effect="toxic">
+    <button
+      class="effect-chip"
+      data-effect="toxic"
+    >
       ☢️ Toxic
     </button>
 
-    <button class="effect-chip" data-effect="cosmic">
+    <button
+      class="effect-chip"
+      data-effect="cosmic"
+    >
       🌌 Cosmic
     </button>
 
-    <button class="effect-chip" data-effect="ruby">
+    <button
+      class="effect-chip"
+      data-effect="ruby"
+    >
       💎 Ruby
     </button>
 
-    <button class="effect-chip" data-effect="matrix">
+    <button
+      class="effect-chip"
+      data-effect="matrix"
+    >
       🟢 Matrix
+    </button>
+
+    <button
+      class="effect-chip"
+      data-effect="galaxy"
+    >
+      🌌 GALAXY
+    </button>
+
+    <button
+      class="effect-chip"
+      data-effect="supernova"
+    >
+      💥 SUPERNOVA
     </button>
 
   </div>
@@ -1933,7 +2289,11 @@ body.light .message-text{
       placeholder="Napisz wiadomość..."
     >
 
-    <button id="sendBtn" class="send-btn" title="Wyślij">
+    <button
+      id="sendBtn"
+      class="send-btn"
+      title="Wyślij"
+    >
       ➤
     </button>
 
@@ -1949,7 +2309,9 @@ body.light .message-text{
 ```
 <div class="card">
 
-  <div class="card-title">Najbliższe wydarzenie</div>
+  <div class="card-title">
+    Najbliższe wydarzenie
+  </div>
 
   <div class="event-title">
     Matematyka — sprawdzian
@@ -1963,15 +2325,21 @@ body.light .message-text{
 
 <div class="card">
 
-  <div class="card-title">Twój profil</div>
+  <div class="card-title">
+    Twój profil
+  </div>
 
   <div class="profile-preview">
 
-    <div id="profileBigAvatar" class="profile-big-avatar">
+    <div
+      id="profileBigAvatar"
+      class="profile-big-avatar"
+    >
       ?
     </div>
 
     <div>
+
       <div
         id="profileSideName"
         style="font-size:13px;font-weight:850;"
@@ -1985,6 +2353,7 @@ body.light .message-text{
       >
         Offline
       </div>
+
     </div>
 
   </div>
@@ -1993,7 +2362,9 @@ body.light .message-text{
 
 <div class="card">
 
-  <div class="card-title">Szybkie akcje</div>
+  <div class="card-title">
+    Szybkie akcje
+  </div>
 
   <button class="quick-btn">
     📊 &nbsp; Nowa ankieta
@@ -2007,7 +2378,9 @@ body.light .message-text{
 
 <div class="card">
 
-  <div class="card-title">ClassHub ULTRA</div>
+  <div class="card-title">
+    ClassHub ULTRA
+  </div>
 
   <div
     style="
@@ -2018,7 +2391,7 @@ body.light .message-text{
       line-height:1.6;
     "
   >
-    ⚡ 16 efektów wiadomości
+    ⚡ 18 efektów wiadomości
     <br>
     🎨 Animowane role
     <br>
@@ -2026,7 +2399,9 @@ body.light .message-text{
     <br>
     ✦ Dynamiczne tło
     <br>
-    ◉ Neonowy interfejs
+    🌌 GALAXY
+    <br>
+    💥 SUPERNOVA
   </div>
 
 </div>
@@ -2045,7 +2420,9 @@ body.light .message-text{
 
   <div>
 
-    <div class="modal-title">Twój profil</div>
+    <div class="modal-title">
+      Twój profil
+    </div>
 
     <div class="modal-sub">
       Wybierz styl swoich wiadomości
@@ -2053,7 +2430,10 @@ body.light .message-text{
 
   </div>
 
-  <button id="closeProfile" class="close-btn">
+  <button
+    id="closeProfile"
+    class="close-btn"
+  >
     ✕
   </button>
 
@@ -2061,15 +2441,24 @@ body.light .message-text{
 
 <div class="profile-center">
 
-  <div id="profileModalAvatar" class="profile-modal-avatar">
+  <div
+    id="profileModalAvatar"
+    class="profile-modal-avatar"
+  >
     ?
   </div>
 
-  <div id="profileModalName" class="profile-name">
+  <div
+    id="profileModalName"
+    class="profile-name"
+  >
     Użytkownik
   </div>
 
-  <div id="profileModalEmail" class="profile-email"></div>
+  <div
+    id="profileModalEmail"
+    class="profile-email"
+  ></div>
 
 </div>
 
@@ -2079,84 +2468,220 @@ body.light .message-text{
 
 <div class="effect-options">
 
-  <button class="effect-option active" data-profile-effect="none">
-    <div class="effect-option-name">✦ Normalna</div>
-    <div class="effect-option-desc">Czysta i elegancka</div>
+  <button
+    class="effect-option active"
+    data-profile-effect="none"
+  >
+    <div class="effect-option-name">
+      ✦ Normalna
+    </div>
+    <div class="effect-option-desc">
+      Czysta i elegancka
+    </div>
   </button>
 
-  <button class="effect-option" data-profile-effect="fire">
-    <div class="effect-option-name">🔥 Fire</div>
-    <div class="effect-option-desc">Gorąca poświata</div>
+  <button
+    class="effect-option"
+    data-profile-effect="fire"
+  >
+    <div class="effect-option-name">
+      🔥 Fire
+    </div>
+    <div class="effect-option-desc">
+      Gorąca poświata
+    </div>
   </button>
 
-  <button class="effect-option" data-profile-effect="ice">
-    <div class="effect-option-name">❄️ Ice</div>
-    <div class="effect-option-desc">Lodowy neon</div>
+  <button
+    class="effect-option"
+    data-profile-effect="ice"
+  >
+    <div class="effect-option-name">
+      ❄️ Ice
+    </div>
+    <div class="effect-option-desc">
+      Lodowy neon
+    </div>
   </button>
 
-  <button class="effect-option" data-profile-effect="electric">
-    <div class="effect-option-name">⚡ ELECTRIC</div>
-    <div class="effect-option-desc">Mocne wyładowania</div>
+  <button
+    class="effect-option"
+    data-profile-effect="electric"
+  >
+    <div class="effect-option-name">
+      ⚡ ELECTRIC
+    </div>
+    <div class="effect-option-desc">
+      Mocne wyładowania
+    </div>
   </button>
 
-  <button class="effect-option" data-profile-effect="neon">
-    <div class="effect-option-name">💜 Neon</div>
-    <div class="effect-option-desc">Fioletowo-cyjanowa aura</div>
+  <button
+    class="effect-option"
+    data-profile-effect="neon"
+  >
+    <div class="effect-option-name">
+      💜 Neon
+    </div>
+    <div class="effect-option-desc">
+      Fioletowo-cyjanowa aura
+    </div>
   </button>
 
-  <button class="effect-option" data-profile-effect="rainbow">
-    <div class="effect-option-name">🌈 Rainbow</div>
-    <div class="effect-option-desc">Żywy gradient</div>
+  <button
+    class="effect-option"
+    data-profile-effect="rainbow"
+  >
+    <div class="effect-option-name">
+      🌈 Rainbow
+    </div>
+    <div class="effect-option-desc">
+      Żywy gradient
+    </div>
   </button>
 
-  <button class="effect-option" data-profile-effect="glitch">
-    <div class="effect-option-name">👾 Glitch</div>
-    <div class="effect-option-desc">Cyberpunk</div>
+  <button
+    class="effect-option"
+    data-profile-effect="glitch"
+  >
+    <div class="effect-option-name">
+      👾 Glitch
+    </div>
+    <div class="effect-option-desc">
+      Cyberpunk
+    </div>
   </button>
 
-  <button class="effect-option" data-profile-effect="plasma">
-    <div class="effect-option-name">🔮 Plasma</div>
-    <div class="effect-option-desc">Kosmiczna energia</div>
+  <button
+    class="effect-option"
+    data-profile-effect="plasma"
+  >
+    <div class="effect-option-name">
+      🔮 Plasma
+    </div>
+    <div class="effect-option-desc">
+      Kosmiczna energia
+    </div>
   </button>
 
-  <button class="effect-option" data-profile-effect="sparkle">
-    <div class="effect-option-name">✨ Sparkle</div>
-    <div class="effect-option-desc">Błysk i światło</div>
+  <button
+    class="effect-option"
+    data-profile-effect="sparkle"
+  >
+    <div class="effect-option-name">
+      ✨ Sparkle
+    </div>
+    <div class="effect-option-desc">
+      Błysk i światło
+    </div>
   </button>
 
-  <button class="effect-option" data-profile-effect="void">
-    <div class="effect-option-name">🕳️ Void</div>
-    <div class="effect-option-desc">Ciemna aura</div>
+  <button
+    class="effect-option"
+    data-profile-effect="void"
+  >
+    <div class="effect-option-name">
+      🕳️ Void
+    </div>
+    <div class="effect-option-desc">
+      Ciemna aura
+    </div>
   </button>
 
-  <button class="effect-option" data-profile-effect="hologram">
-    <div class="effect-option-name">🧊 Hologram</div>
-    <div class="effect-option-desc">Futurystyczny efekt</div>
+  <button
+    class="effect-option"
+    data-profile-effect="hologram"
+  >
+    <div class="effect-option-name">
+      🧊 Hologram
+    </div>
+    <div class="effect-option-desc">
+      Futurystyczny efekt
+    </div>
   </button>
 
-  <button class="effect-option" data-profile-effect="gold">
-    <div class="effect-option-name">🏆 Gold</div>
-    <div class="effect-option-desc">Złoty blask</div>
+  <button
+    class="effect-option"
+    data-profile-effect="gold"
+  >
+    <div class="effect-option-name">
+      🏆 Gold
+    </div>
+    <div class="effect-option-desc">
+      Złoty blask
+    </div>
   </button>
 
-  <button class="effect-option" data-profile-effect="toxic">
-    <div class="effect-option-name">☢️ Toxic</div>
-    <div class="effect-option-desc">Toksyczna energia</div>
+  <button
+    class="effect-option"
+    data-profile-effect="toxic"
+  >
+    <div class="effect-option-name">
+      ☢️ Toxic
+    </div>
+    <div class="effect-option-desc">
+      Toksyczna energia
+    </div>
   </button>
 
-  <button class="effect-option" data-profile-effect="cosmic">
-    <div class="effect-option-name">🌌 Cosmic</div>
-    <div class="effect-option-desc">Kosmiczny połysk</div>
+  <button
+    class="effect-option"
+    data-profile-effect="cosmic"
+  >
+    <div class="effect-option-name">
+      🌌 Cosmic
+    </div>
+    <div class="effect-option-desc">
+      Kosmiczny połysk
+    </div>
   </button>
 
-  <button class="effect-option" data-profile-effect="ruby">
-    <div class="effect-option-name">💎 Ruby</div>
-    <div class="effect-option-desc">Rubinowa aura</div>
+  <button
+    class="effect-option"
+    data-profile-effect="ruby"
+  >
+    <div class="effect-option-name">
+      💎 Ruby
+    </div>
+    <div class="effect-option-desc">
+      Rubinowa aura
+    </div>
   </button>
 
-  <button class="effect-option" data-profile-effect="matrix">
-    <div class="effect-option-name">🟢 Matrix</div>
-    <div class="effect-option-desc">Zielony cyber efekt</div>
+  <button
+    class="effect-option"
+    data-profile-effect="matrix"
+  >
+    <div class="effect-option-name">
+      🟢 Matrix
+    </div>
+    <div class="effect-option-desc">
+      Zielony cyber efekt
+    </div>
+  </button>
+
+  <button
+    class="effect-option"
+    data-profile-effect="galaxy"
+  >
+    <div class="effect-option-name">
+      🌌 GALAXY
+    </div>
+    <div class="effect-option-desc">
+      Wirująca mgławica i gwiazdy
+    </div>
+  </button>
+
+  <button
+    class="effect-option"
+    data-profile-effect="supernova"
+  >
+    <div class="effect-option-name">
+      💥 SUPERNOVA
+    </div>
+    <div class="effect-option-desc">
+      Eksplozja światła i energii
+    </div>
   </button>
 
 </div>
@@ -2169,7 +2694,7 @@ body.light .message-text{
 <script type="module">
 
 import { initializeApp }
-  from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
   getAuth,
@@ -2179,7 +2704,8 @@ import {
   getRedirectResult,
   onAuthStateChanged,
   signOut
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 import {
   getFirestore,
@@ -2194,45 +2720,65 @@ import {
   setDoc,
   doc,
   getDoc
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 /* ========================================================
    FIREBASE CONFIG
    ======================================================== */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBBU7MXXucUbvtf1kEACLVLn9dVzXOIe7o",
-  authDomain: "czacik-24d94.firebaseapp.com",
-  projectId: "czacik-24d94",
-  storageBucket: "czacik-24d94.firebasestorage.app",
-  messagingSenderId: "728180059739",
-  appId: "1:728180059739:web:d0a70cd02c8ef96700d97e"
+  apiKey:"AIzaSyBBU7MXXucUbvtf1kEACLVn9DzV9dVzXOIe7o",
+  authDomain:"czacik-24d94.firebaseapp.com",
+  projectId:"czacik-24d94",
+  storageBucket:"czacik-24d94.firebasestorage.app",
+  messagingSenderId:"728180059739",
+  appId:"1:728180059739:web:d0a70cd02c8ef96700d97e"
 };
+
 /* ========================================================
    FIREBASE INIT
    ======================================================== */
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+const app =
+  initializeApp(firebaseConfig);
+
+const auth =
+  getAuth(app);
+
+const db =
+  getFirestore(app);
 
 /* ========================================================
    STATE
    ======================================================== */
 
-let currentUser = null;
-let currentUserRole = "student";
-let currentChannel = "ogólny";
+let currentUser =
+  null;
+
+let currentUserRole =
+  "student";
+
+let currentChannel =
+  "ogólny";
 
 let selectedEffect =
-  localStorage.getItem("classhub_message_effect") || "none";
+  localStorage.getItem(
+    "classhub_message_effect"
+  ) || "none";
 
-let replyTo = null;
-let unsubscribeMessages = null;
+let replyTo =
+  null;
 
-const userCache = new Map();
+let unsubscribeMessages =
+  null;
 
-const $ = selector => document.querySelector(selector);
+const userCache =
+  new Map();
+
+const $ =
+  selector =>
+    document.querySelector(selector);
 
 /* ========================================================
    ROLE CONFIG
@@ -2308,14 +2854,19 @@ const CHANNEL_CONFIG = {
    ======================================================== */
 
 function normalizeRole(role){
-  return ROLE_CONFIG[role] ? role : "student";
+  return ROLE_CONFIG[role]
+    ? role
+    : "student";
 }
 
 function getRoleInfo(role){
-  return ROLE_CONFIG[normalizeRole(role)] || ROLE_CONFIG.student;
+  return ROLE_CONFIG[
+    normalizeRole(role)
+  ] || ROLE_CONFIG.student;
 }
 
 function getInitial(name){
+
   if(!name){
     return "?";
   }
@@ -2327,10 +2878,14 @@ function getInitial(name){
 }
 
 function cleanPhotoUrl(value){
-  return typeof value === "string" ? value : "";
+
+  return typeof value === "string"
+    ? value
+    : "";
 }
 
 function escapeHtml(value){
+
   return String(value ?? "")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
@@ -2345,33 +2900,53 @@ function escapeHtml(value){
 
 function createParticles(){
 
-  const container = $("#particles");
+  const container =
+    $("#particles");
 
   if(!container){
     return;
   }
 
-  const count = window.innerWidth < 700 ? 20 : 36;
+  const count =
+    window.innerWidth < 700
+      ? 20
+      : 36;
 
-  for(let i=0;i<count;i++){
+  for(
+    let i=0;
+    i<count;
+    i++
+  ){
 
-    const particle = document.createElement("div");
+    const particle =
+      document.createElement("div");
 
-    particle.className = "particle";
+    particle.className =
+      "particle";
 
     particle.style.left =
       Math.random() * 100 + "%";
 
     particle.style.animationDuration =
-      (12 + Math.random() * 20) + "s";
+      (
+        12 +
+        Math.random() * 20
+      ) + "s";
 
     particle.style.animationDelay =
-      (-Math.random() * 20) + "s";
+      (
+        -Math.random() * 20
+      ) + "s";
 
     particle.style.opacity =
-      (0.15 + Math.random() * 0.65).toString();
+      (
+        0.15 +
+        Math.random() * 0.65
+      ).toString();
 
-    container.appendChild(particle);
+    container.appendChild(
+      particle
+    );
   }
 }
 
@@ -2390,24 +2965,33 @@ async function getUserProfile(uid){
       photoURL:"",
       role:"student"
     };
-
   }
 
-  if(currentUser && currentUser.uid === uid){
+  if(
+    currentUser &&
+    currentUser.uid === uid
+  ){
 
-    let firestoreRole = "student";
+    let firestoreRole =
+      "student";
 
     try{
 
-      const snap = await getDoc(
-        doc(db,"users",uid)
-      );
+      const snap =
+        await getDoc(
+          doc(
+            db,
+            "users",
+            uid
+          )
+        );
 
       if(snap.exists()){
 
         firestoreRole =
-          normalizeRole(snap.data().role);
-
+          normalizeRole(
+            snap.data().role
+          );
       }
 
     }catch(error){
@@ -2416,53 +3000,71 @@ async function getUserProfile(uid){
         "Nie można pobrać roli:",
         error
       );
-
     }
 
     return {
+
       displayName:
-        currentUser.displayName || "Użytkownik",
+        currentUser.displayName ||
+        "Użytkownik",
 
       photoURL:
-        cleanPhotoUrl(currentUser.photoURL),
+        cleanPhotoUrl(
+          currentUser.photoURL
+        ),
 
       role:
         firestoreRole
     };
-
   }
 
   if(userCache.has(uid)){
+
     return userCache.get(uid);
   }
 
   let profile = {
+
     displayName:"Użytkownik",
     photoURL:"",
     role:"student"
+
   };
 
   try{
 
-    const snapshot = await getDoc(
-      doc(db,"users",uid)
-    );
+    const snapshot =
+      await getDoc(
+        doc(
+          db,
+          "users",
+          uid
+        )
+      );
 
     if(snapshot.exists()){
 
-      const data = snapshot.data();
+      const data =
+        snapshot.data();
 
       if(data.displayName){
-        profile.displayName = data.displayName;
+
+        profile.displayName =
+          data.displayName;
       }
 
       if(data.photoURL){
+
         profile.photoURL =
-          cleanPhotoUrl(data.photoURL);
+          cleanPhotoUrl(
+            data.photoURL
+          );
       }
 
       profile.role =
-        normalizeRole(data.role);
+        normalizeRole(
+          data.role
+        );
     }
 
   }catch(error){
@@ -2471,10 +3073,12 @@ async function getUserProfile(uid){
       "Nie można pobrać profilu:",
       error
     );
-
   }
 
-  userCache.set(uid,profile);
+  userCache.set(
+    uid,
+    profile
+  );
 
   return profile;
 }
@@ -2489,15 +3093,22 @@ function updateUserUI(){
     return;
   }
 
-  const role = getRoleInfo(currentUserRole);
+  const role =
+    getRoleInfo(
+      currentUserRole
+    );
 
   const name =
-    currentUser.displayName || "Użytkownik";
+    currentUser.displayName ||
+    "Użytkownik";
 
   const photo =
-    cleanPhotoUrl(currentUser.photoURL);
+    cleanPhotoUrl(
+      currentUser.photoURL
+    );
 
-  $("#userName").textContent = name;
+  $("#userName").textContent =
+    name;
 
   $("#userRole").textContent =
     `${role.icon} ${role.name}`;
@@ -2518,7 +3129,8 @@ function updateUserUI(){
     name;
 
   $("#profileModalEmail").textContent =
-    currentUser.email || "";
+    currentUser.email ||
+    "";
 
   if(photo){
 
@@ -2572,28 +3184,44 @@ async function saveUserProfile(user){
   try{
 
     await setDoc(
-      doc(db,"users",user.uid),
+
+      doc(
+        db,
+        "users",
+        user.uid
+      ),
+
       {
-        uid:user.uid,
+
+        uid:
+          user.uid,
 
         displayName:
-          user.displayName || "Użytkownik",
+          user.displayName ||
+          "Użytkownik",
 
         email:
-          user.email || "",
+          user.email ||
+          "",
 
         photoURL:
-          cleanPhotoUrl(user.photoURL),
+          cleanPhotoUrl(
+            user.photoURL
+          ),
 
         lastLogin:
           serverTimestamp()
+
       },
+
       {
         merge:true
       }
     );
 
-    userCache.delete(user.uid);
+    userCache.delete(
+      user.uid
+    );
 
   }catch(error){
 
@@ -2601,7 +3229,6 @@ async function saveUserProfile(user){
       "Profil nie został zapisany:",
       error
     );
-
   }
 }
 
@@ -2621,13 +3248,14 @@ async function loadCurrentUserRole(){
 
   try{
 
-    const snapshot = await getDoc(
-      doc(
-        db,
-        "users",
-        currentUser.uid
-      )
-    );
+    const snapshot =
+      await getDoc(
+        doc(
+          db,
+          "users",
+          currentUser.uid
+        )
+      );
 
     if(snapshot.exists()){
 
@@ -2657,48 +3285,67 @@ async function loadCurrentUserRole(){
 }
 
 /* ========================================================
-   FRIENDLY AUTH ERROR
+   AUTH ERRORS
    ======================================================== */
 
 function friendlyAuthError(error){
 
   const code =
-    error?.code || "";
+    error?.code ||
+    "";
 
-  if(code.includes("api-key-not-valid")){
+  if(
+    code.includes(
+      "api-key-not-valid"
+    )
+  ){
 
     return "Firebase odrzucił klucz API.";
-
   }
 
-  if(code.includes("unauthorized-domain")){
+  if(
+    code.includes(
+      "unauthorized-domain"
+    )
+  ){
 
     return "Ta domena nie jest dodana do Authorized domains Firebase.";
-
   }
 
-  if(code.includes("operation-not-allowed")){
+  if(
+    code.includes(
+      "operation-not-allowed"
+    )
+  ){
 
     return "Logowanie Google nie jest włączone w Firebase Authentication.";
-
   }
 
-  if(code.includes("popup-blocked")){
+  if(
+    code.includes(
+      "popup-blocked"
+    )
+  ){
 
     return "Przeglądarka zablokowała okno logowania Google.";
-
   }
 
-  if(code.includes("popup-closed-by-user")){
+  if(
+    code.includes(
+      "popup-closed-by-user"
+    )
+  ){
 
     return "Okno logowania zostało zamknięte.";
-
   }
 
-  if(code.includes("network-request-failed")){
+  if(
+    code.includes(
+      "network-request-failed"
+    )
+  ){
 
     return "Problem z połączeniem z Firebase.";
-
   }
 
   return (
@@ -2717,98 +3364,101 @@ function showLoginError(message){
    LOGIN
    ======================================================== */
 
-$("#googleLogin").onclick = async () => {
+$("#googleLogin").onclick =
+  async () => {
 
-  const button =
-    $("#googleLogin");
+    const button =
+      $("#googleLogin");
 
-  $("#loginError").textContent =
-    "";
+    $("#loginError").textContent =
+      "";
 
-  button.disabled =
-    true;
+    button.disabled =
+      true;
 
-  button.innerHTML =
-    "⏳ Logowanie...";
+    button.innerHTML =
+      "⏳ Logowanie...";
 
-  try{
+    try{
 
-    const provider =
-      new GoogleAuthProvider();
+      const provider =
+        new GoogleAuthProvider();
 
-    provider.setCustomParameters({
-      prompt:"select_account"
-    });
+      provider.setCustomParameters({
+        prompt:"select_account"
+      });
 
-    await signInWithPopup(
-      auth,
-      provider
-    );
+      await signInWithPopup(
+        auth,
+        provider
+      );
 
-  }catch(error){
+    }catch(error){
 
-    console.error(
-      "Google Login:",
-      error
-    );
+      console.error(
+        "Google Login:",
+        error
+      );
 
-    if(
-      error.code === "auth/popup-blocked" ||
-      error.code === "auth/popup-closed-by-user"
-    ){
+      if(
+        error.code ===
+          "auth/popup-blocked" ||
+        error.code ===
+          "auth/popup-closed-by-user"
+      ){
 
-      try{
+        try{
 
-        const provider =
-          new GoogleAuthProvider();
+          const provider =
+            new GoogleAuthProvider();
 
-        provider.setCustomParameters({
-          prompt:"select_account"
-        });
+          provider.setCustomParameters({
+            prompt:"select_account"
+          });
 
-        await signInWithRedirect(
-          auth,
-          provider
-        );
+          await signInWithRedirect(
+            auth,
+            provider
+          );
 
-        return;
+          return;
 
-      }catch(redirectError){
+        }catch(redirectError){
 
-        console.error(
-          "Google Redirect Login:",
-          redirectError
-        );
+          console.error(
+            "Google Redirect Login:",
+            redirectError
+          );
+
+          showLoginError(
+            friendlyAuthError(
+              redirectError
+            )
+          );
+        }
+
+      }else{
 
         showLoginError(
           friendlyAuthError(
-            redirectError
+            error
           )
         );
-
       }
 
-    }else{
+    }finally{
 
-      showLoginError(
-        friendlyAuthError(error)
-      );
+      button.disabled =
+        false;
+
+      button.innerHTML = `
+        <span class="google-icon">
+          G
+        </span>
+        Zaloguj przez Google
+      `;
     }
-
-  }finally{
-
-    button.disabled =
-      false;
-
-    button.innerHTML = `
-      <span class="google-icon">
-        G
-      </span>
-
-      Zaloguj przez Google
-    `;
-  }
-};
+  };
 
 /* ========================================================
    REDIRECT RESULT
@@ -2818,6 +3468,7 @@ getRedirectResult(auth)
   .then(result => {
 
     if(result?.user){
+
       console.log(
         "Logowanie przez redirect zakończone."
       );
@@ -2832,9 +3483,10 @@ getRedirectResult(auth)
     );
 
     showLoginError(
-      friendlyAuthError(error)
+      friendlyAuthError(
+        error
+      )
     );
-
   });
 
 /* ========================================================
@@ -2851,7 +3503,9 @@ onAuthStateChanged(
     if(!user){
 
       $("#login")
-        .classList.remove("hidden");
+        .classList.remove(
+          "hidden"
+        );
 
       return;
     }
@@ -2874,6 +3528,7 @@ onAuthStateChanged(
       );
 
     const allowedEffects = [
+
       "none",
       "fire",
       "ice",
@@ -2889,7 +3544,10 @@ onAuthStateChanged(
       "toxic",
       "cosmic",
       "ruby",
-      "matrix"
+      "matrix",
+      "galaxy",
+      "supernova"
+
     ];
 
     if(
@@ -2912,7 +3570,9 @@ onAuthStateChanged(
     updateEffectUI();
 
     $("#login")
-      .classList.add("hidden");
+      .classList.add(
+        "hidden"
+      );
 
     subscribeMessages(
       currentChannel
@@ -2924,68 +3584,87 @@ onAuthStateChanged(
    LOGOUT
    ======================================================== */
 
-$("#logoutBtn").onclick = async () => {
+$("#logoutBtn").onclick =
+  async () => {
 
-  try{
+    try{
 
-    if(unsubscribeMessages){
+      if(unsubscribeMessages){
 
-      unsubscribeMessages();
-      unsubscribeMessages = null;
+        unsubscribeMessages();
+        unsubscribeMessages = null;
+      }
+
+      await signOut(
+        auth
+      );
+
+      currentUser =
+        null;
+
+      currentUserRole =
+        "student";
+
+      replyTo =
+        null;
+
+      $("#login")
+        .classList.remove(
+          "hidden"
+        );
+
+    }catch(error){
+
+      console.error(
+        "Logout:",
+        error
+      );
     }
-
-    await signOut(auth);
-
-    currentUser = null;
-    currentUserRole = "student";
-    replyTo = null;
-
-    $("#login")
-      .classList.remove("hidden");
-
-  }catch(error){
-
-    console.error(
-      "Logout:",
-      error
-    );
-  }
-};
+  };
 
 /* ========================================================
    PROFILE MODAL
    ======================================================== */
 
-$("#openProfile").onclick = () => {
+$("#openProfile").onclick =
+  () => {
 
-  if(!currentUser){
-    return;
-  }
+    if(!currentUser){
+      return;
+    }
 
-  updateUserUI();
-  updateProfileEffectUI();
-
-  $("#profileModal")
-    .classList.add("show");
-};
-
-$("#closeProfile").onclick = () => {
-
-  $("#profileModal")
-    .classList.remove("show");
-};
-
-$("#profileModal").onclick = event => {
-
-  if(
-    event.target ===
-    $("#profileModal")
-  ){
+    updateUserUI();
+    updateProfileEffectUI();
 
     $("#profileModal")
-      .classList.remove("show");
-  }
-};
+      .classList.add(
+        "show"
+      );
+  };
+
+$("#closeProfile").onclick =
+  () => {
+
+    $("#profileModal")
+      .classList.remove(
+        "show"
+      );
+  };
+
+$("#profileModal").onclick =
+  event => {
+
+    if(
+      event.target ===
+      $("#profileModal")
+    ){
+
+      $("#profileModal")
+        .classList.remove(
+          "show"
+        );
+    }
+  };
 
 /* ========================================================
    EFFECT PICKERS
@@ -2995,47 +3674,51 @@ document
   .querySelectorAll(
     "[data-profile-effect]"
   )
-  .forEach(button => {
+  .forEach(
+    button => {
 
-    button.onclick = () => {
+      button.onclick =
+        () => {
 
-      selectedEffect =
-        button.getAttribute(
-          "data-profile-effect"
-        );
+          selectedEffect =
+            button.getAttribute(
+              "data-profile-effect"
+            );
 
-      localStorage.setItem(
-        "classhub_message_effect",
-        selectedEffect
-      );
+          localStorage.setItem(
+            "classhub_message_effect",
+            selectedEffect
+          );
 
-      updateEffectUI();
-    };
-
-  });
+          updateEffectUI();
+        };
+    }
+  );
 
 document
   .querySelectorAll(
     ".effect-chip"
   )
-  .forEach(button => {
+  .forEach(
+    button => {
 
-    button.onclick = () => {
+      button.onclick =
+        () => {
 
-      selectedEffect =
-        button.getAttribute(
-          "data-effect"
-        );
+          selectedEffect =
+            button.getAttribute(
+              "data-effect"
+            );
 
-      localStorage.setItem(
-        "classhub_message_effect",
-        selectedEffect
-      );
+          localStorage.setItem(
+            "classhub_message_effect",
+            selectedEffect
+          );
 
-      updateEffectUI();
-    };
-
-  });
+          updateEffectUI();
+        };
+    }
+  );
 
 function updateEffectUI(){
 
@@ -3043,16 +3726,20 @@ function updateEffectUI(){
     .querySelectorAll(
       ".effect-chip"
     )
-    .forEach(button => {
+    .forEach(
+      button => {
 
-      button.classList.toggle(
-        "active",
-        button.getAttribute(
-          "data-effect"
-        ) === selectedEffect
-      );
+        button.classList.toggle(
 
-    });
+          "active",
+
+          button.getAttribute(
+            "data-effect"
+          ) ===
+            selectedEffect
+        );
+      }
+    );
 
   updateProfileEffectUI();
 }
@@ -3063,16 +3750,20 @@ function updateProfileEffectUI(){
     .querySelectorAll(
       "[data-profile-effect]"
     )
-    .forEach(button => {
+    .forEach(
+      button => {
 
-      button.classList.toggle(
-        "active",
-        button.getAttribute(
-          "data-profile-effect"
-        ) === selectedEffect
-      );
+        button.classList.toggle(
 
-    });
+          "active",
+
+          button.getAttribute(
+            "data-profile-effect"
+          ) ===
+            selectedEffect
+        );
+      }
+    );
 }
 
 /* ========================================================
@@ -3090,18 +3781,21 @@ function startReply(message){
       message.uid,
 
     displayName:
-      message.displayName || "Użytkownik",
+      message.displayName ||
+      "Użytkownik",
 
     text:
-      message.text || ""
-
+      message.text ||
+      ""
   };
 
   $("#replyText").textContent =
     `${replyTo.displayName}: ${replyTo.text}`;
 
   $("#replyComposer")
-    .classList.add("show");
+    .classList.add(
+      "show"
+    );
 
   $("#msgInput").focus();
 }
@@ -3112,7 +3806,9 @@ function cancelReply(){
     null;
 
   $("#replyComposer")
-    .classList.remove("show");
+    .classList.remove(
+      "show"
+    );
 
   $("#replyText").textContent =
     "";
@@ -3161,7 +3857,8 @@ async function sendMessage(){
 
     const messageData = {
 
-      text,
+      text:
+        text,
 
       channel:
         currentChannel,
@@ -3169,18 +3866,20 @@ async function sendMessage(){
       uid:
         currentUser.uid,
 
-      displayName,
+      displayName:
+        displayName,
 
-      photoURL,
+      photoURL:
+        photoURL,
 
       roleAtSend:
         currentUserRole,
 
-      effect,
+      effect:
+        effect,
 
       createdAt:
         serverTimestamp()
-
     };
 
     if(replyTo){
@@ -3198,15 +3897,16 @@ async function sendMessage(){
 
         text:
           replyTo.text
-
       };
     }
 
     await addDoc(
+
       collection(
         db,
         "messages"
       ),
+
       messageData
     );
 
@@ -3234,7 +3934,10 @@ $("#sendBtn").onclick =
 $("#msgInput").onkeydown =
   event => {
 
-    if(event.key === "Enter"){
+    if(
+      event.key ===
+      "Enter"
+    ){
 
       event.preventDefault();
 
@@ -3242,7 +3945,8 @@ $("#msgInput").onkeydown =
     }
 
     if(
-      event.key === "Escape" &&
+      event.key ===
+        "Escape" &&
       replyTo
     ){
 
@@ -3290,40 +3994,52 @@ function subscribeMessages(channel){
 
   const messagesQuery =
     query(
+
       collection(
         db,
         "messages"
       ),
+
       where(
         "channel",
         "==",
         channel
       ),
+
       orderBy(
         "createdAt",
         "desc"
       ),
+
       limit(60)
     );
 
   unsubscribeMessages =
     onSnapshot(
+
       messagesQuery,
 
       async snapshot => {
 
         const messages =
           snapshot.docs
-            .map(snap => ({
-              id:snap.id,
-              ...snap.data()
-            }))
+            .map(
+              snap => ({
+                id:
+                  snap.id,
+
+                ...snap.data()
+              })
+            )
             .reverse();
 
         const container =
           $("#msgs");
 
-        if(messages.length === 0){
+        if(
+          messages.length ===
+          0
+        ){
 
           container.innerHTML = `
             <div class="empty">
@@ -3343,7 +4059,9 @@ function subscribeMessages(channel){
 
         const enriched =
           await Promise.all(
+
             messages.map(
+
               async message => {
 
                 const profile =
@@ -3386,7 +4104,6 @@ function subscribeMessages(channel){
               container,
               message
             );
-
           }
         );
 
@@ -3395,10 +4112,8 @@ function subscribeMessages(channel){
 
             container.scrollTop =
               container.scrollHeight;
-
           }
         );
-
       },
 
       error => {
@@ -3442,7 +4157,9 @@ function renderMessage(
     );
 
   const roleInfo =
-    getRoleInfo(role);
+    getRoleInfo(
+      role
+    );
 
   const displayName =
     message.displayName ||
@@ -3454,6 +4171,7 @@ function renderMessage(
     );
 
   const validEffects = [
+
     "none",
     "fire",
     "ice",
@@ -3469,7 +4187,10 @@ function renderMessage(
     "toxic",
     "cosmic",
     "ruby",
-    "matrix"
+    "matrix",
+    "galaxy",
+    "supernova"
+
   ];
 
   const effect =
@@ -3484,8 +4205,9 @@ function renderMessage(
 
   if(
     message.createdAt &&
-    typeof message.createdAt.toDate ===
-      "function"
+    typeof
+      message.createdAt.toDate ===
+        "function"
   ){
 
     time =
@@ -3502,6 +4224,7 @@ function renderMessage(
 
   const avatarHtml =
     photo
+
       ? `
         <div class="message-avatar">
           <img
@@ -3510,23 +4233,31 @@ function renderMessage(
           >
         </div>
       `
+
       : `
         <div class="message-avatar">
           ${escapeHtml(
-            getInitial(displayName)
+            getInitial(
+              displayName
+            )
           )}
         </div>
       `;
 
   const badge =
-    role === "student"
+    role ===
+      "student"
+
       ? ""
+
       : `
         <span
           class="role-badge role-${role}"
         >
           ${roleInfo.icon}
-          ${escapeHtml(roleInfo.name)}
+          ${escapeHtml(
+            roleInfo.name
+          )}
         </span>
       `;
 
@@ -3539,22 +4270,29 @@ function renderMessage(
       <div
         class="reply-preview"
         data-reply-target="${escapeHtml(
-          message.replyTo.id || ""
+          message.replyTo.id ||
+          ""
         )}"
       >
         ↩️
+
         <strong>
           ${escapeHtml(
             message.replyTo.displayName ||
             "Użytkownik"
           )}
         </strong>
+
         ·
+
         ${escapeHtml(
           (
             message.replyTo.text ||
             ""
-          ).slice(0,150)
+          ).slice(
+            0,
+            150
+          )
         )}
       </div>
     `;
@@ -3576,6 +4314,7 @@ function renderMessage(
     message.id;
 
   element.innerHTML = `
+
     ${avatarHtml}
 
     <div class="message-body">
@@ -3586,13 +4325,17 @@ function renderMessage(
           class="message-author"
           style="color:${roleInfo.color};"
         >
-          ${escapeHtml(displayName)}
+          ${escapeHtml(
+            displayName
+          )}
         </span>
 
         ${badge}
 
         <span class="message-time">
-          ${escapeHtml(time)}
+          ${escapeHtml(
+            time
+          )}
         </span>
 
         <div class="message-actions">
@@ -3612,7 +4355,8 @@ function renderMessage(
 
       <div class="message-text">
         ${escapeHtml(
-          message.text || ""
+          message.text ||
+          ""
         )}
       </div>
 
@@ -3632,7 +4376,6 @@ function renderMessage(
         startReply(
           message
         );
-
       };
   }
 
@@ -3657,7 +4400,9 @@ function renderMessage(
 
         const target =
           container.querySelector(
-            `[data-message-id="${CSS.escape(targetId)}"]`
+            `[data-message-id="${CSS.escape(
+              targetId
+            )}"]`
           );
 
         if(target){
@@ -3668,6 +4413,7 @@ function renderMessage(
           });
 
           target.animate(
+
             [
               {
                 background:
@@ -3676,6 +4422,7 @@ function renderMessage(
                 transform:
                   "translateX(6px)"
               },
+
               {
                 background:
                   "rgba(255,255,255,.02)",
@@ -3684,6 +4431,7 @@ function renderMessage(
                   "translateX(0)"
               }
             ],
+
             {
               duration:900,
               easing:"ease-out"
@@ -3722,7 +4470,6 @@ document
                 nav.classList.remove(
                   "active"
                 );
-
               }
             );
 
@@ -3740,9 +4487,7 @@ document
           subscribeMessages(
             currentChannel
           );
-
         };
-
     }
   );
 
@@ -3756,7 +4501,6 @@ $("#themeToggle").onclick =
     document.body.classList.toggle(
       "light"
     );
-
   };
 
 </script>
