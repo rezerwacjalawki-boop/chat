@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -749,8 +750,6 @@ button{
   color:#e7eaff;
 }
 
-/* FIRE */
-
 .effect-fire{
   border-left:2px solid rgba(255,92,30,.55);
   background:linear-gradient(90deg,rgba(255,65,20,.075),rgba(255,120,20,.025),transparent 85%);
@@ -771,11 +770,7 @@ button{
     opacity:0;
     transform:translateY(6px) scale(.7);
   }
-
-  25%{
-    opacity:.8;
-  }
-
+  25%{opacity:.8}
   100%{
     opacity:0;
     transform:translateY(-22px) translateX(8px) scale(1.25);
@@ -793,8 +788,6 @@ button{
   50%{filter:brightness(1.23) saturate(1.18)}
 }
 
-/* ICE */
-
 .effect-ice{
   border-left:2px solid rgba(78,220,255,.58);
   background:linear-gradient(90deg,rgba(55,207,255,.07),rgba(110,240,255,.025),transparent 85%);
@@ -810,8 +803,6 @@ button{
   0%,100%{filter:brightness(1)}
   50%{filter:brightness(1.25)}
 }
-
-/* ELECTRIC */
 
 .effect-electric{
   border:1px solid rgba(111,105,255,.26);
@@ -878,8 +869,6 @@ button{
   86%{filter:brightness(1.1)}
 }
 
-/* NEON */
-
 .effect-neon{
   border-left:2px solid rgba(114,102,255,.65);
   background:linear-gradient(90deg,rgba(114,102,255,.10),rgba(0,221,255,.045),transparent 90%);
@@ -895,8 +884,6 @@ button{
   0%,100%{filter:brightness(1)}
   50%{filter:brightness(1.32)}
 }
-
-/* RAINBOW */
 
 .effect-rainbow{
   background:linear-gradient(90deg,rgba(255,69,215,.055),rgba(114,102,255,.035),rgba(0,221,255,.035),transparent);
@@ -914,8 +901,6 @@ button{
 @keyframes rainbow{
   to{background-position:400% center}
 }
-
-/* GLITCH */
 
 .effect-glitch{
   border-left:2px solid rgba(255,69,215,.55);
@@ -937,8 +922,6 @@ button{
   85%{transform:translate(0,0)}
 }
 
-/* PLASMA */
-
 .effect-plasma{
   background:linear-gradient(90deg,rgba(112,100,255,.07),rgba(255,69,215,.06),rgba(0,221,255,.03),transparent 90%);
   border-left:2px solid rgba(194,96,255,.60);
@@ -955,8 +938,6 @@ button{
   50%{filter:hue-rotate(35deg) brightness(1.3)}
 }
 
-/* SPARKLE */
-
 .effect-sparkle .message-text{
   color:#fff8db;
   text-shadow:0 0 8px rgba(255,209,102,.58);
@@ -967,8 +948,6 @@ button{
   0%,100%{filter:brightness(1)}
   50%{filter:brightness(1.35)}
 }
-
-/* VOID */
 
 .effect-void{
   border:1px solid rgba(144,120,255,.24);
@@ -988,8 +967,6 @@ button{
   0%,100%{opacity:.88}
   50%{opacity:1;text-shadow:0 0 22px rgba(137,105,255,.88)}
 }
-
-/* HOLOGRAM */
 
 .effect-hologram{
   border-left:2px solid rgba(0,221,255,.55);
@@ -1011,8 +988,6 @@ button{
   50%{filter:brightness(1.3) saturate(1.25)}
 }
 
-/* GOLD */
-
 .effect-gold{
   border-left:2px solid rgba(255,209,102,.58);
   background:linear-gradient(90deg,rgba(255,209,102,.055),rgba(255,156,40,.02),transparent 90%);
@@ -1029,8 +1004,6 @@ button{
   50%{filter:brightness(1.28)}
 }
 
-/* TOXIC */
-
 .effect-toxic{
   border-left:2px solid rgba(121,255,78,.56);
   background:linear-gradient(90deg,rgba(88,255,67,.055),rgba(188,255,70,.02),transparent 90%);
@@ -1046,8 +1019,6 @@ button{
   0%,100%{filter:hue-rotate(0deg) brightness(1)}
   50%{filter:hue-rotate(-10deg) brightness(1.27)}
 }
-
-/* COSMIC */
 
 .effect-cosmic{
   border:1px solid rgba(139,112,255,.25);
@@ -1067,8 +1038,6 @@ button{
   50%{transform:translateY(-1px)}
 }
 
-/* RUBY */
-
 .effect-ruby{
   border-left:2px solid rgba(255,61,104,.58);
   background:linear-gradient(90deg,rgba(255,61,104,.06),rgba(255,20,85,.02),transparent 90%);
@@ -1084,8 +1053,6 @@ button{
   0%,100%{filter:brightness(1)}
   50%{filter:brightness(1.27)}
 }
-
-/* MATRIX */
 
 .effect-matrix{
   border-left:2px solid rgba(48,255,144,.58);
@@ -1104,8 +1071,6 @@ button{
   92%{opacity:1}
   94%{opacity:.82}
 }
-
-/* GALAXY */
 
 .effect-galaxy{
   border:1px solid rgba(136,103,255,.30);
@@ -1200,8 +1165,6 @@ button{
   0%,100%{filter:hue-rotate(0deg) brightness(1)}
   50%{filter:hue-rotate(28deg) brightness(1.32)}
 }
-
-/* SUPERNOVA */
 
 .effect-supernova{
   border:1px solid rgba(255,132,62,.34);
@@ -1754,6 +1717,7 @@ button{
   color:var(--red);
   font-size:10px;
   line-height:1.45;
+  white-space:pre-wrap;
 }
 
 .modal{
@@ -2342,129 +2306,75 @@ body.light .message-text{
 
       <div class="effect-bar">
 
-        <button
-          class="effect-chip active"
-          data-effect="none"
-        >
+        <button class="effect-chip active" data-effect="none">
           ✦ Normalna
         </button>
 
-        <button
-          class="effect-chip"
-          data-effect="fire"
-        >
+        <button class="effect-chip" data-effect="fire">
           🔥 Fire
         </button>
 
-        <button
-          class="effect-chip"
-          data-effect="ice"
-        >
+        <button class="effect-chip" data-effect="ice">
           ❄️ Ice
         </button>
 
-        <button
-          class="effect-chip"
-          data-effect="electric"
-        >
+        <button class="effect-chip" data-effect="electric">
           ⚡ ELECTRIC
         </button>
 
-        <button
-          class="effect-chip"
-          data-effect="neon"
-        >
+        <button class="effect-chip" data-effect="neon">
           💜 Neon
         </button>
 
-        <button
-          class="effect-chip"
-          data-effect="rainbow"
-        >
+        <button class="effect-chip" data-effect="rainbow">
           🌈 Rainbow
         </button>
 
-        <button
-          class="effect-chip"
-          data-effect="glitch"
-        >
+        <button class="effect-chip" data-effect="glitch">
           👾 Glitch
         </button>
 
-        <button
-          class="effect-chip"
-          data-effect="plasma"
-        >
+        <button class="effect-chip" data-effect="plasma">
           🔮 Plasma
         </button>
 
-        <button
-          class="effect-chip"
-          data-effect="sparkle"
-        >
+        <button class="effect-chip" data-effect="sparkle">
           ✨ Sparkle
         </button>
 
-        <button
-          class="effect-chip"
-          data-effect="void"
-        >
+        <button class="effect-chip" data-effect="void">
           🕳️ Void
         </button>
 
-        <button
-          class="effect-chip"
-          data-effect="hologram"
-        >
+        <button class="effect-chip" data-effect="hologram">
           🧊 Hologram
         </button>
 
-        <button
-          class="effect-chip"
-          data-effect="gold"
-        >
+        <button class="effect-chip" data-effect="gold">
           🏆 Gold
         </button>
 
-        <button
-          class="effect-chip"
-          data-effect="toxic"
-        >
+        <button class="effect-chip" data-effect="toxic">
           ☢️ Toxic
         </button>
 
-        <button
-          class="effect-chip"
-          data-effect="cosmic"
-        >
+        <button class="effect-chip" data-effect="cosmic">
           🌌 Cosmic
         </button>
 
-        <button
-          class="effect-chip"
-          data-effect="ruby"
-        >
+        <button class="effect-chip" data-effect="ruby">
           💎 Ruby
         </button>
 
-        <button
-          class="effect-chip"
-          data-effect="matrix"
-        >
+        <button class="effect-chip" data-effect="matrix">
           🟢 Matrix
         </button>
 
-        <button
-          class="effect-chip"
-          data-effect="galaxy"
-        >
+        <button class="effect-chip" data-effect="galaxy">
           🌌 GALAXY
         </button>
 
-        <button
-          class="effect-chip"
-          data-effect="supernova"
-        >
+        <button class="effect-chip" data-effect="supernova">
           💥 SUPERNOVA
         </button>
 
@@ -2658,238 +2568,94 @@ body.light .message-text{
 
     <div class="effect-options">
 
-      <button
-        class="effect-option active"
-        data-profile-effect="none"
-      >
-        <div class="effect-option-name">
-          ✦ Normalna
-        </div>
-
-        <div class="effect-option-desc">
-          Czysta i elegancka
-        </div>
+      <button class="effect-option active" data-profile-effect="none">
+        <div class="effect-option-name">✦ Normalna</div>
+        <div class="effect-option-desc">Czysta i elegancka</div>
       </button>
 
-      <button
-        class="effect-option"
-        data-profile-effect="fire"
-      >
-        <div class="effect-option-name">
-          🔥 Fire
-        </div>
-
-        <div class="effect-option-desc">
-          Gorąca poświata
-        </div>
+      <button class="effect-option" data-profile-effect="fire">
+        <div class="effect-option-name">🔥 Fire</div>
+        <div class="effect-option-desc">Gorąca poświata</div>
       </button>
 
-      <button
-        class="effect-option"
-        data-profile-effect="ice"
-      >
-        <div class="effect-option-name">
-          ❄️ Ice
-        </div>
-
-        <div class="effect-option-desc">
-          Lodowy neon
-        </div>
+      <button class="effect-option" data-profile-effect="ice">
+        <div class="effect-option-name">❄️ Ice</div>
+        <div class="effect-option-desc">Lodowy neon</div>
       </button>
 
-      <button
-        class="effect-option"
-        data-profile-effect="electric"
-      >
-        <div class="effect-option-name">
-          ⚡ ELECTRIC
-        </div>
-
-        <div class="effect-option-desc">
-          Mocne wyładowania
-        </div>
+      <button class="effect-option" data-profile-effect="electric">
+        <div class="effect-option-name">⚡ ELECTRIC</div>
+        <div class="effect-option-desc">Mocne wyładowania</div>
       </button>
 
-      <button
-        class="effect-option"
-        data-profile-effect="neon"
-      >
-        <div class="effect-option-name">
-          💜 Neon
-        </div>
-
-        <div class="effect-option-desc">
-          Fioletowo-cyjanowa aura
-        </div>
+      <button class="effect-option" data-profile-effect="neon">
+        <div class="effect-option-name">💜 Neon</div>
+        <div class="effect-option-desc">Fioletowo-cyjanowa aura</div>
       </button>
 
-      <button
-        class="effect-option"
-        data-profile-effect="rainbow"
-      >
-        <div class="effect-option-name">
-          🌈 Rainbow
-        </div>
-
-        <div class="effect-option-desc">
-          Żywy gradient
-        </div>
+      <button class="effect-option" data-profile-effect="rainbow">
+        <div class="effect-option-name">🌈 Rainbow</div>
+        <div class="effect-option-desc">Żywy gradient</div>
       </button>
 
-      <button
-        class="effect-option"
-        data-profile-effect="glitch"
-      >
-        <div class="effect-option-name">
-          👾 Glitch
-        </div>
-
-        <div class="effect-option-desc">
-          Cyberpunk
-        </div>
+      <button class="effect-option" data-profile-effect="glitch">
+        <div class="effect-option-name">👾 Glitch</div>
+        <div class="effect-option-desc">Cyberpunk</div>
       </button>
 
-      <button
-        class="effect-option"
-        data-profile-effect="plasma"
-      >
-        <div class="effect-option-name">
-          🔮 Plasma
-        </div>
-
-        <div class="effect-option-desc">
-          Kosmiczna energia
-        </div>
+      <button class="effect-option" data-profile-effect="plasma">
+        <div class="effect-option-name">🔮 Plasma</div>
+        <div class="effect-option-desc">Kosmiczna energia</div>
       </button>
 
-      <button
-        class="effect-option"
-        data-profile-effect="sparkle"
-      >
-        <div class="effect-option-name">
-          ✨ Sparkle
-        </div>
-
-        <div class="effect-option-desc">
-          Błysk i światło
-        </div>
+      <button class="effect-option" data-profile-effect="sparkle">
+        <div class="effect-option-name">✨ Sparkle</div>
+        <div class="effect-option-desc">Błysk i światło</div>
       </button>
 
-      <button
-        class="effect-option"
-        data-profile-effect="void"
-      >
-        <div class="effect-option-name">
-          🕳️ Void
-        </div>
-
-        <div class="effect-option-desc">
-          Ciemna aura
-        </div>
+      <button class="effect-option" data-profile-effect="void">
+        <div class="effect-option-name">🕳️ Void</div>
+        <div class="effect-option-desc">Ciemna aura</div>
       </button>
 
-      <button
-        class="effect-option"
-        data-profile-effect="hologram"
-      >
-        <div class="effect-option-name">
-          🧊 Hologram
-        </div>
-
-        <div class="effect-option-desc">
-          Futurystyczny efekt
-        </div>
+      <button class="effect-option" data-profile-effect="hologram">
+        <div class="effect-option-name">🧊 Hologram</div>
+        <div class="effect-option-desc">Futurystyczny efekt</div>
       </button>
 
-      <button
-        class="effect-option"
-        data-profile-effect="gold"
-      >
-        <div class="effect-option-name">
-          🏆 Gold
-        </div>
-
-        <div class="effect-option-desc">
-          Złoty blask
-        </div>
+      <button class="effect-option" data-profile-effect="gold">
+        <div class="effect-option-name">🏆 Gold</div>
+        <div class="effect-option-desc">Złoty blask</div>
       </button>
 
-      <button
-        class="effect-option"
-        data-profile-effect="toxic"
-      >
-        <div class="effect-option-name">
-          ☢️ Toxic
-        </div>
-
-        <div class="effect-option-desc">
-          Toksyczna energia
-        </div>
+      <button class="effect-option" data-profile-effect="toxic">
+        <div class="effect-option-name">☢️ Toxic</div>
+        <div class="effect-option-desc">Toksyczna energia</div>
       </button>
 
-      <button
-        class="effect-option"
-        data-profile-effect="cosmic"
-      >
-        <div class="effect-option-name">
-          🌌 Cosmic
-        </div>
-
-        <div class="effect-option-desc">
-          Kosmiczny połysk
-        </div>
+      <button class="effect-option" data-profile-effect="cosmic">
+        <div class="effect-option-name">🌌 Cosmic</div>
+        <div class="effect-option-desc">Kosmiczny połysk</div>
       </button>
 
-      <button
-        class="effect-option"
-        data-profile-effect="ruby"
-      >
-        <div class="effect-option-name">
-          💎 Ruby
-        </div>
-
-        <div class="effect-option-desc">
-          Rubinowa aura
-        </div>
+      <button class="effect-option" data-profile-effect="ruby">
+        <div class="effect-option-name">💎 Ruby</div>
+        <div class="effect-option-desc">Rubinowa aura</div>
       </button>
 
-      <button
-        class="effect-option"
-        data-profile-effect="matrix"
-      >
-        <div class="effect-option-name">
-          🟢 Matrix
-        </div>
-
-        <div class="effect-option-desc">
-          Zielony cyber efekt
-        </div>
+      <button class="effect-option" data-profile-effect="matrix">
+        <div class="effect-option-name">🟢 Matrix</div>
+        <div class="effect-option-desc">Zielony cyber efekt</div>
       </button>
 
-      <button
-        class="effect-option"
-        data-profile-effect="galaxy"
-      >
-        <div class="effect-option-name">
-          🌌 GALAXY
-        </div>
-
-        <div class="effect-option-desc">
-          Wirująca mgławica i gwiazdy
-        </div>
+      <button class="effect-option" data-profile-effect="galaxy">
+        <div class="effect-option-name">🌌 GALAXY</div>
+        <div class="effect-option-desc">Wirująca mgławica i gwiazdy</div>
       </button>
 
-      <button
-        class="effect-option"
-        data-profile-effect="supernova"
-      >
-        <div class="effect-option-name">
-          💥 SUPERNOVA
-        </div>
-
-        <div class="effect-option-desc">
-          Eksplozja światła i energii
-        </div>
+      <button class="effect-option" data-profile-effect="supernova">
+        <div class="effect-option-name">💥 SUPERNOVA</div>
+        <div class="effect-option-desc">Eksplozja światła i energii</div>
       </button>
 
     </div>
@@ -2910,8 +2676,6 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
-  signInWithRedirect,
-  getRedirectResult,
   onAuthStateChanged,
   signOut,
   setPersistence,
@@ -2973,229 +2737,6 @@ const db =
 
 
 /* ========================================================
-   AUTH REDIRECT SAFETY
-   ======================================================== */
-
-const REDIRECT_STATE_KEY =
-  "classhub_google_redirect_pending";
-
-const REDIRECT_STATE_MAX_AGE =
-  10 * 60 * 1000;
-
-
-/*
-  Zapamiętujemy sesję lokalnie.
-  Dzięki temu po przeładowaniu strony użytkownik
-  nie powinien być od razu wylogowany.
-*/
-
-const persistenceReady =
-  setPersistence(
-    auth,
-    browserLocalPersistence
-  )
-  .catch(
-    error => {
-      console.warn(
-        "Persistence:",
-        error
-      );
-    }
-  );
-
-
-function isMobileBrowser(){
-
-  const userAgent =
-    navigator.userAgent ||
-    navigator.vendor ||
-    window.opera ||
-    "";
-
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
-    .test(
-      userAgent
-    );
-}
-
-
-function markRedirectPending(){
-
-  try{
-
-    sessionStorage.setItem(
-      REDIRECT_STATE_KEY,
-      String(
-        Date.now()
-      )
-    );
-
-    return true;
-
-  }
-  catch(error){
-
-    console.warn(
-      "Nie można zapisać stanu redirectu:",
-      error
-    );
-
-    return false;
-  }
-}
-
-
-function getRedirectPending(){
-
-  try{
-
-    const value =
-      sessionStorage.getItem(
-        REDIRECT_STATE_KEY
-      );
-
-    if(!value){
-      return false;
-    }
-
-    const timestamp =
-      Number(
-        value
-      );
-
-    if(
-      !Number.isFinite(
-        timestamp
-      )
-    ){
-
-      sessionStorage.removeItem(
-        REDIRECT_STATE_KEY
-      );
-
-      return false;
-    }
-
-    if(
-      Date.now() -
-      timestamp >
-      REDIRECT_STATE_MAX_AGE
-    ){
-
-      sessionStorage.removeItem(
-        REDIRECT_STATE_KEY
-      );
-
-      return false;
-    }
-
-    return true;
-
-  }
-  catch(error){
-
-    return false;
-  }
-}
-
-
-function clearRedirectPending(){
-
-  try{
-
-    sessionStorage.removeItem(
-      REDIRECT_STATE_KEY
-    );
-
-  }
-  catch(error){
-
-    console.warn(
-      "Nie można wyczyścić stanu redirectu:",
-      error
-    );
-  }
-}
-
-
-/*
-  Ważne:
-  getRedirectResult() jest uruchamiane tylko w ramach
-  istniejącego oczekującego redirectu.
-
-  Dzięki temu aplikacja nigdy nie wykonuje automatycznie
-  kolejnego signInWithRedirect(), gdy poprzedni proces
-  nie zakończył się poprawnie.
-*/
-
-async function processGoogleRedirectResult(){
-
-  if(
-    !getRedirectPending()
-  ){
-
-    return;
-  }
-
-  try{
-
-    await persistenceReady;
-
-    const result =
-      await getRedirectResult(
-        auth
-      );
-
-
-    clearRedirectPending();
-
-
-    if(
-      result &&
-      result.user
-    ){
-
-      console.log(
-        "Google redirect zakończony poprawnie."
-      );
-
-      return;
-    }
-
-
-    /*
-      Brak wyniku oznacza, że przeglądarka wróciła,
-      ale Firebase nie przekazał danych logowania.
-
-      NIE wykonujemy ponownego redirectu.
-    */
-
-    showLoginError(
-      "Logowanie Google nie zostało dokończone. Kliknij przycisk i spróbuj ponownie."
-    );
-
-  }
-  catch(error){
-
-    clearRedirectPending();
-
-
-    console.error(
-      "Google Redirect Result:",
-      error
-    );
-
-
-    showLoginError(
-      friendlyAuthError(
-        error
-      )
-    );
-  }
-}
-
-
-/* ========================================================
    STATE
    ======================================================== */
 
@@ -3219,6 +2760,9 @@ let replyTo =
 let unsubscribeMessages =
   null;
 
+let loginInProgress =
+  false;
+
 const userCache =
   new Map();
 
@@ -3236,59 +2780,31 @@ const $ =
 const ROLE_CONFIG = {
 
   admin:{
-    name:
-      "Administrator",
-
-    color:
-      "#ff5b7d",
-
-    icon:
-      "👑",
-
-    defaultEffect:
-      "electric"
+    name:"Administrator",
+    color:"#ff5b7d",
+    icon:"👑",
+    defaultEffect:"electric"
   },
 
   moderator:{
-    name:
-      "Moderator",
-
-    color:
-      "#b58cff",
-
-    icon:
-      "🛡️",
-
-    defaultEffect:
-      "neon"
+    name:"Moderator",
+    color:"#b58cff",
+    icon:"🛡️",
+    defaultEffect:"neon"
   },
 
   teacher:{
-    name:
-      "Nauczyciel",
-
-    color:
-      "#4bbdff",
-
-    icon:
-      "📚",
-
-    defaultEffect:
-      "ice"
+    name:"Nauczyciel",
+    color:"#4bbdff",
+    icon:"📚",
+    defaultEffect:"ice"
   },
 
   student:{
-    name:
-      "Uczeń",
-
-    color:
-      "#dce2ef",
-
-    icon:
-      "",
-
-    defaultEffect:
-      "none"
+    name:"Uczeń",
+    color:"#dce2ef",
+    icon:"",
+    defaultEffect:"none"
   }
 
 };
@@ -3301,43 +2817,28 @@ const ROLE_CONFIG = {
 const CHANNEL_CONFIG = {
 
   "ogólny":{
-    icon:
-      "#",
-
-    description:
-      "Rozmowy całej klasy"
+    icon:"#",
+    description:"Rozmowy całej klasy"
   },
 
   "ogłoszenia":{
-    icon:
-      "📢",
-
-    description:
-      "Najważniejsze informacje"
+    icon:"📢",
+    description:"Najważniejsze informacje"
   },
 
   "szkoła":{
-    icon:
-      "🏫",
-
-    description:
-      "Szkoła i nauka"
+    icon:"🏫",
+    description:"Szkoła i nauka"
   },
 
   "memy":{
-    icon:
-      "🎨",
-
-    description:
-      "Memy klasy"
+    icon:"🎨",
+    description:"Memy klasy"
   },
 
   "cichy-pokoj":{
-    icon:
-      "🌙",
-
-    description:
-      "Spokojne rozmowy"
+    icon:"🌙",
+    description:"Spokojne rozmowy"
   }
 
 };
@@ -3504,16 +3005,9 @@ async function getUserProfile(
   if(!uid){
 
     return {
-
-      displayName:
-        "Użytkownik",
-
-      photoURL:
-        "",
-
-      role:
-        "student"
-
+      displayName:"Użytkownik",
+      photoURL:"",
+      role:"student"
     };
   }
 
@@ -3921,16 +3415,60 @@ async function loadCurrentUserRole(){
 
 
 /* ========================================================
-   AUTH ERRORS
+   AUTH DIAGNOSTICS
    ======================================================== */
 
-function friendlyAuthError(
+function getDetailedAuthError(
   error
 ){
 
   const code =
     error?.code ||
-    "";
+    "brak-kodu";
+
+  const message =
+    error?.message ||
+    "Brak komunikatu Firebase.";
+
+  const customData =
+    error?.customData
+      ? JSON.stringify(
+          error.customData
+        )
+      : "brak";
+
+
+  console.error(
+    "========== CLASSHUB AUTH ERROR =========="
+  );
+
+  console.error(
+    "Kod:",
+    code
+  );
+
+  console.error(
+    "Komunikat:",
+    message
+  );
+
+  console.error(
+    "customData:",
+    customData
+  );
+
+  console.error(
+    "Pełny błąd:",
+    error
+  );
+
+  console.error(
+    "=========================================="
+  );
+
+
+  let friendly =
+    "Nie udało się zalogować.";
 
 
   if(
@@ -3939,111 +3477,105 @@ function friendlyAuthError(
     )
   ){
 
-    return (
-      "Firebase odrzucił klucz API."
-    );
+    friendly =
+      "Firebase odrzucił klucz API.";
+
   }
-
-
-  if(
+  else if(
     code.includes(
       "unauthorized-domain"
     )
   ){
 
-    return (
-      "Ta domena nie jest dodana do Authorized domains Firebase."
-    );
+    friendly =
+      "Ta domena nie jest dodana do Authorized domains Firebase.";
+
   }
-
-
-  if(
+  else if(
     code.includes(
       "operation-not-allowed"
     )
   ){
 
-    return (
-      "Logowanie Google nie jest włączone w Firebase Authentication."
-    );
+    friendly =
+      "Logowanie Google nie jest włączone w Firebase Authentication.";
+
   }
-
-
-  if(
+  else if(
     code.includes(
       "popup-blocked"
     )
   ){
 
-    return (
-      "Przeglądarka zablokowała okno Google. Spróbuj ponownie."
-    );
+    friendly =
+      "Przeglądarka zablokowała okno Google.";
+
   }
-
-
-  if(
+  else if(
     code.includes(
       "popup-closed-by-user"
     )
   ){
 
-    return (
-      "Okno Google zostało zamknięte przez przeglądarkę. Spróbuj ponownie."
-    );
+    friendly =
+      "Okno Google zostało zamknięte przed zakończeniem logowania.";
+
   }
-
-
-  if(
+  else if(
     code.includes(
       "cancelled-popup-request"
     )
   ){
 
-    return (
-      "Poprzednie logowanie Google zostało anulowane. Spróbuj ponownie."
-    );
+    friendly =
+      "Poprzednia próba logowania została anulowana.";
+
   }
-
-
-  if(
+  else if(
     code.includes(
       "network-request-failed"
     )
   ){
 
-    return (
-      "Problem z połączeniem z Firebase."
-    );
+    friendly =
+      "Problem z połączeniem z Firebase.";
+
   }
-
-
-  if(
+  else if(
     code.includes(
-      "invalid-api-key"
+      "account-exists-with-different-credential"
     )
   ){
 
-    return (
-      "Nieprawidłowa konfiguracja Firebase."
-    );
+    friendly =
+      "To konto Google jest już powiązane z inną metodą logowania.";
+
   }
-
-
-  if(
+  else if(
     code.includes(
-      "auth/internal-error"
+      "too-many-requests"
     )
   ){
 
-    return (
-      "Firebase nie mógł dokończyć logowania. Spróbuj ponownie."
-    );
+    friendly =
+      "Firebase tymczasowo zablokował kolejne próby logowania. Spróbuj później.";
+
+  }
+  else if(
+    code.includes(
+      "internal-error"
+    )
+  ){
+
+    friendly =
+      "Firebase zwrócił błąd wewnętrzny.";
+
   }
 
 
   return (
-    error?.message ||
-    "Nie udało się zalogować."
+    `${friendly}\n\n` +
+    `Kod: ${code}`
   );
 }
 
@@ -4069,9 +3601,26 @@ $("#googleLogin").onclick =
       $("#googleLogin");
 
 
+    /*
+      Nie pozwalamy uruchomić dwóch popupów jednocześnie.
+      To może powodować auth/cancelled-popup-request.
+    */
+
+    if(
+      loginInProgress
+    ){
+
+      return;
+    }
+
+
     $("#loginError")
       .textContent =
       "";
+
+
+    loginInProgress =
+      true;
 
 
     button.disabled =
@@ -4102,75 +3651,8 @@ $("#googleLogin").onclick =
 
 
       /*
-        TELEFON:
-        używamy redirectu.
-
-        KOMPUTER:
-        zostaje popup, czyli dotychczasowa
-        metoda działająca u Ciebie.
-      */
-
-      if(
-        isMobileBrowser()
-      ){
-
-        /*
-          Zapamiętujemy redirect PRZED jego uruchomieniem.
-
-          Jeżeli przeglądarka wróci bez poprawnego wyniku,
-          flaga zostanie usunięta i aplikacja NIE uruchomi
-          kolejnego redirectu automatycznie.
-        */
-
-        const stateSaved =
-          markRedirectPending();
-
-
-        if(
-          !stateSaved
-        ){
-
-          throw new Error(
-            "Nie można zapisać stanu logowania w tej przeglądarce."
-          );
-        }
-
-
-        try{
-
-          await signInWithRedirect(
-            auth,
-            provider
-          );
-
-        }
-        catch(error){
-
-          /*
-            Jeżeli redirect nie wystartował,
-            od razu czyścimy stan.
-
-            To bardzo ważne dla zapobiegania pętli.
-          */
-
-          clearRedirectPending();
-
-          throw error;
-        }
-
-
-        /*
-          signInWithRedirect() kończy wykonywanie
-          bieżącej strony przez przejście na Google.
-        */
-
-        return;
-      }
-
-
-      /*
-        DESKTOP:
-        dotychczasowy popup pozostaje bez zmian.
+        Zostawiamy dokładnie Firebase Popup.
+        Nie używamy tutaj redirectu ani GSI.
       */
 
       await signInWithPopup(
@@ -4178,26 +3660,33 @@ $("#googleLogin").onclick =
         provider
       );
 
+
+      /*
+        Udane logowanie zostanie obsłużone
+        również przez onAuthStateChanged().
+      */
+
     }
     catch(error){
 
       console.error(
-        "Google Login:",
+        "Google Login Error:",
         error
       );
 
 
-      clearRedirectPending();
-
-
       showLoginError(
-        friendlyAuthError(
+        getDetailedAuthError(
           error
         )
       );
 
     }
     finally{
+
+      loginInProgress =
+        false;
+
 
       button.disabled =
         false;
@@ -4213,13 +3702,6 @@ $("#googleLogin").onclick =
 
     }
   };
-
-
-/* ========================================================
-   CHECK GOOGLE REDIRECT RESULT
-   ======================================================== */
-
-processGoogleRedirectResult();
 
 
 /* ========================================================
@@ -4246,14 +3728,6 @@ onAuthStateChanged(
 
       return;
     }
-
-
-    /*
-      Jeżeli logowanie zakończyło się poprawnie,
-      redirect flag nie jest już potrzebny.
-    */
-
-    clearRedirectPending();
 
 
     try{
@@ -4366,9 +3840,6 @@ $("#logoutBtn").onclick =
   async () => {
 
     try{
-
-      clearRedirectPending();
-
 
       if(
         unsubscribeMessages
@@ -4808,7 +4279,6 @@ $("#msgInput").onkeydown =
     ){
 
       event.preventDefault();
-
 
       sendMessage();
 
@@ -5546,3 +5016,4 @@ $("#themeToggle").onclick =
 
 </body>
 </html>
+```
