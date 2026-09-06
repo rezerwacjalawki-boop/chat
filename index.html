@@ -181,7 +181,7 @@
   <!-- LOGIKA FIREBASE (MODUŁ) -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
     import { getFirestore, collection, addDoc, query, where, orderBy, limit, onSnapshot, serverTimestamp, setDoc, doc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
     // --- TWOJA KONFIGURACJA FIREBASE ---
@@ -206,12 +206,6 @@
         app = initializeApp(firebaseConfig);
         auth = getAuth(app);
         db = getFirestore(app);
-
-        // Odbieranie wyniku logowania przez przekierowanie
-        const result = await getRedirectResult(auth);
-        if (result && result.user) {
-          currentUser = result.user;
-        }
 
         onAuthStateChanged(auth, async (user) => {
           currentUser = user;
@@ -257,12 +251,13 @@
       }
     }
 
-    // Przycisk logowania przez Google (Redirect)
+    // Przycisk logowania przez Google (Popup - otwiera okienko zamiast przekierowania)
     $('#googleLogin').onclick = async () => {
       try {
         const provider = new GoogleAuthProvider();
-        await signInWithRedirect(auth, provider);
+        await signInWithPopup(auth, provider);
       } catch (e) {
+        console.error("Błąd logowania:", e);
         $('#loginNotice').innerHTML = '<span class="error">Logowanie nieudane:</span> ' + (e?.message || 'Błąd');
       }
     };
