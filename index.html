@@ -2,15 +2,10 @@
 
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, viewport-fit=cover"
-  />
-  <meta name="theme-color" content="#090d18" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090d18">
   <title>ClassHub</title>
-
-  <!-- Google Identity Services -->
 
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 
@@ -25,11 +20,8 @@
       --muted: #8e9ab2;
       --muted-2: #637089;
       --accent: #6d7cff;
-      --accent-2: #8e6dff;
       --danger: #ff5b7d;
-      --success: #45d39a;
       --shadow: 0 20px 60px rgba(0,0,0,.35);
-      --radius: 18px;
     }
 
     body.light {
@@ -63,8 +55,8 @@
         var(--bg);
       color: var(--text);
       font-family:
-        Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
+        Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -121,8 +113,7 @@
       display: grid;
       place-items: center;
       font-size: 38px;
-      background:
-        linear-gradient(145deg, #6678ff, #9f65ff);
+      background: linear-gradient(145deg, #6678ff, #9f65ff);
       box-shadow:
         0 12px 35px rgba(101,119,255,.30),
         inset 0 1px 0 rgba(255,255,255,.25);
@@ -147,15 +138,8 @@
       min-height: 44px;
     }
 
-    #googleFallback {
-      width: 100%;
-    }
-
-    .google-note {
-      margin-top: 18px;
-      color: var(--muted-2);
-      font-size: 12px;
-      line-height: 1.45;
+    #googleButton {
+      min-height: 44px;
     }
 
     #loginError {
@@ -166,6 +150,14 @@
       background: rgba(255,91,125,.10);
       border: 1px solid rgba(255,91,125,.22);
       font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .google-note {
+      margin-top: 18px;
+      color: var(--muted-2);
+      font-size: 12px;
+      line-height: 1.45;
     }
 
     /* APP */
@@ -174,10 +166,10 @@
       width: 100%;
       height: 100dvh;
       display: grid;
-      grid-template-columns: 265px minmax(0, 1fr) 300px;
+      grid-template-columns: 265px minmax(0,1fr) 300px;
     }
 
-    /* LEFT SIDEBAR */
+    /* LEFT */
 
     .left-sidebar {
       position: relative;
@@ -349,7 +341,7 @@
       color: var(--text);
     }
 
-    /* CENTER */
+    /* CHAT */
 
     .chat {
       min-width: 0;
@@ -382,12 +374,12 @@
       display: none;
       width: 40px;
       height: 40px;
-      flex: 0 0 auto;
       border-radius: 12px;
       cursor: pointer;
       background: var(--panel-3);
       color: var(--text);
       font-size: 20px;
+      flex: 0 0 auto;
     }
 
     .channel-header-icon {
@@ -669,9 +661,6 @@
         linear-gradient(135deg, #0b0920, #14103b 45%, #0a0d1f);
       border-color: rgba(162,121,255,.45);
       animation: galaxyDrift 3s ease-in-out infinite alternate;
-    }
-
-    .effect-galaxy .message-text {
       text-shadow: 0 0 8px rgba(184,160,255,.55);
     }
 
@@ -688,39 +677,76 @@
 
     @keyframes electricPulse {
       from {
-        box-shadow: 0 0 4px rgba(117,144,255,.2), inset 0 0 0 rgba(117,144,255,0);
+        box-shadow: 0 0 4px rgba(117,144,255,.2);
       }
+
       to {
-        box-shadow: 0 0 24px rgba(117,144,255,.38), inset 0 0 16px rgba(117,144,255,.07);
+        box-shadow:
+          0 0 24px rgba(117,144,255,.38),
+          inset 0 0 16px rgba(117,144,255,.07);
       }
     }
 
     @keyframes neonPulse {
-      from { box-shadow: 0 0 5px rgba(186,120,255,.2); }
-      to { box-shadow: 0 0 25px rgba(186,120,255,.42); }
+      from {
+        box-shadow: 0 0 5px rgba(186,120,255,.2);
+      }
+
+      to {
+        box-shadow: 0 0 25px rgba(186,120,255,.42);
+      }
     }
 
     @keyframes rainbowShift {
-      0% { filter: hue-rotate(0deg); }
-      100% { filter: hue-rotate(360deg); }
+      0% {
+        filter: hue-rotate(0deg);
+      }
+
+      100% {
+        filter: hue-rotate(360deg);
+      }
     }
 
     @keyframes glitch {
-      0% { transform: translate(0); }
-      25% { transform: translate(1px,-1px); }
-      50% { transform: translate(-1px,1px); }
-      75% { transform: translate(1px,1px); }
-      100% { transform: translate(0); }
+      0% {
+        transform: translate(0);
+      }
+
+      25% {
+        transform: translate(1px,-1px);
+      }
+
+      50% {
+        transform: translate(-1px,1px);
+      }
+
+      75% {
+        transform: translate(1px,1px);
+      }
+
+      100% {
+        transform: translate(0);
+      }
     }
 
     @keyframes plasma {
-      from { filter: hue-rotate(0deg); }
-      to { filter: hue-rotate(35deg); }
+      from {
+        filter: hue-rotate(0deg);
+      }
+
+      to {
+        filter: hue-rotate(35deg);
+      }
     }
 
     @keyframes holo {
-      from { filter: saturate(1); }
-      to { filter: saturate(1.45) brightness(1.08); }
+      from {
+        filter: saturate(1);
+      }
+
+      to {
+        filter: saturate(1.45) brightness(1.08);
+      }
     }
 
     @keyframes galaxyDrift {
@@ -733,6 +759,7 @@
           0 0,
           0 0;
       }
+
       to {
         background-position:
           12px 8px,
@@ -748,6 +775,7 @@
       from {
         box-shadow: 0 0 8px rgba(255,173,69,.20);
       }
+
       to {
         box-shadow:
           0 0 18px rgba(255,173,69,.30),
@@ -759,7 +787,10 @@
 
     .composer-area {
       flex: 0 0 auto;
-      padding: 8px 14px max(14px, env(safe-area-inset-bottom));
+      padding:
+        8px
+        14px
+        max(14px, env(safe-area-inset-bottom));
       border-top: 1px solid var(--border);
       background: rgba(7,11,19,.80);
       backdrop-filter: blur(18px);
@@ -886,7 +917,7 @@
       cursor: default;
     }
 
-    /* RIGHT SIDEBAR */
+    /* RIGHT */
 
     .right-sidebar {
       min-width: 0;
@@ -947,7 +978,7 @@
       font-size: 10px;
     }
 
-    /* MOBILE DRAWER */
+    /* MOBILE */
 
     #mobileBackdrop {
       position: fixed;
@@ -963,8 +994,6 @@
       opacity: 1;
       pointer-events: auto;
     }
-
-    /* STATUS */
 
     .system-toast {
       position: fixed;
@@ -1054,7 +1083,10 @@
       }
 
       .composer-area {
-        padding: 7px 8px max(9px, env(safe-area-inset-bottom));
+        padding:
+          7px
+          8px
+          max(9px, env(safe-area-inset-bottom));
       }
 
       .composer {
@@ -1090,36 +1122,21 @@
 </head>
 
 <body>
+
   <div id="loginScreen">
     <div class="login-card">
       <div class="login-logo">💬</div>
 
 ```
   <h1>ClassHub</h1>
+
   <p>
-    Prywatny czat klasy.<br />
+    Prywatny czat klasy.<br>
     Zaloguj się swoim kontem Google, żeby wejść do rozmowy.
   </p>
 
   <div id="googleButtonWrap">
     <div id="googleButton"></div>
-  </div>
-
-  <div id="googleFallback" class="hidden">
-    <button
-      id="googleFallbackBtn"
-      style="
-        width:100%;
-        height:48px;
-        border-radius:14px;
-        cursor:pointer;
-        background:linear-gradient(135deg,#687cff,#906dff);
-        color:#fff;
-        font-weight:800;
-      "
-    >
-      Zaloguj przez Google
-    </button>
   </div>
 
   <div id="loginError" class="hidden"></div>
@@ -1136,16 +1153,22 @@
 
 ```
 <aside class="left-sidebar">
+
   <div class="brand">
     <div class="brand-icon">💬</div>
+
     <div class="brand-text">
       <div class="brand-title">ClassHub</div>
       <div class="brand-subtitle">Czat klasy</div>
     </div>
   </div>
 
+
   <div class="channel-list">
-    <div class="channel-group-title">Kanały</div>
+
+    <div class="channel-group-title">
+      Kanały
+    </div>
 
     <button class="channel active" data-channel="ogólny">
       <span class="channel-icon">#</span>
@@ -1171,50 +1194,89 @@
       <span class="channel-icon">🌙</span>
       <span>cichy-pokoj</span>
     </button>
+
   </div>
 
+
   <div class="bottom-profile">
+
     <div class="profile-card">
+
       <div class="avatar" id="myAvatar"></div>
 
       <div class="profile-info">
-        <div class="profile-name" id="myName">Użytkownik</div>
-        <div class="profile-role" id="myRole">Uczeń</div>
+        <div class="profile-name" id="myName">
+          Użytkownik
+        </div>
+
+        <div class="profile-role" id="myRole">
+          Uczeń
+        </div>
       </div>
 
       <button
         class="theme-btn"
         id="themeBtn"
         title="Zmień motyw"
-      >☀️</button>
+      >
+        ☀️
+      </button>
 
       <button
         class="logout-btn"
         id="logoutBtn"
         title="Wyloguj"
-      >↪</button>
+      >
+        ↪
+      </button>
+
     </div>
+
   </div>
+
 </aside>
 
-<main class="chat">
-  <header class="chat-header">
-    <button id="mobileMenuBtn" aria-label="Menu">☰</button>
 
-    <div class="channel-header-icon" id="channelHeaderIcon">#</div>
+<main class="chat">
+
+  <header class="chat-header">
+
+    <button
+      id="mobileMenuBtn"
+      aria-label="Menu"
+    >
+      ☰
+    </button>
+
+    <div class="channel-header-icon" id="channelHeaderIcon">
+      #
+    </div>
 
     <div class="channel-header-main">
-      <div class="channel-header-name" id="channelHeaderName">
+
+      <div
+        class="channel-header-name"
+        id="channelHeaderName"
+      >
         ogólny
       </div>
 
-      <div class="channel-header-desc" id="channelHeaderDesc">
+      <div
+        class="channel-header-desc"
+        id="channelHeaderDesc"
+      >
         Rozmowy całej klasy
       </div>
+
     </div>
+
   </header>
 
-  <section class="messages" id="messages">
+
+  <section
+    class="messages"
+    id="messages"
+  >
     <div class="empty-state">
       <div>
         <div class="empty-state-icon">💬</div>
@@ -1223,22 +1285,44 @@
     </div>
   </section>
 
+
   <div class="composer-area">
-    <div id="replyBox" class="reply-box hidden">
+
+    <div
+      id="replyBox"
+      class="reply-box hidden"
+    >
+
       <div class="reply-box-main">
-        <div class="reply-box-title">Odpowiadasz</div>
-        <div class="reply-box-text" id="replyBoxText"></div>
+
+        <div class="reply-box-title">
+          Odpowiadasz
+        </div>
+
+        <div
+          class="reply-box-text"
+          id="replyBoxText"
+        ></div>
+
       </div>
 
       <button
         class="reply-cancel"
         id="replyCancel"
         title="Anuluj odpowiedź"
-      >✕</button>
+      >
+        ✕
+      </button>
+
     </div>
 
+
     <div class="composer">
-      <div class="effect-bar" id="effectBar"></div>
+
+      <div
+        class="effect-bar"
+        id="effectBar"
+      ></div>
 
       <input
         id="msgInput"
@@ -1246,31 +1330,54 @@
         maxlength="2000"
         autocomplete="off"
         placeholder="Napisz wiadomość..."
-      />
+      >
 
-      <button id="sendBtn">Wyślij</button>
+      <button id="sendBtn">
+        Wyślij
+      </button>
+
     </div>
+
   </div>
+
 </main>
 
+
 <aside class="right-sidebar">
+
   <div class="right-title">
-    <strong>Klasa</strong>
-    <span class="online-count" id="memberCount">0 osób</span>
+
+    <strong>
+      Klasa
+    </strong>
+
+    <span
+      class="online-count"
+      id="memberCount"
+    >
+      0 osób
+    </span>
+
   </div>
 
   <div id="membersList"></div>
+
 </aside>
 ```
 
   </div>
 
   <div id="mobileBackdrop"></div>
-  <div class="system-toast" id="toast"></div>
+
+  <div
+    class="system-toast"
+    id="toast"
+  ></div>
 
   <script type="module">
-    import { initializeApp } from
-      "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+    import { initializeApp }
+      from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
     import {
       getAuth,
@@ -1280,8 +1387,8 @@
       signOut,
       setPersistence,
       browserLocalPersistence
-    } from
-      "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+    }
+      from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
     import {
       getFirestore,
@@ -1296,13 +1403,13 @@
       setDoc,
       doc,
       getDoc
-    } from
-      "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+    }
+      from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
-    /* =========================================================
+    /* =====================================================
        FIREBASE
-       ========================================================= */
+       ===================================================== */
 
     const firebaseConfig = {
       apiKey: "AIzaSyBBU7MXXucUbvtf1kEACLVn9DzV9dVzXOIe7o",
@@ -1313,33 +1420,37 @@
       appId: "1:728180059739:web:d0a70cd02c8ef96700d97e"
     };
 
-    /*
-      WAŻNE:
-      Wstaw tutaj WEB CLIENT ID z Google Cloud.
 
-      Przykład:
-      const GOOGLE_CLIENT_ID =
-        "123456789012-abc123xyz.apps.googleusercontent.com";
+    /* =====================================================
+       GOOGLE WEB CLIENT ID
+       ===================================================== */
 
-      Nie wpisuj tutaj apiKey z Firebase.
-    */
     const GOOGLE_CLIENT_ID =
-      "TU_WKLEJ_GOOGLE_WEB_CLIENT_ID.apps.googleusercontent.com";
+      "728180059739-rap0ut219n1bleknatr723figq0irq7m.apps.googleusercontent.com";
 
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+    const firebaseApp =
+      initializeApp(firebaseConfig);
 
-    await setPersistence(auth, browserLocalPersistence)
-      .catch(() => {});
+    const auth =
+      getAuth(firebaseApp);
+
+    const db =
+      getFirestore(firebaseApp);
 
 
-    /* =========================================================
+    await setPersistence(
+      auth,
+      browserLocalPersistence
+    ).catch(() => {});
+
+
+    /* =====================================================
        ROLE
-       ========================================================= */
+       ===================================================== */
 
     const ROLES = {
+
       admin: {
         label: "Administrator",
         color: "#ff5b7d",
@@ -1367,14 +1478,16 @@
         icon: "",
         defaultEffect: "none"
       }
+
     };
 
 
-    /* =========================================================
+    /* =====================================================
        CHANNELS
-       ========================================================= */
+       ===================================================== */
 
     const CHANNELS = {
+
       "ogólny": {
         icon: "#",
         description: "Rozmowy całej klasy"
@@ -1399,223 +1512,293 @@
         icon: "🌙",
         description: "Spokojne rozmowy"
       }
+
     };
 
 
-    /* =========================================================
+    /* =====================================================
        EFFECTS
-       ========================================================= */
+       ===================================================== */
 
     const EFFECTS = [
+
       {
         id: "none",
         label: "Normalny",
         icon: "💬"
       },
+
       {
         id: "fire",
         label: "Ogień",
         icon: "🔥"
       },
+
       {
         id: "ice",
         label: "Lód",
         icon: "❄️"
       },
+
       {
         id: "electric",
         label: "Elektryczny",
         icon: "⚡"
       },
+
       {
         id: "neon",
         label: "Neon",
         icon: "💜"
       },
+
       {
         id: "rainbow",
         label: "Tęcza",
         icon: "🌈"
       },
+
       {
         id: "glitch",
         label: "Glitch",
         icon: "🌀"
       },
+
       {
         id: "plasma",
         label: "Plazma",
         icon: "🟣"
       },
+
       {
         id: "sparkle",
         label: "Iskry",
         icon: "✨"
       },
+
       {
         id: "void",
         label: "Void",
         icon: "🌑"
       },
+
       {
         id: "hologram",
         label: "Hologram",
         icon: "🔮"
       },
+
       {
         id: "gold",
         label: "Gold",
         icon: "🏆"
       },
+
       {
         id: "toxic",
         label: "Toxic",
         icon: "☢️"
       },
+
       {
         id: "cosmic",
         label: "Cosmic",
         icon: "🌌"
       },
+
       {
         id: "ruby",
         label: "Ruby",
         icon: "♦️"
       },
+
       {
         id: "matrix",
         label: "Matrix",
         icon: "💚"
       },
+
       {
         id: "galaxy",
         label: "Galaxy",
         icon: "🌠"
       },
+
       {
         id: "supernova",
         label: "Supernova",
         icon: "💥"
       }
+
     ];
 
 
-    /* =========================================================
+    /* =====================================================
        STATE
-       ========================================================= */
+       ===================================================== */
 
     let currentUser = null;
     let currentProfile = null;
+
     let currentChannel = "ogólny";
     let currentEffect = "none";
     let currentReply = null;
+
     let unsubscribeMessages = null;
+
     let userCache = {};
     let messageCache = [];
 
 
-    /* =========================================================
+    /* =====================================================
        DOM
-       ========================================================= */
+       ===================================================== */
 
-    const $ = (id) => document.getElementById(id);
+    const $ = (id) =>
+      document.getElementById(id);
 
-    const loginScreen = $("loginScreen");
-    const appView = $("app");
+    const loginScreen =
+      $("loginScreen");
 
-    const googleButtonWrap = $("googleButtonWrap");
-    const googleButton = $("googleButton");
-    const googleFallback = $("googleFallback");
-    const googleFallbackBtn = $("googleFallbackBtn");
-    const loginError = $("loginError");
+    const appView =
+      $("app");
 
-    const messagesEl = $("messages");
-    const msgInput = $("msgInput");
-    const sendBtn = $("sendBtn");
-    const effectBar = $("effectBar");
+    const googleButton =
+      $("googleButton");
 
-    const replyBox = $("replyBox");
-    const replyBoxText = $("replyBoxText");
-    const replyCancel = $("replyCancel");
+    const googleButtonWrap =
+      $("googleButtonWrap");
 
-    const toast = $("toast");
+    const loginError =
+      $("loginError");
+
+    const messagesEl =
+      $("messages");
+
+    const msgInput =
+      $("msgInput");
+
+    const sendBtn =
+      $("sendBtn");
+
+    const effectBar =
+      $("effectBar");
+
+    const replyBox =
+      $("replyBox");
+
+    const replyBoxText =
+      $("replyBoxText");
+
+    const replyCancel =
+      $("replyCancel");
+
+    const toast =
+      $("toast");
 
 
-    /* =========================================================
+    /* =====================================================
        HELPERS
-       ========================================================= */
+       ===================================================== */
 
     function escapeHtml(value) {
+
       return String(value ?? "")
         .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
+
     }
 
 
     function initials(name) {
-      const safe = String(name || "?").trim();
+
+      const safe =
+        String(name || "?").trim();
 
       if (!safe) {
         return "?";
       }
 
-      return safe
-        .split(/\s+/)
-        .slice(0, 2)
-        .map((part) => part[0]?.toUpperCase() || "")
-        .join("") || "?";
+      return (
+        safe
+          .split(/\s+/)
+          .slice(0,2)
+          .map(part => part[0]?.toUpperCase() || "")
+          .join("")
+      ) || "?";
+
     }
 
 
     function formatTime(timestamp) {
+
       if (!timestamp) {
         return "";
       }
 
       try {
-        const date = timestamp.toDate
-          ? timestamp.toDate()
-          : new Date(timestamp);
 
-        return new Intl.DateTimeFormat("pl-PL", {
-          hour: "2-digit",
-          minute: "2-digit"
-        }).format(date);
+        const date =
+          timestamp.toDate
+            ? timestamp.toDate()
+            : new Date(timestamp);
+
+        return new Intl.DateTimeFormat(
+          "pl-PL",
+          {
+            hour: "2-digit",
+            minute: "2-digit"
+          }
+        ).format(date);
+
       } catch {
+
         return "";
+
       }
+
     }
 
 
     function showToast(text) {
+
       toast.textContent = text;
+
       toast.classList.add("show");
 
       clearTimeout(showToast.timer);
 
-      showToast.timer = setTimeout(() => {
-        toast.classList.remove("show");
-      }, 2500);
+      showToast.timer =
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 2500);
+
     }
 
 
     function showLoginError(text) {
+
       loginError.textContent = text;
       loginError.classList.remove("hidden");
+
     }
 
 
     function hideLoginError() {
-      loginError.classList.add("hidden");
+
       loginError.textContent = "";
+      loginError.classList.add("hidden");
+
     }
 
 
     function friendlyAuthError(error) {
+
       switch (error?.code) {
+
         case "auth/invalid-credential":
           return "Google nie zwrócił poprawnych danych logowania.";
 
@@ -1632,1025 +1815,1624 @@
           return "Logowanie Google nie jest włączone w Firebase.";
 
         case "auth/unauthorized-domain":
-          return "Ta domena nie jest dopuszczona w Firebase Authentication.";
+          return "Ta domena nie jest dopuszczona w Firebase.";
 
         default:
           return error?.message ||
             "Nie udało się zalogować przez Google.";
+
       }
+
     }
 
 
     function roleData(role) {
-      return ROLES[role] || ROLES.student;
+
+      return ROLES[role] ||
+        ROLES.student;
+
     }
 
 
     function normalizeProfile(profile, user) {
+
       const role =
-        profile?.role && ROLES[profile.role]
+        profile?.role &&
+        ROLES[profile.role]
           ? profile.role
           : "student";
 
       return {
+
         uid: user.uid,
+
         displayName:
           profile?.displayName ||
           user.displayName ||
           "Użytkownik",
+
         photoURL:
           profile?.photoURL ||
           user.photoURL ||
           "",
+
         role
+
       };
+
     }
 
 
-    /* =========================================================
-       GOOGLE IDENTITY SERVICES
-       ========================================================= */
-
-    function hasGoogleClientId() {
-      return (
-        GOOGLE_CLIENT_ID &&
-        GOOGLE_CLIENT_ID.includes(".apps.googleusercontent.com") &&
-        !GOOGLE_CLIENT_ID.startsWith("TU_WKLEJ")
-      );
-    }
-
+    /* =====================================================
+       GOOGLE LOGIN
+       ===================================================== */
 
     function handleGoogleCredentialResponse(response) {
+
+      hideLoginError();
+
       if (!response?.credential) {
-        showLoginError("Google nie zwrócił tokenu logowania.");
+
+        showLoginError(
+          "Google nie zwrócił tokenu logowania."
+        );
+
         return;
       }
 
-      const credential =
-        GoogleAuthProvider.credential(response.credential);
 
-      signInWithCredential(auth, credential)
-        .catch((error) => {
-          console.error(error);
-          showLoginError(friendlyAuthError(error));
+      const credential =
+        GoogleAuthProvider.credential(
+          response.credential
+        );
+
+
+      signInWithCredential(
+        auth,
+        credential
+      )
+        .then(() => {
+
+          hideLoginError();
+
+        })
+        .catch(error => {
+
+          console.error(
+            "Firebase Google login error:",
+            error
+          );
+
+          showLoginError(
+            friendlyAuthError(error)
+          );
+
         });
+
     }
+
 
     window.handleGoogleCredentialResponse =
       handleGoogleCredentialResponse;
 
 
     function renderGoogleButton() {
-      if (
-        !hasGoogleClientId() ||
-        !window.google?.accounts?.id
-      ) {
-        googleButtonWrap.classList.add("hidden");
-        googleFallback.classList.remove("hidden");
 
-        return;
-      }
+      if (!window.google?.accounts?.id) {
 
-      window.google.accounts.id.initialize({
-        client_id: GOOGLE_CLIENT_ID,
-        callback: handleGoogleCredentialResponse,
-        auto_select: false,
-        cancel_on_tap_outside: true,
-        color_scheme: document.body.classList.contains("light")
-          ? "light"
-          : "dark"
-      });
-
-      window.google.accounts.id.renderButton(
-        googleButton,
-        {
-          theme: "filled_blue",
-          size: "large",
-          text: "signin_with",
-          shape: "pill",
-          width: Math.min(390, window.innerWidth - 70),
-          locale: "pl",
-          logo_alignment: "left"
-        }
-      );
-
-      googleFallback.classList.add("hidden");
-      googleButtonWrap.classList.remove("hidden");
-    }
-
-
-    googleFallbackBtn.addEventListener("click", () => {
-      if (!hasGoogleClientId()) {
-        showLoginError(
-          "Brakuje GOOGLE_CLIENT_ID. Wstaw Web Client ID z Google Cloud do kodu."
+        setTimeout(
+          renderGoogleButton,
+          150
         );
 
         return;
       }
 
-      renderGoogleButton();
-    });
+
+      google.accounts.id.initialize({
+
+        client_id:
+          GOOGLE_CLIENT_ID,
+
+        callback:
+          handleGoogleCredentialResponse,
+
+        auto_select:
+          false,
+
+        cancel_on_tap_outside:
+          true
+
+      });
 
 
-    /* =========================================================
+      googleButton.innerHTML = "";
+
+
+      google.accounts.id.renderButton(
+
+        googleButton,
+
+        {
+
+          type: "standard",
+
+          theme:
+            document.body.classList.contains("light")
+              ? "outline"
+              : "filled_blue",
+
+          size: "large",
+
+          text: "signin_with",
+
+          shape: "pill",
+
+          logo_alignment: "left",
+
+          width:
+            Math.min(
+              390,
+              Math.max(
+                230,
+                window.innerWidth - 70
+              )
+            )
+
+        }
+
+      );
+
+    }
+
+
+    /* =====================================================
        AUTH STATE
-       ========================================================= */
+       ===================================================== */
 
-    onAuthStateChanged(auth, async (user) => {
-      currentUser = user;
+    onAuthStateChanged(
+      auth,
+      async (user) => {
 
-      if (!user) {
-        currentProfile = null;
-        appView.classList.add("hidden");
-        loginScreen.classList.remove("hidden");
-        return;
+        currentUser = user;
+
+        if (!user) {
+
+          currentProfile = null;
+
+          appView.classList.add("hidden");
+          loginScreen.classList.remove("hidden");
+
+          return;
+        }
+
+
+        try {
+
+          await loadMyProfile(user);
+
+          loginScreen.classList.add("hidden");
+          appView.classList.remove("hidden");
+
+          renderMyProfile();
+          renderEffects();
+          updateChannelHeader();
+
+          subscribeMessages();
+          subscribeMembers();
+
+        } catch (error) {
+
+          console.error(error);
+
+          showToast(
+            "Nie udało się przygotować profilu."
+          );
+
+        }
+
       }
-
-      try {
-        await loadMyProfile(user);
-
-        loginScreen.classList.add("hidden");
-        appView.classList.remove("hidden");
-
-        renderMyProfile();
-        renderEffects();
-        renderMembers();
-
-        subscribeMessages();
-      } catch (error) {
-        console.error(error);
-        showToast("Nie udało się przygotować profilu.");
-      }
-    });
+    );
 
 
     async function loadMyProfile(user) {
-      const ref = doc(db, "users", user.uid);
-      const snapshot = await getDoc(ref);
 
-      const existing = snapshot.exists()
-        ? snapshot.data()
-        : {};
+      const ref =
+        doc(
+          db,
+          "users",
+          user.uid
+        );
 
-      /*
-        Nie nadpisujemy role.
-      */
+
+      const snapshot =
+        await getDoc(ref);
+
+
+      const existing =
+        snapshot.exists()
+          ? snapshot.data()
+          : {};
+
+
       await setDoc(
+
         ref,
+
         {
-          displayName: user.displayName || "Użytkownik",
-          photoURL: user.photoURL || "",
-          email: user.email || "",
-          updatedAt: serverTimestamp()
+
+          displayName:
+            user.displayName ||
+            "Użytkownik",
+
+          photoURL:
+            user.photoURL ||
+            "",
+
+          email:
+            user.email ||
+            "",
+
+          updatedAt:
+            serverTimestamp()
+
         },
+
         {
           merge: true
         }
+
       );
 
-      currentProfile = normalizeProfile(existing, user);
 
-      userCache[user.uid] = currentProfile;
+      currentProfile =
+        normalizeProfile(
+          existing,
+          user
+        );
+
+
+      userCache[user.uid] =
+        currentProfile;
+
     }
 
 
-    /* =========================================================
-       PROFILE
-       ========================================================= */
+    /* =====================================================
+       AVATAR
+       ===================================================== */
 
-    function avatarHtml(profile, extraClass = "") {
-      const safeName = escapeHtml(profile?.displayName || "?");
-      const photo = profile?.photoURL
-        ? escapeHtml(profile.photoURL)
-        : "";
+    function avatarHtml(profile) {
+
+      const name =
+        escapeHtml(
+          profile?.displayName ||
+          "Użytkownik"
+        );
+
+      const photo =
+        profile?.photoURL
+          ? escapeHtml(profile.photoURL)
+          : "";
+
 
       if (photo) {
+
         return `
-          <div class="avatar ${extraClass}">
+          <div class="avatar">
             <img
               src="${photo}"
-              alt="${safeName}"
+              alt="${name}"
               referrerpolicy="no-referrer"
-            />
+            >
           </div>
         `;
+
       }
 
+
       return `
-        <div class="avatar ${extraClass}">
-          ${escapeHtml(initials(profile?.displayName))}
+        <div class="avatar">
+          ${escapeHtml(
+            initials(profile?.displayName)
+          )}
         </div>
       `;
+
     }
 
 
-    function renderMyProfile() {
-      const role = roleData(currentProfile.role);
+    /* =====================================================
+       PROFILE
+       ===================================================== */
 
-      $("myName").textContent = currentProfile.displayName;
+    function renderMyProfile() {
+
+      const role =
+        roleData(
+          currentProfile?.role
+        );
+
+
+      $("myName").textContent =
+        currentProfile?.displayName ||
+        "Użytkownik";
+
+
       $("myRole").textContent =
         `${role.icon ? role.icon + " " : ""}${role.label}`;
 
-      $("myRole").style.color = role.color;
 
-      $("myAvatar").outerHTML =
-        avatarHtml(currentProfile) +
-        `
-          <script>
-          </script>
-
-```
-    `;
-
-  /*
-    Odtwarzamy ID po podmianie outerHTML.
-  */
-  const avatarNow =
-    document.querySelector(".bottom-profile .avatar");
-
-  if (avatarNow) {
-    avatarNow.id = "myAvatar";
-  }
-}
+      $("myRole").style.color =
+        role.color;
 
 
-/* =========================================================
-   CHANNELS
-   ========================================================= */
-
-function updateChannelHeader() {
-  const data = CHANNELS[currentChannel];
-
-  $("channelHeaderIcon").textContent = data.icon;
-  $("channelHeaderName").textContent = currentChannel;
-  $("channelHeaderDesc").textContent = data.description;
-
-  document.querySelectorAll(".channel")
-    .forEach((button) => {
-      button.classList.toggle(
-        "active",
-        button.dataset.channel === currentChannel
-      );
-    });
-}
+      const avatar =
+        document.querySelector(
+          ".bottom-profile .avatar"
+        );
 
 
-document.querySelectorAll(".channel")
-  .forEach((button) => {
-    button.addEventListener("click", () => {
-      const next = button.dataset.channel;
+      if (avatar) {
 
-      if (!CHANNELS[next]) {
-        return;
+        const photo =
+          currentProfile?.photoURL;
+
+        avatar.innerHTML =
+          photo
+
+            ? `<img
+                src="${escapeHtml(photo)}"
+                alt="${escapeHtml(currentProfile.displayName)}"
+                referrerpolicy="no-referrer"
+              >`
+
+            : escapeHtml(
+                initials(
+                  currentProfile?.displayName
+                )
+              );
+
       }
 
-      currentChannel = next;
-      currentReply = null;
-      renderReplyBox();
-      updateChannelHeader();
-      subscribeMessages();
-
-      document.body.classList.remove("mobile-menu-open");
-    });
-  });
+    }
 
 
-/* =========================================================
-   MESSAGES
-   ========================================================= */
+    /* =====================================================
+       CHANNELS
+       ===================================================== */
 
-function subscribeMessages() {
-  if (unsubscribeMessages) {
-    unsubscribeMessages();
-    unsubscribeMessages = null;
-  }
+    function updateChannelHeader() {
 
-  messagesEl.innerHTML = `
-    <div class="empty-state">
-      <div>
-        <div class="empty-state-icon">⏳</div>
-        <strong>Ładowanie wiadomości...</strong>
-      </div>
-    </div>
-  `;
+      const data =
+        CHANNELS[currentChannel];
 
-  const messagesQuery = query(
-    collection(db, "messages"),
-    where("channel", "==", currentChannel),
-    orderBy("createdAt", "desc"),
-    limit(60)
-  );
 
-  unsubscribeMessages = onSnapshot(
-    messagesQuery,
-    async (snapshot) => {
-      messageCache = snapshot.docs
-        .map((docSnap) => ({
-          id: docSnap.id,
-          ...docSnap.data()
-        }))
-        .reverse();
+      $("channelHeaderIcon")
+        .textContent =
+        data.icon;
 
-      await hydrateMessageUsers();
-      renderMessages();
-    },
-    (error) => {
-      console.error(error);
+
+      $("channelHeaderName")
+        .textContent =
+        currentChannel;
+
+
+      $("channelHeaderDesc")
+        .textContent =
+        data.description;
+
+
+      document
+        .querySelectorAll(".channel")
+        .forEach(button => {
+
+          button.classList.toggle(
+
+            "active",
+
+            button.dataset.channel ===
+              currentChannel
+
+          );
+
+        });
+
+    }
+
+
+    document
+      .querySelectorAll(".channel")
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            const channel =
+              button.dataset.channel;
+
+            if (!CHANNELS[channel]) {
+              return;
+            }
+
+
+            currentChannel =
+              channel;
+
+
+            currentReply =
+              null;
+
+            renderReplyBox();
+            updateChannelHeader();
+            subscribeMessages();
+
+
+            document.body
+              .classList
+              .remove(
+                "mobile-menu-open"
+              );
+
+          }
+        );
+
+      });
+
+
+    /* =====================================================
+       MESSAGES SUBSCRIPTION
+       ===================================================== */
+
+    function subscribeMessages() {
+
+      if (unsubscribeMessages) {
+
+        unsubscribeMessages();
+        unsubscribeMessages = null;
+
+      }
+
 
       messagesEl.innerHTML = `
         <div class="empty-state">
           <div>
-            <div class="empty-state-icon">⚠️</div>
-            <strong>Nie udało się wczytać wiadomości.</strong>
-            <div style="margin-top:8px;font-size:12px;">
-              ${escapeHtml(error.message || "")}
-            </div>
+            <div class="empty-state-icon">⏳</div>
+            <strong>Ładowanie wiadomości...</strong>
           </div>
         </div>
       `;
+
+
+      const messagesQuery =
+        query(
+
+          collection(
+            db,
+            "messages"
+          ),
+
+          where(
+            "channel",
+            "==",
+            currentChannel
+          ),
+
+          orderBy(
+            "createdAt",
+            "desc"
+          ),
+
+          limit(60)
+
+        );
+
+
+      unsubscribeMessages =
+        onSnapshot(
+
+          messagesQuery,
+
+          async snapshot => {
+
+            messageCache =
+              snapshot.docs
+                .map(docSnap => ({
+
+                  id:
+                    docSnap.id,
+
+                  ...docSnap.data()
+
+                }))
+                .reverse();
+
+
+            await hydrateMessageUsers();
+
+            renderMessages();
+
+          },
+
+          error => {
+
+            console.error(error);
+
+
+            messagesEl.innerHTML = `
+              <div class="empty-state">
+                <div>
+                  <div class="empty-state-icon">⚠️</div>
+                  <strong>
+                    Nie udało się wczytać wiadomości.
+                  </strong>
+
+                  <div
+                    style="
+                      margin-top:8px;
+                      font-size:12px;
+                    "
+                  >
+                    ${escapeHtml(
+                      error.message || ""
+                    )}
+                  </div>
+                </div>
+              </div>
+            `;
+
+          }
+
+        );
+
     }
-  );
-}
 
 
-async function hydrateMessageUsers() {
-  const ids = [
-    ...new Set(
-      messageCache
-        .map((message) => message.uid)
-        .filter(Boolean)
-    )
-  ];
+    async function hydrateMessageUsers() {
 
-  await Promise.all(
-    ids.map(async (uid) => {
-      if (userCache[uid]) {
+      const ids =
+        [
+          ...new Set(
+            messageCache
+              .map(
+                message => message.uid
+              )
+              .filter(Boolean)
+          )
+        ];
+
+
+      await Promise.all(
+
+        ids.map(
+          async uid => {
+
+            if (userCache[uid]) {
+              return;
+            }
+
+
+            try {
+
+              const snap =
+                await getDoc(
+                  doc(
+                    db,
+                    "users",
+                    uid
+                  )
+                );
+
+
+              if (snap.exists()) {
+
+                const data =
+                  snap.data();
+
+
+                userCache[uid] = {
+
+                  uid,
+
+                  displayName:
+                    data.displayName ||
+                    "Użytkownik",
+
+                  photoURL:
+                    data.photoURL ||
+                    "",
+
+                  role:
+                    data.role &&
+                    ROLES[data.role]
+                      ? data.role
+                      : "student"
+
+                };
+
+              }
+
+            } catch (error) {
+
+              console.error(error);
+
+            }
+
+          }
+        )
+
+      );
+
+    }
+
+
+    function renderMessages() {
+
+      if (!messageCache.length) {
+
+        messagesEl.innerHTML = `
+          <div class="empty-state">
+            <div>
+              <div class="empty-state-icon">✨</div>
+
+              <strong>
+                To jeszcze jest puste.
+              </strong>
+
+              <div
+                style="
+                  margin-top:7px;
+                  font-size:12px;
+                "
+              >
+                Napisz pierwszą wiadomość
+                na tym kanale.
+              </div>
+            </div>
+          </div>
+        `;
+
         return;
       }
 
-      try {
-        const snap = await getDoc(
-          doc(db, "users", uid)
+
+      messagesEl.innerHTML =
+        messageCache
+          .map(renderMessage)
+          .join("");
+
+
+      requestAnimationFrame(() => {
+
+        messagesEl.scrollTop =
+          messagesEl.scrollHeight;
+
+      });
+
+    }
+
+
+    function renderMessage(message) {
+
+      const profile =
+        userCache[message.uid] ||
+
+        {
+
+          uid:
+            message.uid,
+
+          displayName:
+            message.displayName ||
+            "Użytkownik",
+
+          photoURL:
+            message.photoURL ||
+            "",
+
+          role:
+            message.roleAtSend &&
+            ROLES[message.roleAtSend]
+              ? message.roleAtSend
+              : "student"
+
+        };
+
+
+      const role =
+        roleData(
+          message.roleAtSend ||
+          profile.role
         );
 
-        if (snap.exists()) {
-          const data = snap.data();
 
-          userCache[uid] = {
-            uid,
-            displayName:
-              data.displayName || "Użytkownik",
-            photoURL:
-              data.photoURL || "",
-            role:
-              data.role && ROLES[data.role]
-                ? data.role
-                : "student"
-          };
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    })
-  );
-}
+      const effect =
+        message.effect ||
+        "none";
 
 
-function renderMessages() {
-  if (!messageCache.length) {
-    messagesEl.innerHTML = `
-      <div class="empty-state">
-        <div>
-          <div class="empty-state-icon">✨</div>
-          <strong>To jeszcze jest puste.</strong>
-          <div style="margin-top:7px;font-size:12px;">
-            Napisz pierwszą wiadomość na tym kanale.
-          </div>
-        </div>
-      </div>
-    `;
+      const replyHtml =
+        message.replyTo
 
-    return;
-  }
+          ? `
+            <div
+              class="reply-quote"
+              data-jump-to="${escapeHtml(
+                message.replyTo.id
+              )}"
+            >
+              <strong>
+                ${escapeHtml(
+                  message.replyTo.displayName ||
+                  "Użytkownik"
+                )}
+              </strong>
 
-  messagesEl.innerHTML =
-    messageCache.map(renderMessage).join("");
+              <br>
 
-  requestAnimationFrame(() => {
-    messagesEl.scrollTop = messagesEl.scrollHeight;
-  });
-}
+              ${escapeHtml(
+                message.replyTo.text ||
+                ""
+              )}
+            </div>
+          `
+
+          : "";
 
 
-function renderMessage(message) {
-  const profile =
-    userCache[message.uid] || {
-      uid: message.uid,
-      displayName:
-        message.displayName || "Użytkownik",
-      photoURL:
-        message.photoURL || "",
-      role:
-        message.roleAtSend && ROLES[message.roleAtSend]
-          ? message.roleAtSend
-          : "student"
-    };
+      return `
 
-  const role = roleData(
-    message.roleAtSend || profile.role
-  );
-
-  const safeName =
-    escapeHtml(message.displayName || profile.displayName);
-
-  const effect =
-    message.effect || "none";
-
-  const replyHtml =
-    message.replyTo
-      ? `
-        <div
-          class="reply-quote"
-          data-jump-to="${escapeHtml(message.replyTo.id)}"
-          title="Przejdź do wiadomości"
+        <article
+          class="message"
+          id="message-${escapeHtml(message.id)}"
         >
-          <strong>
-            ${escapeHtml(message.replyTo.displayName || "Użytkownik")}
-          </strong>
-          <br />
-          ${escapeHtml(message.replyTo.text || "")}
-        </div>
-      `
-      : "";
 
-  const actionsHtml = `
-    <div class="message-actions">
-      <button
-        class="message-action"
-        data-reply-id="${escapeHtml(message.id)}"
-      >
-        ↩ Odpowiedz
-      </button>
-    </div>
-  `;
+          ${avatarHtml(profile)}
 
-  return `
-    <article class="message" id="message-${escapeHtml(message.id)}">
-      ${avatarHtml(profile)}
+          <div class="message-main">
 
-      <div class="message-main">
-        <div class="message-top">
-          <span
-            class="message-name"
-            style="color:${escapeHtml(role.color)}"
-          >
-            ${safeName}
-          </span>
+            <div class="message-top">
 
-          ${
-            role.icon || role.label !== "Uczeń"
-              ? `
-                <span
-                  class="role-badge"
-                  style="color:${escapeHtml(role.color)}"
-                >
-                  ${escapeHtml(role.icon)}
-                  ${escapeHtml(role.label)}
-                </span>
-              `
-              : ""
-          }
+              <span
+                class="message-name"
+                style="color:${escapeHtml(role.color)}"
+              >
+                ${escapeHtml(
+                  message.displayName ||
+                  profile.displayName
+                )}
+              </span>
 
-          <span class="message-time">
-            ${escapeHtml(formatTime(message.createdAt))}
-          </span>
-        </div>
 
-        ${replyHtml}
+              ${
+                role.icon ||
+                role.label !== "Uczeń"
 
-        <div
-          class="message-text effect-${escapeHtml(effect)}"
-        >
-          ${escapeHtml(message.text)}
-        </div>
-
-        ${
-          currentUser
-            ? actionsHtml
-            : ""
-        }
-      </div>
-    </article>
-  `;
-}
-
-
-messagesEl.addEventListener("click", (event) => {
-  const replyButton =
-    event.target.closest("[data-reply-id]");
-
-  if (replyButton) {
-    const id = replyButton.dataset.replyId;
-
-    const message = messageCache.find(
-      (item) => item.id === id
-    );
-
-    if (message) {
-      startReply(message);
-      msgInput.focus();
-    }
-
-    return;
-  }
-
-  const jump =
-    event.target.closest("[data-jump-to]");
-
-  if (jump) {
-    const target =
-      document.getElementById(
-        `message-${jump.dataset.jumpTo}`
-      );
-
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
-
-      target.animate(
-        [
-          { transform: "scale(1)" },
-          { transform: "scale(1.02)" },
-          { transform: "scale(1)" }
-        ],
-        {
-          duration: 500
-        }
-      );
-    }
-  }
-});
-
-
-/* =========================================================
-   REPLY
-   ========================================================= */
-
-function startReply(message) {
-  currentReply = {
-    id: message.id,
-    uid: message.uid,
-    displayName:
-      message.displayName || "Użytkownik",
-    text: message.text || ""
-  };
-
-  renderReplyBox();
-}
-
-
-function cancelReply() {
-  currentReply = null;
-  renderReplyBox();
-}
-
-
-function renderReplyBox() {
-  if (!currentReply) {
-    replyBox.classList.add("hidden");
-    replyBoxText.textContent = "";
-    return;
-  }
-
-  replyBox.classList.remove("hidden");
-
-  replyBoxText.textContent =
-    `${currentReply.displayName}: ${currentReply.text}`;
-}
-
-
-replyCancel.addEventListener(
-  "click",
-  cancelReply
-);
-
-
-/* =========================================================
-   EFFECT BAR
-   ========================================================= */
-
-function renderEffects() {
-  effectBar.innerHTML =
-    EFFECTS
-      .map((effect) => `
-        <button
-          class="effect-btn ${
-            effect.id === currentEffect
-              ? "active"
-              : ""
-          }"
-          data-effect="${effect.id}"
-          title="${escapeHtml(effect.label)}"
-        >
-          ${effect.icon}
-        </button>
-      `)
-      .join("");
-
-  effectBar.querySelectorAll("[data-effect]")
-    .forEach((button) => {
-      button.addEventListener("click", () => {
-        currentEffect = button.dataset.effect;
-
-        effectBar
-          .querySelectorAll(".effect-btn")
-          .forEach((item) => {
-            item.classList.toggle(
-              "active",
-              item.dataset.effect === currentEffect
-            );
-          });
-      });
-    });
-}
-
-
-/* =========================================================
-   SEND
-   ========================================================= */
-
-async function sendMessage() {
-  if (!currentUser) {
-    return;
-  }
-
-  const text = msgInput.value.trim();
-
-  if (!text) {
-    return;
-  }
-
-  if (text.length > 2000) {
-    showToast("Wiadomość jest za długa.");
-    return;
-  }
-
-  sendBtn.disabled = true;
-
-  try {
-    const role =
-      currentProfile?.role &&
-      ROLES[currentProfile.role]
-        ? currentProfile.role
-        : "student";
-
-    const payload = {
-      text,
-      channel: currentChannel,
-      uid: currentUser.uid,
-      displayName:
-        currentUser.displayName ||
-        currentProfile?.displayName ||
-        "Użytkownik",
-      photoURL:
-        currentUser.photoURL ||
-        currentProfile?.photoURL ||
-        "",
-      roleAtSend: role,
-      effect: currentEffect || "none",
-      createdAt: serverTimestamp()
-    };
-
-    if (currentReply) {
-      payload.replyTo = {
-        id: currentReply.id,
-        uid: currentReply.uid,
-        displayName: currentReply.displayName,
-        text: currentReply.text
-      };
-    }
-
-    await addDoc(
-      collection(db, "messages"),
-      payload
-    );
-
-    msgInput.value = "";
-
-    currentReply = null;
-    renderReplyBox();
-
-    msgInput.focus();
-  } catch (error) {
-    console.error(error);
-    showToast(
-      "Nie udało się wysłać wiadomości."
-    );
-  } finally {
-    sendBtn.disabled = false;
-  }
-}
-
-
-sendBtn.addEventListener(
-  "click",
-  sendMessage
-);
-
-
-msgInput.addEventListener(
-  "keydown",
-  (event) => {
-    if (event.key === "Enter" && !event.shiftKey) {
-      event.preventDefault();
-      sendMessage();
-    }
-
-    if (event.key === "Escape") {
-      cancelReply();
-    }
-  }
-);
-
-
-/* =========================================================
-   MEMBERS
-   ========================================================= */
-
-async function renderMembers() {
-  const membersList = $("membersList");
-
-  if (!currentUser) {
-    membersList.innerHTML = "";
-    return;
-  }
-
-  try {
-    const q = query(
-      collection(db, "users"),
-      limit(100)
-    );
-
-    onSnapshot(
-      q,
-      (snapshot) => {
-        const members = [];
-
-        snapshot.forEach((snap) => {
-          const data = snap.data();
-
-          const member = {
-            uid: snap.id,
-            displayName:
-              data.displayName || "Użytkownik",
-            photoURL:
-              data.photoURL || "",
-            role:
-              data.role && ROLES[data.role]
-                ? data.role
-                : "student"
-          };
-
-          userCache[snap.id] = member;
-          members.push(member);
-        });
-
-        members.sort((a, b) => {
-          const order = {
-            admin: 0,
-            moderator: 1,
-            teacher: 2,
-            student: 3
-          };
-
-          const roleDifference =
-            order[a.role] - order[b.role];
-
-          if (roleDifference !== 0) {
-            return roleDifference;
-          }
-
-          return a.displayName.localeCompare(
-            b.displayName,
-            "pl"
-          );
-        });
-
-        $("memberCount").textContent =
-          `${members.length} ${
-            members.length === 1
-              ? "osoba"
-              : "osób"
-          }`;
-
-        membersList.innerHTML =
-          members
-            .map((member) => {
-              const role =
-                roleData(member.role);
-
-              return `
-                <div class="member">
-                  ${avatarHtml(member)}
-
-                  <div>
-                    <div
-                      class="member-name"
+                  ? `
+                    <span
+                      class="role-badge"
                       style="color:${escapeHtml(role.color)}"
                     >
-                      ${escapeHtml(member.displayName)}
-                    </div>
+                      ${escapeHtml(role.icon)}
+                      ${escapeHtml(role.label)}
+                    </span>
+                  `
 
-                    <div class="member-role">
-                      ${escapeHtml(
-                        `${role.icon ? role.icon + " " : ""}${role.label}`
-                      )}
-                    </div>
-                  </div>
-                </div>
-              `;
-            })
-            .join("");
-      },
-      (error) => {
-        console.error(error);
+                  : ""
+              }
+
+
+              <span class="message-time">
+                ${escapeHtml(
+                  formatTime(
+                    message.createdAt
+                  )
+                )}
+              </span>
+
+            </div>
+
+
+            ${replyHtml}
+
+
+            <div
+              class="message-text effect-${escapeHtml(effect)}"
+            >
+              ${escapeHtml(
+                message.text
+              )}
+            </div>
+
+
+            <div class="message-actions">
+
+              <button
+                class="message-action"
+                data-reply-id="${escapeHtml(message.id)}"
+              >
+                ↩ Odpowiedz
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      `;
+
+    }
+
+
+    /* =====================================================
+       MESSAGE CLICK
+       ===================================================== */
+
+    messagesEl.addEventListener(
+      "click",
+      event => {
+
+        const replyButton =
+          event.target.closest(
+            "[data-reply-id]"
+          );
+
+
+        if (replyButton) {
+
+          const id =
+            replyButton.dataset.replyId;
+
+
+          const message =
+            messageCache.find(
+              item => item.id === id
+            );
+
+
+          if (message) {
+
+            startReply(message);
+
+            msgInput.focus();
+
+          }
+
+          return;
+
+        }
+
+
+        const jump =
+          event.target.closest(
+            "[data-jump-to]"
+          );
+
+
+        if (jump) {
+
+          const target =
+            document.getElementById(
+              `message-${jump.dataset.jumpTo}`
+            );
+
+
+          if (target) {
+
+            target.scrollIntoView({
+
+              behavior:
+                "smooth",
+
+              block:
+                "center"
+
+            });
+
+          }
+
+        }
+
       }
     );
-  } catch (error) {
-    console.error(error);
-  }
-}
 
 
-/* =========================================================
-   THEME
-   ========================================================= */
+    /* =====================================================
+       REPLY
+       ===================================================== */
 
-const savedTheme =
-  localStorage.getItem("classhub-theme");
+    function startReply(message) {
 
-if (savedTheme === "light") {
-  document.body.classList.add("light");
-}
+      currentReply = {
 
-function updateThemeIcon() {
-  $("themeBtn").textContent =
-    document.body.classList.contains("light")
-      ? "🌙"
-      : "☀️";
-}
+        id:
+          message.id,
 
-updateThemeIcon();
+        uid:
+          message.uid,
 
-$("themeBtn").addEventListener(
-  "click",
-  () => {
-    document.body.classList.toggle("light");
+        displayName:
+          message.displayName ||
+          "Użytkownik",
 
-    localStorage.setItem(
-      "classhub-theme",
-      document.body.classList.contains("light")
-        ? "light"
-        : "dark"
+        text:
+          message.text ||
+          ""
+
+      };
+
+
+      renderReplyBox();
+
+    }
+
+
+    function cancelReply() {
+
+      currentReply =
+        null;
+
+      renderReplyBox();
+
+    }
+
+
+    function renderReplyBox() {
+
+      if (!currentReply) {
+
+        replyBox
+          .classList
+          .add("hidden");
+
+        replyBoxText.textContent =
+          "";
+
+        return;
+
+      }
+
+
+      replyBox
+        .classList
+        .remove("hidden");
+
+
+      replyBoxText.textContent =
+        `${currentReply.displayName}: ${currentReply.text}`;
+
+    }
+
+
+    replyCancel.addEventListener(
+      "click",
+      cancelReply
     );
+
+
+    /* =====================================================
+       EFFECTS
+       ===================================================== */
+
+    function renderEffects() {
+
+      effectBar.innerHTML =
+        EFFECTS
+          .map(effect => `
+
+            <button
+              class="effect-btn ${
+                effect.id === currentEffect
+                  ? "active"
+                  : ""
+              }"
+              data-effect="${escapeHtml(effect.id)}"
+              title="${escapeHtml(effect.label)}"
+            >
+              ${effect.icon}
+            </button>
+
+          `)
+          .join("");
+
+
+      effectBar
+        .querySelectorAll(
+          "[data-effect]"
+        )
+        .forEach(button => {
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              currentEffect =
+                button.dataset.effect;
+
+
+              effectBar
+                .querySelectorAll(
+                  ".effect-btn"
+                )
+                .forEach(item => {
+
+                  item.classList.toggle(
+
+                    "active",
+
+                    item.dataset.effect ===
+                      currentEffect
+
+                  );
+
+                });
+
+            }
+          );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       SEND MESSAGE
+       ===================================================== */
+
+    async function sendMessage() {
+
+      if (!currentUser) {
+        return;
+      }
+
+
+      const text =
+        msgInput.value.trim();
+
+
+      if (!text) {
+        return;
+      }
+
+
+      if (text.length > 2000) {
+
+        showToast(
+          "Wiadomość jest za długa."
+        );
+
+        return;
+
+      }
+
+
+      sendBtn.disabled = true;
+
+
+      try {
+
+        const role =
+          currentProfile?.role &&
+          ROLES[currentProfile.role]
+
+            ? currentProfile.role
+
+            : "student";
+
+
+        const payload = {
+
+          text,
+
+          channel:
+            currentChannel,
+
+          uid:
+            currentUser.uid,
+
+          displayName:
+            currentUser.displayName ||
+            currentProfile?.displayName ||
+            "Użytkownik",
+
+          photoURL:
+            currentUser.photoURL ||
+            currentProfile?.photoURL ||
+            "",
+
+          roleAtSend:
+            role,
+
+          effect:
+            currentEffect ||
+
+            "none",
+
+          createdAt:
+            serverTimestamp()
+
+        };
+
+
+        if (currentReply) {
+
+          payload.replyTo = {
+
+            id:
+              currentReply.id,
+
+            uid:
+              currentReply.uid,
+
+            displayName:
+              currentReply.displayName,
+
+            text:
+              currentReply.text
+
+          };
+
+        }
+
+
+        await addDoc(
+
+          collection(
+            db,
+            "messages"
+          ),
+
+          payload
+
+        );
+
+
+        msgInput.value =
+          "";
+
+        currentReply =
+          null;
+
+        renderReplyBox();
+
+        msgInput.focus();
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        showToast(
+          "Nie udało się wysłać wiadomości."
+        );
+
+      } finally {
+
+        sendBtn.disabled =
+          false;
+
+      }
+
+    }
+
+
+    sendBtn.addEventListener(
+      "click",
+      sendMessage
+    );
+
+
+    msgInput.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Enter" &&
+          !event.shiftKey
+        ) {
+
+          event.preventDefault();
+
+          sendMessage();
+
+        }
+
+
+        if (event.key === "Escape") {
+
+          cancelReply();
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       MEMBERS
+       ===================================================== */
+
+    let unsubscribeMembers = null;
+
+
+    function subscribeMembers() {
+
+      if (unsubscribeMembers) {
+
+        unsubscribeMembers();
+        unsubscribeMembers = null;
+
+      }
+
+
+      const membersQuery =
+        query(
+          collection(
+            db,
+            "users"
+          ),
+          limit(100)
+        );
+
+
+      unsubscribeMembers =
+        onSnapshot(
+
+          membersQuery,
+
+          snapshot => {
+
+            const members = [];
+
+
+            snapshot.forEach(
+              snap => {
+
+                const data =
+                  snap.data();
+
+
+                const member = {
+
+                  uid:
+                    snap.id,
+
+                  displayName:
+                    data.displayName ||
+                    "Użytkownik",
+
+                  photoURL:
+                    data.photoURL ||
+                    "",
+
+                  role:
+                    data.role &&
+                    ROLES[data.role]
+                      ? data.role
+                      : "student"
+
+                };
+
+
+                userCache[snap.id] =
+                  member;
+
+
+                members.push(member);
+
+              }
+            );
+
+
+            const order = {
+
+              admin: 0,
+              moderator: 1,
+              teacher: 2,
+              student: 3
+
+            };
+
+
+            members.sort(
+              (a,b) => {
+
+                const roleDiff =
+                  order[a.role] -
+                  order[b.role];
+
+
+                if (roleDiff !== 0) {
+                  return roleDiff;
+                }
+
+
+                return a.displayName.localeCompare(
+                  b.displayName,
+                  "pl"
+                );
+
+              }
+            );
+
+
+            $("memberCount")
+              .textContent =
+              `${members.length} ${
+                members.length === 1
+                  ? "osoba"
+                  : "osób"
+              }`;
+
+
+            $("membersList")
+              .innerHTML =
+              members
+                .map(member => {
+
+                  const role =
+                    roleData(
+                      member.role
+                    );
+
+
+                  return `
+
+                    <div class="member">
+
+                      ${avatarHtml(member)}
+
+                      <div>
+
+                        <div
+                          class="member-name"
+                          style="color:${escapeHtml(role.color)}"
+                        >
+                          ${escapeHtml(
+                            member.displayName
+                          )}
+                        </div>
+
+                        <div class="member-role">
+                          ${escapeHtml(
+                            `${role.icon ? role.icon + " " : ""}${role.label}`
+                          )}
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  `;
+
+                })
+                .join("");
+
+          },
+
+          error => {
+
+            console.error(
+              "Members error:",
+              error
+            );
+
+          }
+
+        );
+
+    }
+
+
+    /* =====================================================
+       THEME
+       ===================================================== */
+
+    const savedTheme =
+      localStorage.getItem(
+        "classhub-theme"
+      );
+
+
+    if (savedTheme === "light") {
+
+      document.body
+        .classList
+        .add("light");
+
+    }
+
+
+    function updateThemeIcon() {
+
+      $("themeBtn")
+        .textContent =
+        document.body
+          .classList
+          .contains("light")
+
+            ? "🌙"
+
+            : "☀️";
+
+    }
+
 
     updateThemeIcon();
 
-    if (
-      window.google?.accounts?.id &&
-      hasGoogleClientId()
-    ) {
-      google.accounts.id.cancel();
-      google.accounts.id.initialize({
-        client_id: GOOGLE_CLIENT_ID,
-        callback:
-          handleGoogleCredentialResponse,
-        auto_select: false,
-        cancel_on_tap_outside: true,
-        color_scheme:
-          document.body.classList.contains("light")
-            ? "light"
-            : "dark"
-      });
 
-      google.accounts.id.renderButton(
-        googleButton,
-        {
-          theme: "filled_blue",
-          size: "large",
-          text: "signin_with",
-          shape: "pill",
-          width: Math.min(
-            390,
-            window.innerWidth - 70
-          ),
-          locale: "pl",
-          logo_alignment: "left"
+    $("themeBtn")
+      .addEventListener(
+        "click",
+        () => {
+
+          document.body
+            .classList
+            .toggle("light");
+
+
+          localStorage.setItem(
+
+            "classhub-theme",
+
+            document.body
+              .classList
+              .contains("light")
+
+              ? "light"
+
+              : "dark"
+
+          );
+
+
+          updateThemeIcon();
+
+
+          renderGoogleButton();
+
         }
       );
-    }
-  }
-);
 
 
-/* =========================================================
-   MOBILE MENU
-   ========================================================= */
+    /* =====================================================
+       MOBILE MENU
+       ===================================================== */
 
-$("mobileMenuBtn").addEventListener(
-  "click",
-  () => {
-    document.body.classList.toggle(
-      "mobile-menu-open"
-    );
-  }
-);
+    $("mobileMenuBtn")
+      .addEventListener(
+        "click",
+        () => {
 
-$("mobileBackdrop").addEventListener(
-  "click",
-  () => {
-    document.body.classList.remove(
-      "mobile-menu-open"
-    );
-  }
-);
+          document.body
+            .classList
+            .toggle(
+              "mobile-menu-open"
+            );
+
+        }
+      );
 
 
-/* =========================================================
-   LOGOUT
-   ========================================================= */
+    $("mobileBackdrop")
+      .addEventListener(
+        "click",
+        () => {
 
-$("logoutBtn").addEventListener(
-  "click",
-  async () => {
-    try {
-      if (window.google?.accounts?.id) {
-        google.accounts.id.disableAutoSelect();
+          document.body
+            .classList
+            .remove(
+              "mobile-menu-open"
+            );
+
+        }
+      );
+
+
+    /* =====================================================
+       LOGOUT
+       ===================================================== */
+
+    $("logoutBtn")
+      .addEventListener(
+        "click",
+        async () => {
+
+          try {
+
+            if (
+              window.google
+                ?.accounts
+                ?.id
+            ) {
+
+              google.accounts.id.disableAutoSelect();
+
+            }
+
+          } catch {}
+
+
+          try {
+
+            await signOut(auth);
+
+            currentUser = null;
+            currentProfile = null;
+            currentReply = null;
+
+            messageCache = [];
+            userCache = {};
+
+
+            if (unsubscribeMessages) {
+
+              unsubscribeMessages();
+              unsubscribeMessages = null;
+
+            }
+
+
+            if (unsubscribeMembers) {
+
+              unsubscribeMembers();
+              unsubscribeMembers = null;
+
+            }
+
+
+            showToast(
+              "Wylogowano."
+            );
+
+
+          } catch (error) {
+
+            console.error(error);
+
+            showToast(
+              "Nie udało się wylogować."
+            );
+
+          }
+
+        }
+      );
+
+
+    /* =====================================================
+       START
+       ===================================================== */
+
+    updateChannelHeader();
+    renderEffects();
+
+
+    function waitForGoogle() {
+
+      if (
+        window.google?.accounts?.id
+      ) {
+
+        renderGoogleButton();
+
+      } else {
+
+        setTimeout(
+          waitForGoogle,
+          150
+        );
+
       }
-    } catch {}
 
-    try {
-      await signOut(auth);
-
-      currentUser = null;
-      currentProfile = null;
-      currentReply = null;
-      messageCache = [];
-      userCache = {};
-
-      if (unsubscribeMessages) {
-        unsubscribeMessages();
-        unsubscribeMessages = null;
-      }
-
-      showToast("Wylogowano.");
-    } catch (error) {
-      console.error(error);
-      showToast("Nie udało się wylogować.");
     }
-  }
-);
 
 
-/* =========================================================
-   INITIALIZE
-   ========================================================= */
-
-function initGoogleWhenReady() {
-  if (
-    window.google?.accounts?.id
-  ) {
-    renderGoogleButton();
-    return;
-  }
-
-  setTimeout(
-    initGoogleWhenReady,
-    150
-  );
-}
-
-updateChannelHeader();
-renderEffects();
-initGoogleWhenReady();
-
-/*
-  Jeśli client ID jeszcze nie został wstawiony,
-  pokaż bezpośrednio informację zamiast udawać,
-  że przycisk jest gotowy.
-*/
-if (!hasGoogleClientId()) {
-  googleButtonWrap.classList.add("hidden");
-  googleFallback.classList.remove("hidden");
-
-  showLoginError(
-    "W kodzie brakuje GOOGLE_CLIENT_ID z Google Cloud."
-  );
-}
-```
+    waitForGoogle();
 
   </script>
+
 </body>
 </html>
