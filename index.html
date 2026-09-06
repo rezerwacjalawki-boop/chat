@@ -11,6 +11,8 @@
 :root{
   --bg:#04050b;
   --bg-deep:#020309;
+  --sidebar:rgba(6,8,16,.96);
+  --panel:rgba(14,18,31,.76);
   --text:#f7f8ff;
   --muted:#8992a7;
   --muted-2:#626b80;
@@ -153,28 +155,10 @@ button{
   animation:laserMove 13s linear infinite;
 }
 
-.laser.a{
-  top:12%;
-  transform:rotate(14deg);
-}
-
-.laser.b{
-  top:35%;
-  transform:rotate(-11deg);
-  animation-delay:-3s;
-}
-
-.laser.c{
-  top:63%;
-  transform:rotate(16deg);
-  animation-delay:-6s;
-}
-
-.laser.d{
-  top:82%;
-  transform:rotate(-14deg);
-  animation-delay:-10s;
-}
+.laser.a{top:12%;transform:rotate(14deg)}
+.laser.b{top:35%;transform:rotate(-11deg);animation-delay:-3s}
+.laser.c{top:63%;transform:rotate(16deg);animation-delay:-6s}
+.laser.d{top:82%;transform:rotate(-14deg);animation-delay:-10s}
 
 @keyframes laserMove{
   from{translate:-25vw 0}
@@ -256,12 +240,7 @@ button{
   justify-content:center;
   font-size:18px;
   font-weight:950;
-  background:
-    linear-gradient(
-      135deg,
-      var(--accent),
-      var(--accent-2)
-    );
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
   box-shadow:0 0 32px rgba(114,102,255,.38);
   animation:brandPulse 3s ease-in-out infinite;
 }
@@ -276,14 +255,8 @@ button{
 }
 
 @keyframes logoRing{
-  0%{
-    opacity:.8;
-    transform:scale(.95);
-  }
-  100%{
-    opacity:0;
-    transform:scale(1.35);
-  }
+  0%{opacity:.8;transform:scale(.95)}
+  100%{opacity:0;transform:scale(1.35)}
 }
 
 @keyframes brandPulse{
@@ -328,8 +301,8 @@ button{
   border-radius:11px;
   color:var(--muted);
   cursor:pointer;
-  transition:.23s ease;
   user-select:none;
+  transition:.23s ease;
 }
 
 .nav-item:hover{
@@ -364,14 +337,8 @@ button{
 }
 
 @keyframes statusGlow{
-  0%,100%{
-    opacity:.6;
-    transform:scale(1);
-  }
-  50%{
-    opacity:1;
-    transform:scale(1.25);
-  }
+  0%,100%{opacity:.6;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.25)}
 }
 
 .sidebar-tools{
@@ -432,12 +399,7 @@ button{
   color:#fff;
   font-size:14px;
   font-weight:950;
-  background:
-    linear-gradient(
-      135deg,
-      var(--accent),
-      var(--accent-2)
-    );
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
   border:2px solid rgba(255,255,255,.11);
   box-shadow:0 0 25px rgba(114,102,255,.25);
   transition:.28s ease;
@@ -598,14 +560,23 @@ button{
 }
 
 @keyframes onlinePulse{
-  0%,100%{
-    opacity:.65;
-    transform:scale(1);
-  }
-  50%{
-    opacity:1;
-    transform:scale(1.25);
-  }
+  0%,100%{opacity:.65;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.25)}
+}
+
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+
+.mobile-menu-btn,
+.mobile-backdrop{
+  display:none;
+}
+
+.mobile-menu-btn{
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.045);
+  color:var(--text);
 }
 
 /* =========================================================
@@ -642,7 +613,7 @@ button{
 }
 
 /* =========================================================
-   MESSAGE
+   MESSAGE BASE
    ========================================================= */
 
 .message{
@@ -784,6 +755,10 @@ button{
   transform:scale(1.07);
 }
 
+/* =========================================================
+   ROLES
+   ========================================================= */
+
 .role-badge{
   display:inline-flex;
   align-items:center;
@@ -821,13 +796,8 @@ button{
 }
 
 @keyframes adminGlow{
-  0%,100%{
-    text-shadow:0 0 5px rgba(255,91,125,.22);
-  }
-
-  50%{
-    text-shadow:0 0 20px rgba(255,91,125,.82);
-  }
+  0%,100%{text-shadow:0 0 5px rgba(255,91,125,.22)}
+  50%{text-shadow:0 0 20px rgba(255,91,125,.82)}
 }
 
 .role-moderator{
@@ -865,7 +835,7 @@ button{
 }
 
 /* =========================================================
-   REPLY PREVIEW
+   REPLY
    ========================================================= */
 
 .reply-preview{
@@ -897,7 +867,7 @@ button{
 }
 
 /* =========================================================
-   EFFECTS
+   EFFECTS — FIRE
    ========================================================= */
 
 .effect-fire{
@@ -933,30 +903,22 @@ button{
 
   100%{
     opacity:0;
-    transform:
-      translateY(-22px)
-      translateX(8px)
-      scale(1.25);
+    transform:translateY(-22px) translateX(8px) scale(1.25);
   }
 }
 
 .effect-fire .message-text{
   color:#ffe0d0;
-  text-shadow:
-    0 0 8px rgba(255,88,28,.48),
-    0 0 22px rgba(255,62,20,.28);
+  text-shadow:0 0 8px rgba(255,88,28,.48),0 0 22px rgba(255,62,20,.28);
   animation:fireText 1.3s ease-in-out infinite;
 }
 
 @keyframes fireText{
-  0%,100%{
-    filter:brightness(1) saturate(1);
-  }
-
-  50%{
-    filter:brightness(1.23) saturate(1.18);
-  }
+  0%,100%{filter:brightness(1) saturate(1)}
+  50%{filter:brightness(1.23) saturate(1.18)}
 }
+
+/* ICE */
 
 .effect-ice{
   border-left:2px solid rgba(78,220,255,.58);
@@ -971,23 +933,17 @@ button{
 
 .effect-ice .message-text{
   color:#e1faff;
-  text-shadow:
-    0 0 10px rgba(74,218,255,.60),
-    0 0 22px rgba(60,170,255,.28);
+  text-shadow:0 0 10px rgba(74,218,255,.60),0 0 22px rgba(60,170,255,.28);
   animation:iceGlow 2.1s ease-in-out infinite;
 }
 
 @keyframes iceGlow{
-  0%,100%{
-    filter:brightness(1);
-  }
-
-  50%{
-    filter:brightness(1.25);
-  }
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.25)}
 }
 
 /* ELECTRIC */
+
 .effect-electric{
   border:1px solid rgba(111,105,255,.26);
   background:
@@ -1058,66 +1014,32 @@ button{
 }
 
 @keyframes electricBar{
-  0%{
-    transform:translateY(-100%);
-  }
-
-  100%{
-    transform:translateY(100%);
-  }
+  0%{transform:translateY(-100%)}
+  100%{transform:translateY(100%)}
 }
 
 @keyframes electricSweep{
-  from{
-    background-position:-220% 0;
-  }
-
-  to{
-    background-position:220% 0;
-  }
+  from{background-position:-220% 0}
+  to{background-position:220% 0}
 }
 
 @keyframes electricMain{
-  0%,80%,100%{
-    transform:translate(0,0);
-  }
-
-  81%{
-    transform:translate(-2px,0);
-  }
-
-  83%{
-    transform:translate(3px,0);
-  }
-
-  85%{
-    transform:translate(-2px,0);
-  }
-
-  87%{
-    transform:translate(1px,0);
-  }
-
-  89%{
-    transform:translate(0,0);
-  }
+  0%,80%,100%{transform:translate(0,0)}
+  81%{transform:translate(-2px,0)}
+  83%{transform:translate(3px,0)}
+  85%{transform:translate(-2px,0)}
+  87%{transform:translate(1px,0)}
+  89%{transform:translate(0,0)}
 }
 
 @keyframes electricAvatar{
-  0%,80%,100%{
-    filter:brightness(1);
-  }
-
-  84%{
-    filter:brightness(1.8);
-  }
-
-  86%{
-    filter:brightness(1.1);
-  }
+  0%,80%,100%{filter:brightness(1)}
+  84%{filter:brightness(1.8)}
+  86%{filter:brightness(1.1)}
 }
 
 /* NEON */
+
 .effect-neon{
   border-left:2px solid rgba(114,102,255,.65);
   background:
@@ -1139,16 +1061,12 @@ button{
 }
 
 @keyframes neonBreath{
-  0%,100%{
-    filter:brightness(1);
-  }
-
-  50%{
-    filter:brightness(1.32);
-  }
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.32)}
 }
 
 /* RAINBOW */
+
 .effect-rainbow{
   background:
     linear-gradient(
@@ -1179,12 +1097,11 @@ button{
 }
 
 @keyframes rainbow{
-  to{
-    background-position:400% center;
-  }
+  to{background-position:400% center}
 }
 
 /* GLITCH */
+
 .effect-glitch{
   border-left:2px solid rgba(255,69,215,.55);
   background:
@@ -1205,32 +1122,16 @@ button{
 }
 
 @keyframes glitch{
-  0%,80%,100%{
-    transform:translate(0,0);
-  }
-
-  81%{
-    transform:translate(-3px,0);
-  }
-
-  82%{
-    transform:translate(3px,0);
-  }
-
-  83%{
-    transform:translate(-1px,1px);
-  }
-
-  84%{
-    transform:translate(2px,-1px);
-  }
-
-  85%{
-    transform:translate(0,0);
-  }
+  0%,80%,100%{transform:translate(0,0)}
+  81%{transform:translate(-3px,0)}
+  82%{transform:translate(3px,0)}
+  83%{transform:translate(-1px,1px)}
+  84%{transform:translate(2px,-1px)}
+  85%{transform:translate(0,0)}
 }
 
 /* PLASMA */
+
 .effect-plasma{
   background:
     linear-gradient(
@@ -1253,16 +1154,12 @@ button{
 }
 
 @keyframes plasma{
-  0%,100%{
-    filter:hue-rotate(0deg) brightness(1);
-  }
-
-  50%{
-    filter:hue-rotate(35deg) brightness(1.3);
-  }
+  0%,100%{filter:hue-rotate(0deg) brightness(1)}
+  50%{filter:hue-rotate(35deg) brightness(1.3)}
 }
 
 /* SPARKLE */
+
 .effect-sparkle .message-text{
   color:#fff8db;
   text-shadow:0 0 8px rgba(255,209,102,.58);
@@ -1270,16 +1167,12 @@ button{
 }
 
 @keyframes sparkle{
-  0%,100%{
-    filter:brightness(1);
-  }
-
-  50%{
-    filter:brightness(1.35);
-  }
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.35)}
 }
 
 /* VOID */
+
 .effect-void{
   border:1px solid rgba(144,120,255,.24);
   background:
@@ -1304,17 +1197,12 @@ button{
 }
 
 @keyframes voidPulse{
-  0%,100%{
-    opacity:.88;
-  }
-
-  50%{
-    opacity:1;
-    text-shadow:0 0 22px rgba(137,105,255,.88);
-  }
+  0%,100%{opacity:.88}
+  50%{opacity:1;text-shadow:0 0 22px rgba(137,105,255,.88)}
 }
 
 /* HOLOGRAM */
+
 .effect-hologram{
   border-left:2px solid rgba(0,221,255,.55);
   background:
@@ -1343,16 +1231,12 @@ button{
 }
 
 @keyframes holo{
-  0%,100%{
-    filter:brightness(1) saturate(1);
-  }
-
-  50%{
-    filter:brightness(1.3) saturate(1.25);
-  }
+  0%,100%{filter:brightness(1) saturate(1)}
+  50%{filter:brightness(1.3) saturate(1.25)}
 }
 
 /* GOLD */
+
 .effect-gold{
   border-left:2px solid rgba(255,209,102,.58);
   background:
@@ -1373,16 +1257,12 @@ button{
 }
 
 @keyframes goldGlow{
-  0%,100%{
-    filter:brightness(1);
-  }
-
-  50%{
-    filter:brightness(1.28);
-  }
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.28)}
 }
 
 /* TOXIC */
+
 .effect-toxic{
   border-left:2px solid rgba(121,255,78,.56);
   background:
@@ -1403,16 +1283,12 @@ button{
 }
 
 @keyframes toxic{
-  0%,100%{
-    filter:hue-rotate(0deg) brightness(1);
-  }
-
-  50%{
-    filter:hue-rotate(-10deg) brightness(1.27);
-  }
+  0%,100%{filter:hue-rotate(0deg) brightness(1)}
+  50%{filter:hue-rotate(-10deg) brightness(1.27)}
 }
 
 /* COSMIC */
+
 .effect-cosmic{
   border:1px solid rgba(139,112,255,.25);
   background:
@@ -1437,16 +1313,12 @@ button{
 }
 
 @keyframes cosmic{
-  0%,100%{
-    transform:translateY(0);
-  }
-
-  50%{
-    transform:translateY(-1px);
-  }
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-1px)}
 }
 
 /* RUBY */
+
 .effect-ruby{
   border-left:2px solid rgba(255,61,104,.58);
   background:
@@ -1467,16 +1339,12 @@ button{
 }
 
 @keyframes ruby{
-  0%,100%{
-    filter:brightness(1);
-  }
-
-  50%{
-    filter:brightness(1.27);
-  }
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.27)}
 }
 
 /* MATRIX */
+
 .effect-matrix{
   border-left:2px solid rgba(48,255,144,.58);
   background:
@@ -1494,48 +1362,21 @@ button{
 }
 
 @keyframes matrix{
-  0%,87%,100%{
-    opacity:1;
-  }
-
-  90%{
-    opacity:.72;
-  }
-
-  92%{
-    opacity:1;
-  }
-
-  94%{
-    opacity:.82;
-  }
+  0%,87%,100%{opacity:1}
+  90%{opacity:.72}
+  92%{opacity:1}
+  94%{opacity:.82}
 }
 
 /* GALAXY */
+
 .effect-galaxy{
   border:1px solid rgba(136,103,255,.30);
   background:
-    radial-gradient(
-      circle at 18% 40%,
-      rgba(255,70,213,.14),
-      transparent 18%
-    ),
-    radial-gradient(
-      circle at 80% 60%,
-      rgba(0,221,255,.13),
-      transparent 20%
-    ),
-    radial-gradient(
-      circle at 52% 25%,
-      rgba(126,89,255,.18),
-      transparent 28%
-    ),
-    linear-gradient(
-      120deg,
-      rgba(28,9,62,.28),
-      rgba(8,18,53,.18),
-      rgba(15,3,34,.30)
-    );
+    radial-gradient(circle at 18% 40%,rgba(255,70,213,.14),transparent 18%),
+    radial-gradient(circle at 80% 60%,rgba(0,221,255,.13),transparent 20%),
+    radial-gradient(circle at 52% 25%,rgba(126,89,255,.18),transparent 28%),
+    linear-gradient(120deg,rgba(28,9,62,.28),rgba(8,18,53,.18),rgba(15,3,34,.30));
   box-shadow:
     inset 0 0 34px rgba(119,82,255,.08),
     0 0 24px rgba(120,80,255,.08);
@@ -1592,7 +1433,7 @@ button{
       #ffb3f0,
       #c9c2ff,
       #9feaff,
-      #ffffff,
+      #fff,
       #ffb3f0
     );
   background-size:280% auto;
@@ -1614,75 +1455,35 @@ button{
 }
 
 @keyframes galaxyStars{
-  0%{
-    transform:rotate(0deg) translate(0,0) scale(1);
-  }
-
-  50%{
-    transform:rotate(8deg) translate(6px,-4px) scale(1.04);
-  }
-
-  100%{
-    transform:rotate(16deg) translate(0,0) scale(1);
-  }
+  0%{transform:rotate(0deg) translate(0,0) scale(1)}
+  50%{transform:rotate(8deg) translate(6px,-4px) scale(1.04)}
+  100%{transform:rotate(16deg) translate(0,0) scale(1)}
 }
 
 @keyframes galaxyNebula{
-  0%,100%{
-    transform:rotate(-18deg) translateX(-2%) scale(1);
-  }
-
-  50%{
-    transform:rotate(-12deg) translateX(4%) scale(1.08);
-  }
+  0%,100%{transform:rotate(-18deg) translateX(-2%) scale(1)}
+  50%{transform:rotate(-12deg) translateX(4%) scale(1.08)}
 }
 
 @keyframes galaxyText{
-  to{
-    background-position:280% center;
-  }
+  to{background-position:280% center}
 }
 
 @keyframes galaxyAvatar{
-  0%,100%{
-    filter:hue-rotate(0deg) brightness(1);
-  }
-
-  50%{
-    filter:hue-rotate(28deg) brightness(1.32);
-  }
+  0%,100%{filter:hue-rotate(0deg) brightness(1)}
+  50%{filter:hue-rotate(28deg) brightness(1.32)}
 }
 
 /* SUPERNOVA */
+
 .effect-supernova{
   border:1px solid rgba(255,132,62,.34);
   background:
-    radial-gradient(
-      circle at 50% 50%,
-      rgba(255,244,196,.15),
-      transparent 12%
-    ),
-    radial-gradient(
-      circle at 48% 50%,
-      rgba(255,115,48,.12),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 25% 50%,
-      rgba(255,40,143,.08),
-      transparent 24%
-    ),
-    radial-gradient(
-      circle at 78% 45%,
-      rgba(120,90,255,.10),
-      transparent 26%
-    ),
-    linear-gradient(
-      90deg,
-      rgba(64,10,28,.23),
-      rgba(39,8,48,.16),
-      rgba(15,10,38,.22)
-    );
+    radial-gradient(circle at 50% 50%,rgba(255,244,196,.15),transparent 12%),
+    radial-gradient(circle at 48% 50%,rgba(255,115,48,.12),transparent 28%),
+    radial-gradient(circle at 25% 50%,rgba(255,40,143,.08),transparent 24%),
+    radial-gradient(circle at 78% 45%,rgba(120,90,255,.10),transparent 26%),
+    linear-gradient(90deg,rgba(64,10,28,.23),rgba(39,8,48,.16),rgba(15,10,38,.22));
   box-shadow:
     inset 0 0 45px rgba(255,90,60,.07),
     0 0 28px rgba(255,104,50,.10);
@@ -1701,7 +1502,7 @@ button{
   background:
     radial-gradient(
       circle,
-      #ffffff 0%,
+      #fff 0%,
       #fff5ba 18%,
       #ffcf70 34%,
       #ff7d3b 55%,
@@ -1939,6 +1740,7 @@ button{
   padding:1px 0;
   margin-bottom:7px;
   overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
 }
 
 .effect-bar::-webkit-scrollbar{
@@ -2319,7 +2121,7 @@ button{
 }
 
 .google-btn:disabled{
-  opacity:.6;
+  opacity:.65;
   cursor:wait;
 }
 
@@ -2453,13 +2255,8 @@ button{
 }
 
 @keyframes profileFloat{
-  0%,100%{
-    transform:translateY(0);
-  }
-
-  50%{
-    transform:translateY(-6px);
-  }
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
 }
 
 .profile-name{
@@ -2543,13 +2340,8 @@ button{
 }
 
 @keyframes emptyFloat{
-  0%,100%{
-    transform:translateY(0);
-  }
-
-  50%{
-    transform:translateY(-7px);
-  }
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-7px)}
 }
 
 /* =========================================================
@@ -2630,8 +2422,7 @@ body.light .message-text{
     transform:translateX(-105%);
     transition:transform .28s cubic-bezier(.16,.8,.2,1);
     padding-left:var(--safe-left);
-    box-shadow:
-      25px 0 80px rgba(0,0,0,.48);
+    box-shadow:25px 0 80px rgba(0,0,0,.48);
   }
 
   body.mobile-menu-open .sidebar-left{
@@ -2695,16 +2486,11 @@ body.light .message-text{
   .mobile-menu-btn{
     width:42px;
     height:42px;
-    flex-shrink:0;
     margin-right:8px;
     display:flex;
     align-items:center;
     justify-content:center;
-    border:1px solid var(--border);
     border-radius:12px;
-    background:rgba(255,255,255,.045);
-    color:var(--text);
-    cursor:pointer;
     font-size:20px;
   }
 
@@ -2736,10 +2522,10 @@ body.light .message-text{
   }
 
   .mobile-backdrop{
-    display:block;
     position:fixed;
     inset:0;
     z-index:200;
+    display:block;
     background:rgba(0,0,0,.48);
     backdrop-filter:blur(2px);
     opacity:0;
@@ -2916,6 +2702,7 @@ body.light .message-text{
 }
 
 @media (min-width:701px){
+
   .mobile-menu-btn,
   .mobile-backdrop{
     display:none;
@@ -2952,7 +2739,12 @@ body.light .message-text{
   <div id="particles" class="particles"></div>
 </div>
 
+<!-- =======================================================
+     LOGIN
+     ======================================================= -->
+
 <div id="login" class="login">
+
   <div class="login-card">
 
 ```
@@ -2988,12 +2780,17 @@ body.light .message-text{
 ```
 
   </div>
+
 </div>
 
 <div
   id="mobileBackdrop"
   class="mobile-backdrop"
 ></div>
+
+<!-- =======================================================
+     APP
+     ======================================================= -->
 
 <div class="app">
 
@@ -3007,6 +2804,7 @@ body.light .message-text{
   </div>
 
   <div>
+
     <div class="brand-name">
       ClassHub
     </div>
@@ -3014,6 +2812,7 @@ body.light .message-text{
     <div class="brand-sub">
       Przestrzeń klasy
     </div>
+
   </div>
 
 </div>
@@ -3150,6 +2949,10 @@ body.light .message-text{
 
   </aside>
 
+  <!-- =====================================================
+       CHAT
+       ===================================================== -->
+
   <main class="chat-area">
 
 ```
@@ -3252,6 +3055,8 @@ body.light .message-text{
     </button>
 
   </div>
+
+  <!-- EFFECTS -->
 
   <div class="effect-bar">
 
@@ -3408,6 +3213,10 @@ body.light .message-text{
 
   </main>
 
+  <!-- =====================================================
+       RIGHT SIDEBAR
+       ===================================================== -->
+
   <aside class="sidebar-right">
 
 ```
@@ -3446,7 +3255,10 @@ body.light .message-text{
 
       <div
         id="profileSideName"
-        style="font-size:13px;font-weight:850;"
+        style="
+          font-size:13px;
+          font-weight:850;
+        "
       >
         Niezalogowany
       </div>
@@ -3519,6 +3331,10 @@ body.light .message-text{
 
 </div>
 
+<!-- =======================================================
+     PROFILE MODAL
+     ======================================================= -->
+
 <div
   id="profileModal"
   class="modal"
@@ -3586,7 +3402,6 @@ body.light .message-text{
     <div class="effect-option-name">
       ✦ Normalna
     </div>
-
     <div class="effect-option-desc">
       Czysta i elegancka
     </div>
@@ -3599,7 +3414,6 @@ body.light .message-text{
     <div class="effect-option-name">
       🔥 Fire
     </div>
-
     <div class="effect-option-desc">
       Gorąca poświata
     </div>
@@ -3612,7 +3426,6 @@ body.light .message-text{
     <div class="effect-option-name">
       ❄️ Ice
     </div>
-
     <div class="effect-option-desc">
       Lodowy neon
     </div>
@@ -3625,7 +3438,6 @@ body.light .message-text{
     <div class="effect-option-name">
       ⚡ ELECTRIC
     </div>
-
     <div class="effect-option-desc">
       Mocne wyładowania
     </div>
@@ -3638,7 +3450,6 @@ body.light .message-text{
     <div class="effect-option-name">
       💜 Neon
     </div>
-
     <div class="effect-option-desc">
       Fioletowo-cyjanowa aura
     </div>
@@ -3651,7 +3462,6 @@ body.light .message-text{
     <div class="effect-option-name">
       🌈 Rainbow
     </div>
-
     <div class="effect-option-desc">
       Żywy gradient
     </div>
@@ -3664,7 +3474,6 @@ body.light .message-text{
     <div class="effect-option-name">
       👾 Glitch
     </div>
-
     <div class="effect-option-desc">
       Cyberpunk
     </div>
@@ -3677,7 +3486,6 @@ body.light .message-text{
     <div class="effect-option-name">
       🔮 Plasma
     </div>
-
     <div class="effect-option-desc">
       Kosmiczna energia
     </div>
@@ -3690,7 +3498,6 @@ body.light .message-text{
     <div class="effect-option-name">
       ✨ Sparkle
     </div>
-
     <div class="effect-option-desc">
       Błysk i światło
     </div>
@@ -3703,7 +3510,6 @@ body.light .message-text{
     <div class="effect-option-name">
       🕳️ Void
     </div>
-
     <div class="effect-option-desc">
       Ciemna aura
     </div>
@@ -3716,7 +3522,6 @@ body.light .message-text{
     <div class="effect-option-name">
       🧊 Hologram
     </div>
-
     <div class="effect-option-desc">
       Futurystyczny efekt
     </div>
@@ -3729,7 +3534,6 @@ body.light .message-text{
     <div class="effect-option-name">
       🏆 Gold
     </div>
-
     <div class="effect-option-desc">
       Złoty blask
     </div>
@@ -3742,7 +3546,6 @@ body.light .message-text{
     <div class="effect-option-name">
       ☢️ Toxic
     </div>
-
     <div class="effect-option-desc">
       Toksyczna energia
     </div>
@@ -3755,7 +3558,6 @@ body.light .message-text{
     <div class="effect-option-name">
       🌌 Cosmic
     </div>
-
     <div class="effect-option-desc">
       Kosmiczny połysk
     </div>
@@ -3768,7 +3570,6 @@ body.light .message-text{
     <div class="effect-option-name">
       💎 Ruby
     </div>
-
     <div class="effect-option-desc">
       Rubinowa aura
     </div>
@@ -3781,7 +3582,6 @@ body.light .message-text{
     <div class="effect-option-name">
       🟢 Matrix
     </div>
-
     <div class="effect-option-desc">
       Zielony cyber efekt
     </div>
@@ -3794,7 +3594,6 @@ body.light .message-text{
     <div class="effect-option-name">
       🌌 GALAXY
     </div>
-
     <div class="effect-option-desc">
       Wirująca mgławica i gwiazdy
     </div>
@@ -3807,7 +3606,6 @@ body.light .message-text{
     <div class="effect-option-name">
       💥 SUPERNOVA
     </div>
-
     <div class="effect-option-desc">
       Eksplozja światła i energii
     </div>
@@ -3820,12 +3618,15 @@ body.light .message-text{
 
 </div>
 
+<!-- =======================================================
+     FIREBASE
+     ======================================================= -->
+
 <script type="module">
 
 import {
   initializeApp
-}
-from
+} from
   "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
@@ -3835,9 +3636,10 @@ import {
   signInWithRedirect,
   getRedirectResult,
   onAuthStateChanged,
-  signOut
-}
-from
+  signOut,
+  setPersistence,
+  browserLocalPersistence
+} from
   "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 import {
@@ -3853,8 +3655,7 @@ import {
   setDoc,
   doc,
   getDoc
-}
-from
+} from
   "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 /* ========================================================
@@ -3869,19 +3670,40 @@ const firebaseConfig = {
   messagingSenderId: "728180059739",
   appId: "1:728180059739:web:d0a70cd02c8ef96700d97e"
 };
-
 /* ========================================================
    FIREBASE INIT
    ======================================================== */
 
 const app =
-  initializeApp(firebaseConfig);
+  initializeApp(
+    firebaseConfig
+  );
 
 const auth =
   getAuth(app);
 
 const db =
   getFirestore(app);
+
+/*
+ * Bardzo ważne dla telefonu:
+ * utrzymujemy sesję Firebase lokalnie.
+ */
+
+const persistenceReady =
+  setPersistence(
+    auth,
+    browserLocalPersistence
+  ).catch(
+    error => {
+
+      console.warn(
+        "Nie udało się ustawić trwałości sesji:",
+        error
+      );
+
+    }
+  );
 
 /* ========================================================
    STATE
@@ -4000,8 +3822,7 @@ function getRoleInfo(role){
 
   return ROLE_CONFIG[
     normalizeRole(role)
-  ] ||
-  ROLE_CONFIG.student;
+  ] || ROLE_CONFIG.student;
 }
 
 function getInitial(name){
@@ -4025,7 +3846,9 @@ function cleanPhotoUrl(value){
 
 function escapeHtml(value){
 
-  return String(value ?? "")
+  return String(
+    value ?? ""
+  )
     .replace(
       /&/g,
       "&amp;"
@@ -4052,18 +3875,18 @@ function escapeHtml(value){
    MOBILE MENU
    ======================================================== */
 
-function closeMobileMenu(){
-
-  document.body
-    .classList.remove(
-      "mobile-menu-open"
-    );
-}
-
 function openMobileMenu(){
 
   document.body
     .classList.add(
+      "mobile-menu-open"
+    );
+}
+
+function closeMobileMenu(){
+
+  document.body
+    .classList.remove(
       "mobile-menu-open"
     );
 }
@@ -4093,8 +3916,8 @@ function createParticles(){
       : 36;
 
   for(
-    let i = 0;
-    i < count;
+    let i=0;
+    i<count;
     i++
   ){
 
@@ -4206,9 +4029,13 @@ async function getUserProfile(uid){
     };
   }
 
-  if(userCache.has(uid)){
+  if(
+    userCache.has(uid)
+  ){
 
-    return userCache.get(uid);
+    return userCache.get(
+      uid
+    );
   }
 
   let profile = {
@@ -4363,7 +4190,9 @@ function updateUserUI(){
   }else{
 
     const initial =
-      getInitial(name);
+      getInitial(
+        name
+      );
 
     $("#userAvatar")
       .textContent =
@@ -4510,7 +4339,10 @@ function friendlyAuthError(error){
     )
   ){
 
-    return "Firebase odrzucił klucz API.";
+    return (
+      "Firebase odrzucił klucz API. " +
+      "Sprawdź konfigurację Web App w Firebase."
+    );
   }
 
   if(
@@ -4519,7 +4351,9 @@ function friendlyAuthError(error){
     )
   ){
 
-    return "Ta domena nie jest dodana do Authorized domains Firebase.";
+    return (
+      "Ta domena nie jest dodana do Authorized domains Firebase."
+    );
   }
 
   if(
@@ -4528,7 +4362,9 @@ function friendlyAuthError(error){
     )
   ){
 
-    return "Logowanie Google nie jest włączone w Firebase Authentication.";
+    return (
+      "Logowanie Google nie jest włączone w Firebase Authentication."
+    );
   }
 
   if(
@@ -4537,7 +4373,9 @@ function friendlyAuthError(error){
     )
   ){
 
-    return "Przeglądarka zablokowała okno Google.";
+    return (
+      "Przeglądarka zablokowała okno Google."
+    );
   }
 
   if(
@@ -4546,7 +4384,9 @@ function friendlyAuthError(error){
     )
   ){
 
-    return "Okno Google zostało zamknięte.";
+    return (
+      "Okno Google zostało zamknięte."
+    );
   }
 
   if(
@@ -4555,16 +4395,31 @@ function friendlyAuthError(error){
     )
   ){
 
-    return "Problem z połączeniem z Firebase.";
+    return (
+      "Problem z połączeniem z Firebase."
+    );
   }
 
   if(
     code.includes(
-      "redirect-cancelled-by-user"
+      "cancelled-popup-request"
     )
   ){
 
-    return "Logowanie zostało anulowane.";
+    return (
+      "Logowanie zostało anulowane przez przeglądarkę."
+    );
+  }
+
+  if(
+    code.includes(
+      "invalid-api-key"
+    )
+  ){
+
+    return (
+      "Nieprawidłowy klucz API Firebase."
+    );
   }
 
   return (
@@ -4581,22 +4436,6 @@ function showLoginError(message){
 }
 
 /* ========================================================
-   DEVICE DETECTION
-   ======================================================== */
-
-function isMobileDevice(){
-
-  return (
-    window.matchMedia(
-      "(max-width: 700px)"
-    ).matches ||
-    /Android|iPhone|iPad|iPod|Mobile/i.test(
-      navigator.userAgent
-    )
-  );
-}
-
-/* ========================================================
    GOOGLE PROVIDER
    ======================================================== */
 
@@ -4606,7 +4445,10 @@ function createGoogleProvider(){
     new GoogleAuthProvider();
 
   provider.setCustomParameters({
-    prompt:"select_account"
+
+    prompt:
+      "select_account"
+
   });
 
   return provider;
@@ -4634,25 +4476,21 @@ $("#googleLogin").onclick =
 
     try{
 
+      /*
+       * Najpierw czekamy na browserLocalPersistence.
+       * To jest ważne szczególnie na telefonach.
+       */
+
+      await persistenceReady;
+
       const provider =
         createGoogleProvider();
 
       /*
-       * Na telefonach używamy redirectu.
-       * Na komputerze popup.
+       * Na wszystkich urządzeniach najpierw próbujemy
+       * popupu. Dzięki temu unikamy pętli redirectu
+       * na GitHub Pages.
        */
-
-      if(
-        isMobileDevice()
-      ){
-
-        await signInWithRedirect(
-          auth,
-          provider
-        );
-
-        return;
-      }
 
       await signInWithPopup(
         auth,
@@ -4667,22 +4505,18 @@ $("#googleLogin").onclick =
       );
 
       /*
-       * Fallback dla desktopu:
-       * jeśli popup nie zadziała,
-       * próbujemy redirect.
+       * Redirect jest tylko awaryjnym fallbackiem
+       * dla rzeczywiście zablokowanego popupu.
        */
 
       if(
-        !isMobileDevice() &&
-        (
-          error.code ===
-            "auth/popup-blocked" ||
-          error.code ===
-            "auth/popup-closed-by-user"
-        )
+        error.code ===
+          "auth/popup-blocked"
       ){
 
         try{
+
+          await persistenceReady;
 
           const provider =
             createGoogleProvider();
@@ -4694,7 +4528,9 @@ $("#googleLogin").onclick =
 
           return;
 
-        }catch(redirectError){
+        }catch(
+          redirectError
+        ){
 
           console.error(
             "Google Redirect Login:",
@@ -4746,7 +4582,7 @@ getRedirectResult(
     ){
 
       console.log(
-        "Logowanie przez redirect zakończone."
+        "Redirect Google zakończony poprawnie."
       );
     }
 
@@ -4760,11 +4596,24 @@ getRedirectResult(
       error
     );
 
-    showLoginError(
-      friendlyAuthError(
-        error
-      )
-    );
+    /*
+     * Nie pokazujemy błędu pustego redirectu.
+     * Jeżeli użytkownik wrócił niezalogowany,
+     * onAuthStateChanged zajmie się UI.
+     */
+
+    if(
+      error?.code &&
+      error.code !==
+        "auth/popup-closed-by-user"
+    ){
+
+      showLoginError(
+        friendlyAuthError(
+          error
+        )
+      );
+    }
   }
 );
 
@@ -4796,6 +4645,11 @@ onAuthStateChanged(
     );
 
     updateUserUI();
+
+    /*
+     * Jeśli zapis profilu chwilowo nie przejdzie,
+     * logowanie nadal pozostaje aktywne.
+     */
 
     await saveUserProfile(
       user
@@ -4858,7 +4712,6 @@ onAuthStateChanged(
     subscribeMessages(
       currentChannel
     );
-
   }
 );
 
@@ -5072,6 +4925,7 @@ function startReply(message){
     text:
       message.text ||
       ""
+
   };
 
   $("#replyText")
@@ -5861,7 +5715,7 @@ $("#themeToggle").onclick =
   };
 
 /* ========================================================
-   VIEWPORT FIX
+   VIEWPORT
    ======================================================== */
 
 window.addEventListener(
