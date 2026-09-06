@@ -1,9 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ClassHub — Przestrzeń Klasy</title>
+
   <style>
     :root {
       --bg-main: #13131a;
@@ -18,7 +20,7 @@
       --danger: #f23f43;
       --success: #23a55a;
     }
-    
+
     .light-theme {
       --bg-main: #ffffff;
       --bg-sidebar: #f2f3f5;
@@ -31,336 +33,1268 @@
       --border: #d8d8d8;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    body { background: var(--bg-main); color: var(--text-main); height: 100vh; display: flex; overflow: hidden; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: var(--bg-main);
+      color: var(--text-main);
+      height: 100vh;
+      display: flex;
+      overflow: hidden;
+    }
 
     /* LAYOUT */
-    .sidebar-left { width: 260px; background: var(--bg-sidebar); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
-    .chat-area { flex: 1; display: flex; flex-direction: column; background: var(--bg-main); position: relative; }
-    .sidebar-right { width: 280px; background: var(--bg-sidebar); border-left: 1px solid var(--border); display: flex; flex-direction: column; padding: 16px; gap: 16px; overflow-y: auto; }
+    .sidebar-left {
+      width: 260px;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-main);
+      position: relative;
+    }
+
+    .sidebar-right {
+      width: 280px;
+      background: var(--bg-sidebar);
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      gap: 16px;
+      overflow-y: auto;
+    }
 
     /* BRANDING & CHANNELS */
-    .brand { padding: 16px; font-weight: bold; font-size: 1.1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
-    .brand span { background: var(--accent); color: white; padding: 4px 8px; border-radius: 6px; }
-    .nav-section { padding: 12px; overflow-y: auto; flex: 1; }
-    .nav-title { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: bold; margin-bottom: 8px; letter-spacing: 0.5px; }
-    .nav-item { padding: 8px 12px; border-radius: 6px; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; gap: 8px; margin-bottom: 2px; transition: 0.2s; }
-    .nav-item:hover, .nav-item.active { background: var(--bg-hover); color: var(--text-main); }
+    .brand {
+      padding: 16px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand span {
+      background: var(--accent);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+
+    .nav-section {
+      padding: 12px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .nav-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: bold;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-item {
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 2px;
+      transition: 0.2s;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      background: var(--bg-hover);
+      color: var(--text-main);
+    }
 
     /* HEADER & CHAT MESSAGES */
-    .chat-header { padding: 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--bg-main); }
-    .messages-container { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
-    .message { display: flex; gap: 12px; align-items: flex-start; }
-    .message img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
-    .message-content { display: flex; flex-direction: column; gap: 4px; }
-    .message-header { display: flex; gap: 8px; align-items: baseline; }
-    .message-username { font-weight: 600; font-size: 0.95rem; }
-    .message-time { font-size: 0.75rem; color: var(--text-muted); }
-    .message-text { font-size: 0.9rem; color: var(--text-main); line-height: 1.4; word-break: break-word; }
-    .day { text-align: center; font-size: 0.75rem; color: var(--text-muted); border-bottom: 1px solid var(--border); line-height: 0.1em; margin: 15px 0; }
-    .day span { background: var(--bg-main); padding: 0 10px; }
+    .chat-header {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-main);
+    }
+
+    .messages-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .message {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .message img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .message-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .message-header {
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+    }
+
+    .message-username {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .message-time {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .message-text {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      line-height: 1.4;
+      word-break: break-word;
+    }
+
+    .day {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      line-height: 0.1em;
+      margin: 15px 0;
+    }
+
+    .day span {
+      background: var(--bg-main);
+      padding: 0 10px;
+    }
 
     /* INPUT AREA */
-    .chat-input-area { padding: 20px; background: var(--bg-main); }
-    .input-box { background: var(--bg-panel); border-radius: 8px; display: flex; align-items: center; padding: 10px 16px; gap: 12px; border: 1px solid var(--border); }
-    .input-box input { flex: 1; background: none; border: none; color: var(--text-main); font-size: 0.95rem; outline: none; }
-    .input-box button { background: var(--accent); border: none; color: white; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
-    .input-box button:hover { background: var(--accent-hover); }
+    .chat-input-area {
+      padding: 20px;
+      background: var(--bg-main);
+    }
+
+    .input-box {
+      background: var(--bg-panel);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      padding: 10px 16px;
+      gap: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .input-box input {
+      flex: 1;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .input-box button {
+      background: var(--accent);
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s;
+    }
+
+    .input-box button:hover {
+      background: var(--accent-hover);
+    }
 
     /* PANELS & SIDEBAR RIGHT */
-    .panel-card { background: var(--bg-panel); border-radius: 8px; padding: 12px; border: 1px solid var(--border); }
-    .panel-title { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; font-weight: bold; }
-    .action-btn { width: 100%; padding: 8px; background: var(--bg-hover); border: none; border-radius: 6px; color: var(--text-main); cursor: pointer; text-align: left; margin-bottom: 6px; font-size: 0.85rem; transition: 0.2s; }
-    .action-btn:hover { background: var(--border); }
+    .panel-card {
+      background: var(--bg-panel);
+      border-radius: 8px;
+      padding: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .panel-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .action-btn {
+      width: 100%;
+      padding: 8px;
+      background: var(--bg-hover);
+      border: none;
+      border-radius: 6px;
+      color: var(--text-main);
+      cursor: pointer;
+      text-align: left;
+      margin-bottom: 6px;
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+
+    .action-btn:hover {
+      background: var(--border);
+    }
 
     /* USER PROFILE FOOTER */
-    .user-footer { padding: 12px; background: var(--bg-sidebar); border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-    .user-info { display: flex; align-items: center; gap: 10px; }
-    .user-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; overflow: hidden; }
-    .user-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .user-details { display: flex; flex-direction: column; }
-    .user-name { font-size: 0.85rem; font-weight: 600; }
-    .user-status { font-size: 0.7rem; color: var(--text-muted); }
+    .user-footer {
+      padding: 12px;
+      background: var(--bg-sidebar);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      overflow: hidden;
+    }
+
+    .user-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .user-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .user-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .user-status {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
 
     /* MODAL LOGIN OVERLAY */
-    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: 0.3s; }
-    .modal-overlay.show { opacity: 1; pointer-events: auto; }
-    .modal { background: var(--bg-panel); padding: 30px; border-radius: 12px; width: 350px; text-align: center; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 16px; }
-    .btn-google { background: #ffffff; color: #3c4043; border: 1px solid #dadce0; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; }
-    .btn-google:hover { background: #f8f9fa; }
-    .error { color: var(--danger); font-size: 0.8rem; }
-    
-    .empty-state { text-align: center; color: var(--text-muted); margin: auto; padding: 40px; }
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s;
+    }
+
+    .modal-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal {
+      background: var(--bg-panel);
+      padding: 30px;
+      border-radius: 12px;
+      width: 350px;
+      text-align: center;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* GOOGLE BUTTON */
+    .btn-google {
+      background: #ffffff;
+      color: #222222;
+      border: 1px solid #dadce0;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .btn-google:hover {
+      background: #f8f9fa;
+    }
+
+    .google-icon {
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .error {
+      color: var(--danger);
+      font-size: 0.8rem;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: var(--text-muted);
+      margin: auto;
+      padding: 40px;
+    }
+
+    /* RESPONSYWNOŚĆ */
+    @media (max-width: 900px) {
+      .sidebar-right {
+        display: none;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .sidebar-left {
+        width: 210px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .sidebar-left {
+        width: 180px;
+      }
+
+      .modal {
+        width: calc(100% - 30px);
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <!-- MODAL LOGOWANIA -->
   <div id="login" class="modal-overlay show">
     <div class="modal">
       <h2>Witaj w ClassHub</h2>
-      <p style="font-size: 0.85rem; color: var(--text-muted);">Zaloguj się przez konto Google, aby móc pisać wiadomości na czacie.</p>
+
+      <p style="font-size: 0.85rem; color: var(--text-muted);">
+        Zaloguj się przez konto Google, aby móc pisać wiadomości na czacie.
+      </p>
+
       <button id="googleLogin" class="btn-google">
-        <svg style="width:18px;height:18px" viewBox="0 0 24 24">
-          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-        </svg>
+        <span class="google-icon">G</span>
         Zaloguj przez Google
       </button>
+
       <div id="loginNotice" class="error"></div>
     </div>
   </div>
 
-  <!-- LEWY PANEL (NAWIGACJA) -->
+  <!-- LEWY PANEL -->
   <div class="sidebar-left">
+
     <div class="brand">
       <span>C</span> ClassHub
     </div>
+
     <div class="nav-section">
+
       <div class="nav-title">Kanały</div>
-      <div class="nav-item active" data-channel="ogólny"># ogólny</div>
-      <div class="nav-item" data-channel="ogłoszenia">📢 ogłoszenia</div>
-      <div class="nav-item" data-channel="szkoła">🏫 szkoła</div>
-      <div class="nav-item" data-channel="memy">🎨 memy</div>
-      
-      <div class="nav-title" style="margin-top: 20px;">Strefy</div>
-      <div class="nav-item" data-channel="cichy-pokoj">🌙 cichy pokój</div>
+
+      <div class="nav-item active" data-channel="ogólny">
+        # ogólny
+      </div>
+
+      <div class="nav-item" data-channel="ogłoszenia">
+        📢 ogłoszenia
+      </div>
+
+      <div class="nav-item" data-channel="szkoła">
+        🏫 szkoła
+      </div>
+
+      <div class="nav-item" data-channel="memy">
+        🎨 memy
+      </div>
+
+      <div class="nav-title" style="margin-top: 20px;">
+        Strefy
+      </div>
+
+      <div class="nav-item" data-channel="cichy-pokoj">
+        🌙 cichy pokój
+      </div>
+
     </div>
-    
+
     <div style="padding: 10px 12px;">
-      <button id="themeToggle" class="action-btn" style="text-align: center;">☀️ / 🌙 Przełącz motyw</button>
+      <button id="themeToggle" class="action-btn" style="text-align: center;">
+        ☀️ / 🌙 Przełącz motyw
+      </button>
     </div>
 
     <div class="user-footer">
+
       <div class="user-info">
-        <div id="userAvatar" class="user-avatar">?</div>
-        <div class="user-details">
-          <span id="userName" class="user-name">Niezalogowany</span>
-          <span id="userStatusTag" class="user-status">Offline</span>
+
+        <div id="userAvatar" class="user-avatar">
+          ?
         </div>
+
+        <div class="user-details">
+          <span id="userName" class="user-name">
+            Niezalogowany
+          </span>
+
+          <span id="userStatusTag" class="user-status">
+            Offline
+          </span>
+        </div>
+
       </div>
-      <button id="logoutBtn" style="background:none; border:none; color:var(--text-muted); cursor:pointer;" title="Wyloguj">🚪</button>
+
+      <button
+        id="logoutBtn"
+        style="background:none;border:none;color:var(--text-muted);cursor:pointer;"
+        title="Wyloguj"
+      >
+        🚪
+      </button>
+
     </div>
   </div>
 
   <!-- GŁÓWNY OBSZAR CZATU -->
   <div class="chat-area">
+
     <div class="chat-header">
-      <span id="currentChannelName" style="font-weight: 600;"># ogólny</span>
+      <span id="currentChannelName" style="font-weight: 600;">
+        # ogólny
+      </span>
     </div>
-    
+
     <div id="msgs" class="messages-container">
-      <div class="empty-state">Ładowanie wiadomości...</div>
+      <div class="empty-state">
+        Ładowanie wiadomości...
+      </div>
     </div>
 
     <div class="chat-input-area">
+
       <div class="input-box">
-        <input type="text" id="msgInput" placeholder="Napisz wiadomość na #ogólny...">
-        <button id="sendBtn">➤</button>
+
+        <input
+          type="text"
+          id="msgInput"
+          placeholder="Napisz wiadomość na #ogólny..."
+        >
+
+        <button id="sendBtn">
+          ➤
+        </button>
+
       </div>
+
     </div>
+
   </div>
 
-  <!-- PRAWY PANEL (WIDGETY) -->
+  <!-- PRAWY PANEL -->
   <div class="sidebar-right">
+
     <div class="panel-card">
-      <div class="panel-title">Najbliższe wydarzenia</div>
-      <div style="font-size: 0.85rem; font-weight: 600;">Matematyka — sprawdzian</div>
-      <div style="font-size: 0.75rem; color: var(--text-muted);">06.09 · sala 12</div>
+
+      <div class="panel-title">
+        Najbliższe wydarzenia
+      </div>
+
+      <div style="font-size: 0.85rem; font-weight: 600;">
+        Matematyka — sprawdzian
+      </div>
+
+      <div style="font-size: 0.75rem; color: var(--text-muted);">
+        06.09 · sala 12
+      </div>
+
     </div>
-    
+
     <div class="panel-card">
-      <div class="panel-title">Szybkie akcje</div>
-      <button class="action-btn">📊 Nowa ankieta</button>
-      <button class="action-btn">💡 Mam pomysł</button>
+
+      <div class="panel-title">
+        Szybkie akcje
+      </div>
+
+      <button class="action-btn">
+        📊 Nowa ankieta
+      </button>
+
+      <button class="action-btn">
+        💡 Mam pomysł
+      </button>
+
     </div>
+
   </div>
 
-  <!-- LOGIKA FIREBASE (MODUŁ) -->
+  <!-- FIREBASE -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-    import { getFirestore, collection, addDoc, query, where, orderBy, limit, onSnapshot, serverTimestamp, setDoc, doc } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
-    // --- TWOJA KONFIGURACJA FIREBASE ---
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithRedirect,
+      getRedirectResult,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      query,
+      where,
+      orderBy,
+      limit,
+      onSnapshot,
+      serverTimestamp,
+      setDoc,
+      doc
+    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+
+    // ==========================================
+    // FIREBASE CONFIG
+    // ==========================================
+
     const firebaseConfig = {
-      apiKey: "AIzaSyBBU7MXXucUbvtf1kEACLVLn9dVzXOIe7o",
+      apiKey: "AIzaSyBBU7MXXucUbvt1fEACLVln9dVzXOIe7o",
       authDomain: "czacik-24d94.firebaseapp.com",
       projectId: "czacik-24d94",
       storageBucket: "czacik-24d94.firebasestorage.app",
       messagingSenderId: "728180059739",
-      appId: "1:728180059739:web:d0a70cd02c8ef96700d97e"
+      appId: "1:728180059739:web:d0a70cd02c8ef96700d97e6"
     };
 
-    let app, auth, db;
+
+    let app;
+    let auth;
+    let db;
+
     let currentUser = null;
-    let currentChannel = 'ogólny';
+    let currentChannel = "ogólny";
     let unsubscribeMessages = null;
 
-    const $ = (s) => document.querySelector(s);
+
+    const $ = (selector) =>
+      document.querySelector(selector);
+
+
+    // ==========================================
+    // INICJALIZACJA FIREBASE
+    // ==========================================
 
     async function initFirebase() {
+
       try {
+
         app = initializeApp(firebaseConfig);
+
         auth = getAuth(app);
+
         db = getFirestore(app);
 
+
+        // ======================================
+        // ODBIÓR WYNIKU LOGOWANIA GOOGLE
+        // ======================================
+
+        try {
+
+          const result = await getRedirectResult(auth);
+
+          if (result && result.user) {
+
+            currentUser = result.user;
+
+          }
+
+        } catch (redirectError) {
+
+          console.error(
+            "Błąd podczas odbierania logowania:",
+            redirectError
+          );
+
+        }
+
+
+        // ======================================
+        // OBSERWUJEMY STAN LOGOWANIA
+        // ======================================
+
         onAuthStateChanged(auth, async (user) => {
+
           currentUser = user;
+
+
           if (user) {
-            $('#login').classList.remove('show');
-            $('#loginNotice').textContent = '';
-            
-            // Zapisujemy profil użytkownika do Firestore
-            const userRef = doc(db, 'users', user.uid);
-            await setDoc(userRef, {
-              uid: user.uid,
-              displayName: user.displayName || 'Użytkownik',
-              photoURL: user.photoURL || '',
-              lastLogin: serverTimestamp()
-            }, { merge: true });
+
+            // Ukrywamy ekran logowania
+            $("#login").classList.remove("show");
+
+            $("#loginNotice").textContent = "";
+
+
+            // ==================================
+            // ZAPIS PROFILU W FIRESTORE
+            // ==================================
+
+            try {
+
+              const userRef =
+                doc(db, "users", user.uid);
+
+
+              await setDoc(
+                userRef,
+                {
+                  uid: user.uid,
+
+                  displayName:
+                    user.displayName ||
+                    "Użytkownik",
+
+                  email:
+                    user.email ||
+                    "",
+
+                  photoURL:
+                    user.photoURL ||
+                    "",
+
+                  lastLogin:
+                    serverTimestamp()
+
+                },
+                {
+                  merge: true
+                }
+              );
+
+            } catch (firestoreError) {
+
+              console.error(
+                "Błąd zapisu użytkownika:",
+                firestoreError
+              );
+
+            }
+
 
             setUserUI(user);
+
             subscribeMessages(currentChannel);
+
           } else {
+
             setUserUI(null);
-            $('#login').classList.add('show');
+
+            $("#login").classList.add("show");
+
           }
+
         });
+
+
       } catch (e) {
-        console.error("Błąd inicjalizacji Firebase:", e);
-        $('#loginNotice').innerHTML = '<span class="error">Błąd bazy:</span> ' + e.message;
+
+        console.error(
+          "Błąd inicjalizacji Firebase:",
+          e
+        );
+
+        $("#loginNotice").innerHTML =
+          '<span class="error">Błąd:</span> ' +
+          (e?.message || "Nieznany błąd");
+
       }
+
     }
+
+
+    // ==========================================
+    // UI UŻYTKOWNIKA
+    // ==========================================
 
     function setUserUI(user) {
+
       if (user) {
-        $('#userName').textContent = user.displayName || 'Użytkownik';
-        $('#userStatusTag').textContent = 'Online';
-        $('#userStatusTag').style.color = 'var(--success)';
+
+        $("#userName").textContent =
+          user.displayName ||
+          "Użytkownik";
+
+
+        $("#userStatusTag").textContent =
+          "Online";
+
+
+        $("#userStatusTag").style.color =
+          "var(--success)";
+
+
         if (user.photoURL) {
-          $('#userAvatar').innerHTML = `<img src="${user.photoURL}" alt="Avatar">`;
+
+          $("#userAvatar").innerHTML =
+            `<img
+              src="${escapeHtml(user.photoURL)}"
+              alt="Avatar"
+            >`;
+
+        } else {
+
+          $("#userAvatar").textContent =
+            "?";
+
         }
+
       } else {
-        $('#userName').textContent = 'Niezalogowany';
-        $('#userStatusTag').textContent = 'Offline';
-        $('#userStatusTag').style.color = 'var(--text-muted)';
-        $('#userAvatar').textContent = '?';
+
+        $("#userName").textContent =
+          "Niezalogowany";
+
+
+        $("#userStatusTag").textContent =
+          "Offline";
+
+
+        $("#userStatusTag").style.color =
+          "var(--text-muted)";
+
+
+        $("#userAvatar").textContent =
+          "?";
+
       }
+
     }
 
-    // Przycisk logowania przez Google (Popup - otwiera okienko zamiast przekierowania)
-    $('#googleLogin').onclick = async () => {
+
+    // ==========================================
+    // LOGOWANIE GOOGLE
+    // ==========================================
+
+    $("#googleLogin").onclick = async () => {
+
       try {
-        const provider = new GoogleAuthProvider();
-        await signInWithPopup(auth, provider);
+
+        const provider =
+          new GoogleAuthProvider();
+
+
+        // Opcjonalnie prosimy o konto Google
+        provider.setCustomParameters({
+          prompt: "select_account"
+        });
+
+
+        await signInWithRedirect(
+          auth,
+          provider
+        );
+
       } catch (e) {
-        console.error("Błąd logowania:", e);
-        $('#loginNotice').innerHTML = '<span class="error">Logowanie nieudane:</span> ' + (e?.message || 'Błąd');
+
+        console.error(
+          "Logowanie Google nieudane:",
+          e
+        );
+
+
+        $("#loginNotice").innerHTML =
+          '<span class="error">Logowanie nieudane:</span> ' +
+          escapeHtml(
+            e?.message ||
+            "Nieznany błąd"
+          );
+
       }
+
     };
 
-    $('#logoutBtn').onclick = () => signOut(auth);
 
-    // Wysyłanie wiadomości
-    async function sendMessage() {
-      const text = $('#msgInput').value.trim();
-      if (!text || !currentUser || !db) return;
+    // ==========================================
+    // WYLOGOWANIE
+    // ==========================================
+
+    $("#logoutBtn").onclick = async () => {
 
       try {
-        $('#msgInput').value = '';
-        await addDoc(collection(db, 'messages'), {
-          text: text,
-          channel: currentChannel,
-          uid: currentUser.uid,
-          displayName: currentUser.displayName || 'Użytkownik',
-          photoURL: currentUser.photoURL || '',
-          createdAt: serverTimestamp()
-        });
+
+        await signOut(auth);
+
       } catch (e) {
-        console.error("Błąd wysyłania:", e);
-        alert("Nie udało się wysłać wiadomości.");
+
+        console.error(
+          "Błąd wylogowania:",
+          e
+        );
+
       }
+
+    };
+
+
+    // ==========================================
+    // WYSYŁANIE WIADOMOŚCI
+    // ==========================================
+
+    async function sendMessage() {
+
+      const text =
+        $("#msgInput").value.trim();
+
+
+      if (
+        !text ||
+        !currentUser ||
+        !db
+      ) {
+        return;
+      }
+
+
+      try {
+
+        $("#msgInput").value = "";
+
+
+        await addDoc(
+          collection(db, "messages"),
+          {
+
+            text,
+
+            channel:
+              currentChannel,
+
+            uid:
+              currentUser.uid,
+
+            displayName:
+              currentUser.displayName ||
+              "Użytkownik",
+
+            photoURL:
+              currentUser.photoURL ||
+              "",
+
+            createdAt:
+              serverTimestamp()
+
+          }
+        );
+
+      } catch (e) {
+
+        console.error(
+          "Błąd wysyłania:",
+          e
+        );
+
+        alert(
+          "Nie udało się wysłać wiadomości."
+        );
+
+      }
+
     }
 
-    $('#sendBtn').onclick = sendMessage;
-    $('#msgInput').onkeydown = (e) => { if (e.key === 'Enter') sendMessage(); };
 
-    // Subskrypcja wiadomości
+    $("#sendBtn").onclick =
+      sendMessage;
+
+
+    $("#msgInput").onkeydown =
+      (e) => {
+
+        if (e.key === "Enter") {
+
+          sendMessage();
+
+        }
+
+      };
+
+
+    // ==========================================
+    // SUBSKRYPCJA WIADOMOŚCI
+    // ==========================================
+
     function subscribeMessages(channel) {
-      if (unsubscribeMessages) unsubscribeMessages();
-      if (!db) return;
+
+      if (unsubscribeMessages) {
+
+        unsubscribeMessages();
+
+      }
+
+
+      if (!db) {
+        return;
+      }
+
 
       const q = query(
-        collection(db, 'messages'),
-        where('channel', '==', channel),
-        orderBy('createdAt', 'desc'),
+
+        collection(
+          db,
+          "messages"
+        ),
+
+        where(
+          "channel",
+          "==",
+          channel
+        ),
+
+        orderBy(
+          "createdAt",
+          "desc"
+        ),
+
         limit(50)
+
       );
 
-      unsubscribeMessages = onSnapshot(q, (snapshot) => {
-        const docs = snapshot.docs.map(d => ({ id: d.id, ...d.data() })).reverse();
-        const container = $('#msgs');
-        
-        if (docs.length === 0) {
-          container.innerHTML = `<div class="empty-state">Brak wiadomości. Napisz pierwszą!</div>`;
-          return;
-        }
 
-        container.innerHTML = '<div class="day"><span>DZISIAJ</span></div>';
-        for (const msg of docs) {
-          let timeStr = 'przed chwilą';
-          if (msg.createdAt && typeof msg.createdAt.toDate === 'function') {
-            timeStr = msg.createdAt.toDate().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+      unsubscribeMessages = onSnapshot(
+
+        q,
+
+        (snapshot) => {
+
+          const docs =
+            snapshot.docs
+              .map(d => ({
+                id: d.id,
+                ...d.data()
+              }))
+              .reverse();
+
+
+          const container =
+            $("#msgs");
+
+
+          if (docs.length === 0) {
+
+            container.innerHTML =
+              `<div class="empty-state">
+                Brak wiadomości. Napisz pierwszą!
+              </div>`;
+
+            return;
+
           }
 
-          const avatarHtml = msg.photoURL ? `<img src="${msg.photoURL}" alt="">` : `<div class="user-avatar" style="width:40px;height:40px;">?</div>`;
-          
-          const el = document.createElement('div');
-          el.className = 'message';
-          el.innerHTML = `
-            ${avatarHtml}
-            <div class="message-content">
-              <div class="message-header">
-                <span class="message-username">${escapeHtml(msg.displayName || 'Użytkownik')}</span>
-                <span class="message-time">${timeStr}</span>
+
+          container.innerHTML =
+            '<div class="day">' +
+              '<span>DZISIAJ</span>' +
+            '</div>';
+
+
+          for (const msg of docs) {
+
+            let timeStr =
+              "przed chwilą";
+
+
+            if (
+              msg.createdAt &&
+              typeof msg.createdAt.toDate ===
+              "function"
+            ) {
+
+              timeStr =
+                msg.createdAt
+                  .toDate()
+                  .toLocaleTimeString(
+                    [],
+                    {
+                      hour: "2-digit",
+                      minute: "2-digit"
+                    }
+                  );
+
+            }
+
+
+            const avatarHtml =
+              msg.photoURL
+
+                ? `<img
+                    src="${escapeHtml(
+                      msg.photoURL
+                    )}"
+                    alt=""
+                  >`
+
+                : `<div
+                    class="user-avatar"
+                    style="width:40px;height:40px;"
+                  >
+                    ?
+                  </div>`;
+
+
+            const el =
+              document.createElement("div");
+
+
+            el.className =
+              "message";
+
+
+            el.innerHTML = `
+
+              ${avatarHtml}
+
+              <div class="message-content">
+
+                <div class="message-header">
+
+                  <span class="message-username">
+                    ${escapeHtml(
+                      msg.displayName ||
+                      "Użytkownik"
+                    )}
+                  </span>
+
+                  <span class="message-time">
+                    ${escapeHtml(timeStr)}
+                  </span>
+
+                </div>
+
+                <div class="message-text">
+                  ${escapeHtml(
+                    msg.text || ""
+                  )}
+                </div>
+
               </div>
-              <div class="message-text">${escapeHtml(msg.text || '')}</div>
-            </div>
-          `;
-          container.appendChild(el);
+            `;
+
+
+            container.appendChild(el);
+
+          }
+
+
+          container.scrollTop =
+            container.scrollHeight;
+
+        },
+
+        (err) => {
+
+          console.error(
+            "Błąd pobierania wiadomości:",
+            err
+          );
+
+
+          $("#msgs").innerHTML =
+            `<div
+              class="empty-state"
+              style="color:var(--danger)"
+            >
+              Błąd pobierania:
+              ${escapeHtml(err.message)}
+            </div>`;
+
         }
-        container.scrollTop = container.scrollHeight;
-      }, (err) => {
-        console.error("Błąd pobierania wiadomości:", err);
-        $('#msgs').innerHTML = `<div class="empty-state" style="color:var(--danger)">Błąd pobierania: ${err.message}</div>`;
-      });
+
+      );
+
     }
 
-    // Zmiana kanałów w menu
-    document.querySelectorAll('.nav-item[data-channel]').forEach(item => {
-      item.onclick = () => {
-        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        currentChannel = item.getAttribute('data-channel');
-        $('#currentChannelName').textContent = `# ${currentChannel}`;
-        $('#msgInput').placeholder = `Napisz wiadomość na #${currentChannel}...`;
-        subscribeMessages(currentChannel);
-      };
-    });
 
-    // Przełączanie motywu jasny/ciemny
-    $('#themeToggle').onclick = () => {
-      document.body.classList.toggle('light-theme');
+    // ==========================================
+    // ZMIANA KANAŁÓW
+    // ==========================================
+
+    document
+      .querySelectorAll(
+        ".nav-item[data-channel]"
+      )
+      .forEach(item => {
+
+        item.onclick = () => {
+
+          document
+            .querySelectorAll(
+              ".nav-item"
+            )
+            .forEach(i =>
+              i.classList.remove(
+                "active"
+              )
+            );
+
+
+          item.classList.add(
+            "active"
+          );
+
+
+          currentChannel =
+            item.getAttribute(
+              "data-channel"
+            );
+
+
+          $("#currentChannelName")
+            .textContent =
+              `# ${currentChannel}`;
+
+
+          $("#msgInput")
+            .placeholder =
+              `Napisz wiadomość na #${currentChannel}...`;
+
+
+          subscribeMessages(
+            currentChannel
+          );
+
+        };
+
+      });
+
+
+    // ==========================================
+    // MOTYW
+    // ==========================================
+
+    $("#themeToggle").onclick = () => {
+
+      document.body.classList.toggle(
+        "light-theme"
+      );
+
     };
 
+
+    // ==========================================
+    // ESCAPE HTML
+    // ==========================================
+
     function escapeHtml(text) {
-      return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+      return String(text)
+
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+
+        .replace(
+          /</g,
+          "&lt;"
+        )
+
+        .replace(
+          />/g,
+          "&gt;"
+        )
+
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
     }
 
+
+    // ==========================================
+    // START
+    // ==========================================
+
     initFirebase();
+
   </script>
+
 </body>
 </html>
+```
