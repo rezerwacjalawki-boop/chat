@@ -1,23 +1,19 @@
-```html
+<html>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080a12">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#060811">
 
   <title>ClassHub — Przestrzeń Klasy</title>
 
   <style>
-    /* =========================================================
-       ROOT
-       ========================================================= */
-
     :root {
       --bg: #060811;
       --bg2: #0a0d17;
-      --sidebar: rgba(8, 11, 20, 0.94);
-      --panel: rgba(14, 18, 30, 0.78);
+      --sidebar: rgba(8, 11, 20, 0.95);
+      --panel: rgba(14, 18, 30, 0.82);
 
       --text: #f7f8ff;
       --muted: #8f98ab;
@@ -25,14 +21,19 @@
       --accent: #6f63ff;
       --accent2: #00d9ff;
       --pink: #ff4fd8;
+
       --green: #2bea93;
       --red: #ff5878;
       --yellow: #ffd166;
 
       --border: rgba(255, 255, 255, 0.08);
 
-      --message-bg: rgba(255, 255, 255, 0.025);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
+
+    /* =========================================================
+       RESET / LAYOUT FIX
+       ========================================================= */
 
     * {
       box-sizing: border-box;
@@ -50,6 +51,7 @@
     body {
       width: 100%;
       height: 100%;
+      min-height: 100%;
       overflow: hidden;
     }
 
@@ -95,98 +97,121 @@
 
     .orb {
       position: absolute;
+
       border-radius: 50%;
-      filter: blur(60px);
-      opacity: 0.16;
-      animation: orbFloat 12s ease-in-out infinite;
+
+      filter: blur(70px);
+
+      opacity: 0.15;
+
+      animation:
+        orbFloat
+        12s
+        ease-in-out
+        infinite;
     }
 
     .orb.one {
-      width: 300px;
-      height: 300px;
+      width: 310px;
+      height: 310px;
+
       background: #6257ff;
-      top: -100px;
-      left: 20%;
+
+      top: -110px;
+      left: 18%;
     }
 
     .orb.two {
-      width: 230px;
-      height: 230px;
+      width: 250px;
+      height: 250px;
+
       background: #00d9ff;
-      bottom: -90px;
-      right: 12%;
-      animation-delay: -4s;
+
+      right: 7%;
+      bottom: -120px;
+
+      animation-delay:
+        -4s;
     }
 
     .orb.three {
       width: 190px;
       height: 190px;
+
       background: #ff4fd8;
-      top: 45%;
+
       right: 35%;
-      animation-delay: -8s;
+      top: 43%;
+
+      animation-delay:
+        -8s;
     }
 
     @keyframes orbFloat {
       0%,
       100% {
-        transform: translate3d(0, 0, 0) scale(1);
+        transform:
+          translate3d(0, 0, 0)
+          scale(1);
       }
 
       50% {
-        transform: translate3d(20px, -25px, 0) scale(1.08);
+        transform:
+          translate3d(25px, -20px, 0)
+          scale(1.08);
       }
     }
 
     .laser {
       position: absolute;
 
-      width: 65vw;
-      height: 2px;
-
       left: -35vw;
+
+      width: 70vw;
+      height: 2px;
 
       background:
         linear-gradient(
           90deg,
           transparent,
-          rgba(111, 99, 255, 0.0),
+          rgba(111, 99, 255, 0),
           rgba(111, 99, 255, 0.8),
           rgba(0, 217, 255, 0.8),
           transparent
         );
 
-      opacity: 0.45;
       filter: blur(1px);
+
+      opacity: 0.4;
 
       animation:
         laserMove
-        14s
+        15s
         linear
         infinite;
     }
 
-    .laser:nth-child(4) {
-      top: 15%;
+    .laser.one {
+      top: 14%;
       transform: rotate(13deg);
     }
 
-    .laser:nth-child(5) {
-      top: 38%;
-      animation-delay: -3s;
-      transform: rotate(-9deg);
+    .laser.two {
+      top: 37%;
+      animation-delay: -4s;
+      transform: rotate(-10deg);
     }
 
-    .laser:nth-child(6) {
-      top: 67%;
-      animation-delay: -7s;
-      transform: rotate(15deg);
+    .laser.three {
+      top: 66%;
+      animation-delay: -8s;
+      transform: rotate(16deg);
     }
 
-    .laser:nth-child(7) {
-      top: 82%;
+    .laser.four {
+      top: 83%;
       animation-delay: -11s;
-      transform: rotate(-13deg);
+      transform: rotate(-14deg);
     }
 
     @keyframes laserMove {
@@ -211,14 +236,16 @@
       position: relative;
       z-index: 2;
 
+      width: 100%;
+      height: 100dvh;
+      min-height: 0;
+
       display: grid;
+
       grid-template-columns:
         260px
         minmax(0, 1fr)
         285px;
-
-      width: 100%;
-      height: 100%;
     }
 
     /* =========================================================
@@ -227,6 +254,7 @@
 
     .sidebar-left {
       min-width: 0;
+      min-height: 0;
 
       display: flex;
       flex-direction: column;
@@ -234,8 +262,8 @@
       background:
         linear-gradient(
           180deg,
-          rgba(11, 14, 24, 0.97),
-          rgba(6, 8, 15, 0.97)
+          rgba(11, 14, 24, 0.98),
+          rgba(6, 8, 15, 0.98)
         );
 
       border-right:
@@ -247,9 +275,11 @@
 
     .brand {
       height: 74px;
+      min-height: 74px;
 
       display: flex;
       align-items: center;
+
       gap: 12px;
 
       padding:
@@ -281,29 +311,27 @@
 
       box-shadow:
         0 0 30px
-        rgba(111, 99, 255, 0.32);
+        rgba(111, 99, 255, 0.30);
 
       animation:
         brandPulse
         3.2s
         ease-in-out
         infinite;
+
+      flex-shrink: 0;
     }
 
     @keyframes brandPulse {
       0%,
       100% {
-        transform: scale(1);
-        box-shadow:
-          0 0 25px
-          rgba(111, 99, 255, 0.25);
+        transform:
+          scale(1);
       }
 
       50% {
-        transform: scale(1.045);
-        box-shadow:
-          0 0 40px
-          rgba(0, 217, 255, 0.25);
+        transform:
+          scale(1.045);
       }
     }
 
@@ -313,12 +341,14 @@
     }
 
     .brand-sub {
-      margin-top: 1px;
+      margin-top: 2px;
       font-size: 10px;
       color: var(--muted);
     }
 
     .nav {
+      min-height: 0;
+
       flex: 1;
 
       overflow-y: auto;
@@ -336,8 +366,10 @@
       font-size: 10px;
       font-weight: 900;
 
-      text-transform: uppercase;
       letter-spacing: 1px;
+
+      text-transform:
+        uppercase;
     }
 
     .nav-item {
@@ -345,6 +377,7 @@
 
       display: flex;
       align-items: center;
+
       gap: 10px;
 
       padding:
@@ -352,34 +385,40 @@
 
       margin-bottom: 5px;
 
-      color: var(--muted);
+      color:
+        var(--muted);
 
-      border-radius: 11px;
+      border-radius:
+        11px;
 
-      cursor: pointer;
+      cursor:
+        pointer;
 
       transition:
-        0.22s ease;
+        0.22s
+        ease;
     }
 
     .nav-item:hover {
       background:
-        rgba(255, 255, 255, 0.045);
+        rgba(255,255,255,0.045);
 
-      color: var(--text);
+      color:
+        var(--text);
 
       transform:
         translateX(3px);
     }
 
     .nav-item.active {
-      color: white;
+      color:
+        white;
 
       background:
         linear-gradient(
           90deg,
-          rgba(111, 99, 255, 0.23),
-          rgba(0, 217, 255, 0.06)
+          rgba(111,99,255,0.23),
+          rgba(0,217,255,0.06)
         );
 
       box-shadow:
@@ -390,14 +429,20 @@
     .nav-item.active::after {
       content: "";
 
-      position: absolute;
+      position:
+        absolute;
 
-      right: 11px;
+      right:
+        11px;
 
-      width: 5px;
-      height: 5px;
+      width:
+        5px;
 
-      border-radius: 50%;
+      height:
+        5px;
+
+      border-radius:
+        50%;
 
       background:
         var(--accent2);
@@ -408,6 +453,8 @@
     }
 
     .sidebar-bottom {
+      flex-shrink: 0;
+
       padding:
         11px;
 
@@ -424,22 +471,26 @@
       border:
         1px solid var(--border);
 
-      border-radius: 11px;
+      border-radius:
+        11px;
 
       background:
-        rgba(255, 255, 255, 0.035);
+        rgba(255,255,255,0.035);
 
-      color: var(--text);
+      color:
+        var(--text);
 
-      cursor: pointer;
+      cursor:
+        pointer;
 
       transition:
-        0.2s ease;
+        0.2s
+        ease;
     }
 
     .theme-btn:hover {
       background:
-        rgba(255, 255, 255, 0.07);
+        rgba(255,255,255,0.07);
 
       transform:
         translateY(-1px);
@@ -450,52 +501,87 @@
        ========================================================= */
 
     .user-footer {
+      flex-shrink: 0;
+
+      min-height:
+        67px;
+
       padding:
         12px;
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
 
       border-top:
         1px solid var(--border);
 
       background:
-        rgba(255, 255, 255, 0.018);
+        rgba(255,255,255,0.018);
     }
 
     .user-info {
       min-width: 0;
 
-      display: flex;
-      align-items: center;
+      display:
+        flex;
 
-      gap: 10px;
+      align-items:
+        center;
 
-      cursor: pointer;
+      gap:
+        10px;
+
+      cursor:
+        pointer;
     }
 
     .user-avatar-wrap {
-      position: relative;
+      position:
+        relative;
 
-      width: 42px;
-      height: 42px;
+      width:
+        42px;
+
+      height:
+        42px;
+
+      flex-shrink:
+        0;
     }
 
     .user-avatar {
-      width: 42px;
-      height: 42px;
+      width:
+        42px;
 
-      overflow: hidden;
+      height:
+        42px;
 
-      border-radius: 50%;
+      overflow:
+        hidden;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border-radius:
+        50%;
 
-      font-size: 14px;
-      font-weight: 900;
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      font-size:
+        14px;
+
+      font-weight:
+        950;
 
       background:
         linear-gradient(
@@ -506,20 +592,26 @@
 
       border:
         2px solid
-        rgba(255, 255, 255, 0.10);
+        rgba(255,255,255,0.10);
 
       box-shadow:
         0 0 24px
-        rgba(111, 99, 255, 0.22);
+        rgba(111,99,255,0.22);
 
       transition:
-        0.25s ease;
+        0.25s
+        ease;
     }
 
     .user-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width:
+        100%;
+
+      height:
+        100%;
+
+      object-fit:
+        cover;
     }
 
     .user-avatar-wrap:hover .user-avatar {
@@ -529,26 +621,34 @@
     }
 
     .online-dot {
-      position: absolute;
+      position:
+        absolute;
 
-      right: -1px;
-      bottom: -1px;
+      right:
+        -1px;
 
-      width: 11px;
-      height: 11px;
+      bottom:
+        -1px;
 
-      border-radius: 50%;
+      width:
+        11px;
+
+      height:
+        11px;
+
+      border-radius:
+        50%;
 
       background:
         var(--green);
 
       border:
         2px solid
-        #0c101a;
+        #0b1019;
 
       box-shadow:
         0 0 10px
-        rgba(43, 234, 147, 0.8);
+        rgba(43,234,147,0.85);
 
       animation:
         onlinePulse
@@ -562,53 +662,64 @@
       100% {
         box-shadow:
           0 0 7px
-          rgba(43, 234, 147, 0.55);
+          rgba(43,234,147,0.55);
       }
 
       50% {
         box-shadow:
           0 0 16px
-          rgba(43, 234, 147, 0.95);
+          rgba(43,234,147,0.95);
       }
     }
 
     .user-details {
-      min-width: 0;
+      min-width:
+        0;
     }
 
     .user-name {
-      max-width: 135px;
+      max-width:
+        140px;
 
-      overflow: hidden;
+      overflow:
+        hidden;
 
-      white-space: nowrap;
+      white-space:
+        nowrap;
 
-      text-overflow: ellipsis;
+      text-overflow:
+        ellipsis;
 
-      font-size: 13px;
-      font-weight: 850;
+      font-size:
+        13px;
+
+      font-weight:
+        850;
     }
 
     .user-role {
-      margin-top: 2px;
+      margin-top:
+        2px;
 
-      font-size: 10px;
+      font-size:
+        10px;
 
       color:
         var(--muted);
     }
 
     .logout-btn {
-      width: 35px;
-      height: 35px;
+      width:
+        35px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      height:
+        35px;
 
-      border: none;
+      border:
+        none;
 
-      border-radius: 9px;
+      border-radius:
+        9px;
 
       background:
         transparent;
@@ -616,10 +727,12 @@
       color:
         var(--muted);
 
-      cursor: pointer;
+      cursor:
+        pointer;
 
       transition:
-        0.2s ease;
+        0.2s
+        ease;
     }
 
     .logout-btn:hover {
@@ -627,85 +740,123 @@
         var(--red);
 
       background:
-        rgba(255, 88, 120, 0.12);
+        rgba(255,88,120,0.12);
 
       transform:
         scale(1.06);
     }
 
     /* =========================================================
-       CHAT
+       CHAT AREA — FIXED HEIGHT
        ========================================================= */
 
     .chat-area {
-      min-width: 0;
+      min-width:
+        0;
 
-      display: flex;
-      flex-direction: column;
+      min-height:
+        0;
+
+      height:
+        100%;
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      overflow:
+        hidden;
 
       background:
         linear-gradient(
           180deg,
-          rgba(7, 9, 16, 0.70),
-          rgba(7, 9, 16, 0.88)
+          rgba(7,9,16,0.70),
+          rgba(7,9,16,0.88)
         );
     }
 
     .chat-header {
-      min-height: 74px;
+      flex:
+        0 0 auto;
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      min-height:
+        74px;
 
       padding:
         0 21px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
 
       border-bottom:
         1px solid var(--border);
 
       background:
-        rgba(7, 9, 16, 0.55);
+        rgba(7,9,16,0.58);
 
       backdrop-filter:
         blur(18px);
     }
 
     .channel {
-      display: flex;
-      align-items: center;
-      gap: 11px;
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        11px;
     }
 
     .channel-icon {
-      font-size: 24px;
+      font-size:
+        24px;
 
       color:
         var(--accent2);
 
       text-shadow:
         0 0 15px
-        rgba(0, 217, 255, 0.45);
+        rgba(0,217,255,0.45);
     }
 
     .channel-name {
-      font-size: 16px;
-      font-weight: 900;
+      font-size:
+        16px;
+
+      font-weight:
+        900;
     }
 
     .channel-desc {
-      margin-top: 2px;
+      margin-top:
+        2px;
+
+      font-size:
+        10px;
 
       color:
         var(--muted);
-
-      font-size: 10px;
     }
 
     .header-status {
-      display: flex;
-      align-items: center;
-      gap: 7px;
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        7px;
 
       padding:
         7px 10px;
@@ -713,87 +864,125 @@
       border:
         1px solid var(--border);
 
-      border-radius: 999px;
+      border-radius:
+        999px;
 
       color:
         var(--muted);
 
-      font-size: 10px;
+      font-size:
+        10px;
     }
 
     .status-dot {
-      width: 6px;
-      height: 6px;
+      width:
+        6px;
 
-      border-radius: 50%;
+      height:
+        6px;
+
+      border-radius:
+        50%;
 
       background:
         var(--green);
 
       box-shadow:
         0 0 8px
-        rgba(43, 234, 147, 0.9);
+        rgba(43,234,147,0.9);
     }
 
     /* =========================================================
-       MESSAGES
+       MESSAGES — ONLY THIS AREA SCROLLS
        ========================================================= */
 
     .messages {
-      flex: 1;
+      flex:
+        1 1 auto;
 
-      min-height: 0;
+      min-height:
+        0;
 
-      overflow-y: auto;
+      overflow-y:
+        auto;
+
+      overflow-x:
+        hidden;
 
       padding:
-        20px 20px 12px;
+        18px 20px 10px;
 
       scroll-behavior:
         smooth;
+
+      overscroll-behavior:
+        contain;
+
+      scrollbar-gutter:
+        stable;
     }
 
     .messages::-webkit-scrollbar {
-      width: 7px;
+      width:
+        8px;
+    }
+
+    .messages::-webkit-scrollbar-track {
+      background:
+        transparent;
     }
 
     .messages::-webkit-scrollbar-thumb {
       background:
-        rgba(255, 255, 255, 0.09);
+        rgba(255,255,255,0.09);
 
-      border-radius: 20px;
+      border-radius:
+        20px;
+    }
+
+    .messages::-webkit-scrollbar-thumb:hover {
+      background:
+        rgba(255,255,255,0.14);
     }
 
     .message {
-      position: relative;
+      position:
+        relative;
 
-      display: flex;
-      align-items: flex-start;
+      display:
+        flex;
 
-      gap: 12px;
+      align-items:
+        flex-start;
+
+      gap:
+        12px;
 
       padding:
         10px 12px;
 
-      margin-bottom: 4px;
+      margin-bottom:
+        4px;
 
-      border-radius: 14px;
+      border-radius:
+        14px;
 
       background:
         transparent;
 
       animation:
         messageEnter
-        0.42s
+        0.43s
         cubic-bezier(.2,.8,.2,1);
 
       transition:
-        0.22s ease;
+        background 0.2s ease,
+        transform 0.2s ease;
     }
 
     .message:hover {
       background:
-        rgba(255, 255, 255, 0.026);
+        rgba(255,255,255,0.026);
 
       transform:
         translateX(2px);
@@ -801,40 +990,59 @@
 
     @keyframes messageEnter {
       0% {
-        opacity: 0;
+        opacity:
+          0;
 
         transform:
-          translateY(12px)
+          translate3d(0,14px,0)
           scale(0.985);
       }
 
+      65% {
+        opacity:
+          1;
+      }
+
       100% {
-        opacity: 1;
+        opacity:
+          1;
 
         transform:
-          translateY(0)
+          translate3d(0,0,0)
           scale(1);
       }
     }
 
     .message-avatar {
-      position: relative;
+      width:
+        42px;
 
-      width: 42px;
-      height: 42px;
+      height:
+        42px;
 
-      flex-shrink: 0;
+      flex-shrink:
+        0;
 
-      overflow: hidden;
+      overflow:
+        hidden;
 
-      border-radius: 50%;
+      border-radius:
+        50%;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display:
+        flex;
 
-      font-size: 13px;
-      font-weight: 900;
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      font-size:
+        13px;
+
+      font-weight:
+        950;
 
       background:
         linear-gradient(
@@ -845,10 +1053,15 @@
 
       border:
         2px solid
-        rgba(255, 255, 255, 0.08);
+        rgba(255,255,255,0.08);
+
+      box-shadow:
+        0 0 18px
+        rgba(111,99,255,0.15);
 
       transition:
-        0.22s ease;
+        0.22s
+        ease;
     }
 
     .message:hover .message-avatar {
@@ -858,56 +1071,75 @@
     }
 
     .message-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width:
+        100%;
+
+      height:
+        100%;
+
+      object-fit:
+        cover;
     }
 
     .message-body {
-      min-width: 0;
-      flex: 1;
+      min-width:
+        0;
+
+      flex:
+        1;
     }
 
     .message-top {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
+      display:
+        flex;
 
-      gap: 7px;
+      align-items:
+        center;
 
-      min-height: 18px;
+      flex-wrap:
+        wrap;
+
+      gap:
+        7px;
+
+      min-height:
+        18px;
     }
 
     .message-author {
-      font-size: 13px;
-      font-weight: 900;
+      font-size:
+        13px;
 
-      transition:
-        0.2s ease;
-    }
-
-    .message-author:hover {
-      filter:
-        brightness(1.25);
+      font-weight:
+        900;
     }
 
     .message-time {
-      font-size: 10px;
+      font-size:
+        10px;
+
       color:
         var(--muted);
     }
 
     .message-text {
-      margin-top: 2px;
+      margin-top:
+        2px;
 
-      font-size: 14px;
-      line-height: 1.5;
+      font-size:
+        14px;
+
+      line-height:
+        1.52;
 
       color:
         #dfe5f2;
 
-      white-space: pre-wrap;
-      word-break: break-word;
+      white-space:
+        pre-wrap;
+
+      word-break:
+        break-word;
     }
 
     /* =========================================================
@@ -915,25 +1147,39 @@
        ========================================================= */
 
     .role-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      gap:
+        4px;
 
       padding:
         2px 7px;
 
-      border-radius: 999px;
+      border-radius:
+        999px;
 
-      font-size: 8px;
-      font-weight: 950;
+      font-size:
+        8px;
 
-      letter-spacing: 0.55px;
+      font-weight:
+        950;
 
-      text-transform: uppercase;
+      letter-spacing:
+        0.55px;
+
+      text-transform:
+        uppercase;
 
       border:
         1px solid
-        rgba(255, 255, 255, 0.08);
+        rgba(255,255,255,0.08);
+
+      vertical-align:
+        middle;
     }
 
     .role-admin {
@@ -941,14 +1187,14 @@
         #ff5c7a;
 
       background:
-        rgba(255, 92, 122, 0.09);
+        rgba(255,92,122,0.09);
 
       border-color:
-        rgba(255, 92, 122, 0.23);
+        rgba(255,92,122,0.23);
 
       text-shadow:
         0 0 12px
-        rgba(255, 92, 122, 0.52);
+        rgba(255,92,122,0.52);
     }
 
     .role-moderator {
@@ -956,14 +1202,14 @@
         #b48aff;
 
       background:
-        rgba(180, 138, 255, 0.09);
+        rgba(180,138,255,0.09);
 
       border-color:
-        rgba(180, 138, 255, 0.23);
+        rgba(180,138,255,0.23);
 
       text-shadow:
         0 0 12px
-        rgba(180, 138, 255, 0.48);
+        rgba(180,138,255,0.48);
     }
 
     .role-teacher {
@@ -971,100 +1217,72 @@
         #48baff;
 
       background:
-        rgba(72, 186, 255, 0.09);
+        rgba(72,186,255,0.09);
 
       border-color:
-        rgba(72, 186, 255, 0.23);
+        rgba(72,186,255,0.23);
 
       text-shadow:
         0 0 12px
-        rgba(72, 186, 255, 0.48);
+        rgba(72,186,255,0.48);
     }
 
-    .role-student {
-      color:
-        #dce2ef;
+    .role-admin .message-avatar {
+      box-shadow:
+        0 0 22px
+        rgba(255,92,122,0.25);
+    }
+
+    .role-moderator .message-avatar {
+      box-shadow:
+        0 0 22px
+        rgba(180,138,255,0.25);
+    }
+
+    .role-teacher .message-avatar {
+      box-shadow:
+        0 0 22px
+        rgba(72,186,255,0.25);
     }
 
     /* =========================================================
-       ROLE MESSAGE EFFECTS
-       ========================================================= */
-
-    .message.role-admin .message-author {
-      animation:
-        adminNameGlow
-        2.5s
-        ease-in-out
-        infinite;
-    }
-
-    @keyframes adminNameGlow {
-      0%,
-      100% {
-        text-shadow:
-          0 0 6px
-          rgba(255, 92, 122, 0.22);
-      }
-
-      50% {
-        text-shadow:
-          0 0 18px
-          rgba(255, 92, 122, 0.65);
-      }
-    }
-
-    .message.role-moderator .message-avatar {
-      box-shadow:
-        0 0 18px
-        rgba(180, 138, 255, 0.25);
-    }
-
-    .message.role-teacher .message-avatar {
-      box-shadow:
-        0 0 18px
-        rgba(72, 186, 255, 0.25);
-    }
-
-    /* =========================================================
-       MESSAGE ANIMATIONS
+       EFFECTS
        ========================================================= */
 
     .effect-fire {
       background:
         linear-gradient(
           90deg,
-          rgba(255, 90, 40, 0.025),
-          transparent 70%
+          rgba(255,86,35,0.035),
+          transparent 72%
         );
     }
 
     .effect-fire .message-text {
       color:
-        #ffd9c4;
+        #ffe0d1;
 
       text-shadow:
-        0 0 10px
-        rgba(255, 95, 35, 0.22);
+        0 0 9px
+        rgba(255,97,35,0.22);
 
       animation:
-        fireText
-        1.65s
+        firePulse
+        1.55s
         ease-in-out
         infinite;
     }
 
-    @keyframes fireText {
+    @keyframes firePulse {
       0%,
       100% {
-        text-shadow:
-          0 0 6px
-          rgba(255, 90, 35, 0.18);
+        filter:
+          brightness(1);
       }
 
       50% {
-        text-shadow:
-          0 0 16px
-          rgba(255, 130, 35, 0.42);
+        filter:
+          brightness(1.18);
       }
     }
 
@@ -1072,27 +1290,27 @@
       background:
         linear-gradient(
           90deg,
-          rgba(60, 200, 255, 0.025),
-          transparent 70%
+          rgba(70,205,255,0.035),
+          transparent 72%
         );
     }
 
     .effect-ice .message-text {
       color:
-        #d6f5ff;
+        #dcf7ff;
 
       text-shadow:
         0 0 10px
-        rgba(88, 215, 255, 0.18);
+        rgba(89,219,255,0.25);
 
       animation:
-        iceShimmer
-        2.7s
+        icePulse
+        2.6s
         ease-in-out
         infinite;
     }
 
-    @keyframes iceShimmer {
+    @keyframes icePulse {
       0%,
       100% {
         filter:
@@ -1109,52 +1327,77 @@
       background:
         linear-gradient(
           90deg,
-          rgba(113, 110, 255, 0.03),
-          transparent 70%
+          rgba(111,99,255,0.035),
+          transparent 72%
         );
     }
 
     .effect-electric .message-text {
       color:
-        #e0ddff;
+        #e5e2ff;
 
       animation:
-        electricPulse
-        1.3s
-        ease-in-out
+        electricFlash
+        1.45s
+        steps(1,end)
         infinite;
     }
 
-    @keyframes electricPulse {
+    @keyframes electricFlash {
       0%,
-      92%,
+      88%,
       100% {
         text-shadow:
           0 0 0 transparent;
       }
 
-      94% {
+      91% {
         text-shadow:
-          2px 0 7px
-          rgba(108, 99, 255, 0.65);
+          2px 0 9px
+          rgba(108,99,255,0.65);
       }
 
-      96% {
+      93% {
         text-shadow:
-          -2px 0 8px
-          rgba(0, 217, 255, 0.65);
+          -2px 0 10px
+          rgba(0,217,255,0.7);
+      }
+
+      95% {
+        text-shadow:
+          0 0 14px
+          rgba(111,99,255,0.5);
       }
     }
 
     .effect-neon .message-text {
       color:
-        #ebecff;
+        #eeeaff;
 
       text-shadow:
-        0 0 8px
-        rgba(108, 99, 255, 0.42),
-        0 0 18px
-        rgba(0, 217, 255, 0.24);
+        0 0 7px
+        rgba(111,99,255,0.48),
+        0 0 17px
+        rgba(0,217,255,0.25);
+
+      animation:
+        neonBreath
+        2.4s
+        ease-in-out
+        infinite;
+    }
+
+    @keyframes neonBreath {
+      0%,
+      100% {
+        filter:
+          brightness(1);
+      }
+
+      50% {
+        filter:
+          brightness(1.12);
+      }
     }
 
     .effect-rainbow .message-text {
@@ -1162,7 +1405,7 @@
         linear-gradient(
           90deg,
           #ff4fd8,
-          #7f6cff,
+          #806cff,
           #00d9ff,
           #29e58c,
           #ffd166,
@@ -1182,16 +1425,128 @@
         transparent;
 
       animation:
-        rainbowText
-        3.5s
+        rainbowMove
+        3.2s
         linear
         infinite;
     }
 
-    @keyframes rainbowText {
+    @keyframes rainbowMove {
       to {
         background-position:
           300% center;
+      }
+    }
+
+    /* NEW: GLITCH */
+
+    .effect-glitch .message-text {
+      color:
+        #f4f1ff;
+
+      text-shadow:
+        2px 0 rgba(255,79,216,0.35),
+        -2px 0 rgba(0,217,255,0.35);
+
+      animation:
+        glitchText
+        2.7s
+        infinite;
+    }
+
+    @keyframes glitchText {
+      0%,
+      89%,
+      100% {
+        transform:
+          translateX(0);
+      }
+
+      90% {
+        transform:
+          translateX(-2px);
+      }
+
+      91% {
+        transform:
+          translateX(2px);
+      }
+
+      92% {
+        transform:
+          translateX(-1px);
+      }
+
+      93% {
+        transform:
+          translateX(0);
+      }
+    }
+
+    /* NEW: PLASMA */
+
+    .effect-plasma .message-text {
+      color:
+        #f3eaff;
+
+      text-shadow:
+        0 0 7px rgba(111,99,255,0.45),
+        0 0 15px rgba(255,79,216,0.28),
+        0 0 25px rgba(0,217,255,0.18);
+
+      animation:
+        plasmaPulse
+        2s
+        ease-in-out
+        infinite;
+    }
+
+    @keyframes plasmaPulse {
+      0%,
+      100% {
+        filter:
+          hue-rotate(0deg)
+          brightness(1);
+      }
+
+      50% {
+        filter:
+          hue-rotate(15deg)
+          brightness(1.14);
+      }
+    }
+
+    /* NEW: SPARKLE */
+
+    .effect-sparkle .message-text {
+      color:
+        #fff8d9;
+
+      text-shadow:
+        0 0 8px
+        rgba(255,209,102,0.40);
+
+      animation:
+        sparklePulse
+        1.8s
+        ease-in-out
+        infinite;
+    }
+
+    @keyframes sparklePulse {
+      0%,
+      100% {
+        letter-spacing:
+          0;
+      }
+
+      50% {
+        letter-spacing:
+          0.15px;
+
+        text-shadow:
+          0 0 16px
+          rgba(255,209,102,0.55);
       }
     }
 
@@ -1200,46 +1555,67 @@
        ========================================================= */
 
     .input-area {
+      flex:
+        0 0 auto;
+
       padding:
-        12px 18px 19px;
+        8px 18px
+        calc(16px + var(--safe-bottom));
     }
 
     .effect-bar {
-      display: flex;
+      display:
+        flex;
 
-      align-items: center;
+      align-items:
+        center;
 
-      gap: 7px;
+      gap:
+        7px;
 
-      margin-bottom: 7px;
+      margin-bottom:
+        7px;
 
-      overflow-x: auto;
+      overflow-x:
+        auto;
+
+      scrollbar-width:
+        none;
+    }
+
+    .effect-bar::-webkit-scrollbar {
+      display:
+        none;
     }
 
     .effect-chip {
-      flex-shrink: 0;
+      flex-shrink:
+        0;
 
       padding:
         5px 9px;
 
       border:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
-      border-radius: 999px;
+      border-radius:
+        999px;
 
       background:
-        rgba(255, 255, 255, 0.025);
+        rgba(255,255,255,0.025);
 
       color:
         var(--muted);
 
-      cursor: pointer;
+      cursor:
+        pointer;
 
-      font-size: 9px;
+      font-size:
+        9px;
 
       transition:
-        0.2s ease;
+        0.2s
+        ease;
     }
 
     .effect-chip:hover {
@@ -1247,7 +1623,7 @@
         var(--text);
 
       background:
-        rgba(255, 255, 255, 0.06);
+        rgba(255,255,255,0.06);
     }
 
     .effect-chip.active {
@@ -1255,67 +1631,80 @@
         white;
 
       background:
-        rgba(111, 99, 255, 0.16);
+        rgba(111,99,255,0.16);
 
       border-color:
-        rgba(111, 99, 255, 0.35);
+        rgba(111,99,255,0.40);
 
       box-shadow:
         0 0 15px
-        rgba(111, 99, 255, 0.10);
+        rgba(111,99,255,0.10);
     }
 
     .input-box {
-      min-height: 57px;
+      min-height:
+        57px;
 
-      display: flex;
-      align-items: center;
+      display:
+        flex;
 
-      gap: 8px;
+      align-items:
+        center;
+
+      gap:
+        8px;
 
       padding:
         7px;
 
-      border-radius: 16px;
+      border-radius:
+        16px;
 
       border:
         1px solid
-        rgba(255, 255, 255, 0.10);
+        rgba(255,255,255,0.10);
 
       background:
-        rgba(18, 22, 35, 0.87);
+        rgba(18,22,35,0.89);
 
       backdrop-filter:
         blur(18px);
 
       box-shadow:
         0 15px 45px
-        rgba(0, 0, 0, 0.30);
+        rgba(0,0,0,0.30);
 
       transition:
-        0.2s ease;
+        0.2s
+        ease;
     }
 
     .input-box:focus-within {
       border-color:
-        rgba(111, 99, 255, 0.45);
+        rgba(111,99,255,0.45);
 
       box-shadow:
         0 0 0 3px
-        rgba(111, 99, 255, 0.07),
+        rgba(111,99,255,0.07),
         0 15px 45px
-        rgba(0, 0, 0, 0.30);
+        rgba(0,0,0,0.30);
     }
 
     #msgInput {
-      flex: 1;
+      flex:
+        1;
 
-      min-width: 0;
+      min-width:
+        0;
 
-      border: none;
-      outline: none;
+      border:
+        none;
 
-      background: transparent;
+      outline:
+        none;
+
+      background:
+        transparent;
 
       color:
         white;
@@ -1332,11 +1721,23 @@
         #6f788d;
     }
 
-    .send-btn {
-      width: 43px;
-      height: 43px;
+    #msgInput:disabled {
+      opacity:
+        0.5;
 
-      flex-shrink: 0;
+      cursor:
+        not-allowed;
+    }
+
+    .send-btn {
+      width:
+        43px;
+
+      height:
+        43px;
+
+      flex-shrink:
+        0;
 
       border:
         none;
@@ -1371,10 +1772,11 @@
 
       box-shadow:
         0 0 25px
-        rgba(111, 99, 255, 0.22);
+        rgba(111,99,255,0.22);
 
       transition:
-        0.2s ease;
+        0.2s
+        ease;
     }
 
     .send-btn:hover {
@@ -1384,7 +1786,7 @@
 
       box-shadow:
         0 0 30px
-        rgba(0, 217, 255, 0.30);
+        rgba(0,217,255,0.30);
     }
 
     .send-btn:active {
@@ -1393,21 +1795,27 @@
     }
 
     /* =========================================================
-       RIGHT PANEL
+       RIGHT SIDEBAR
        ========================================================= */
 
     .sidebar-right {
-      padding:
-        17px;
+      min-width:
+        0;
+
+      min-height:
+        0;
 
       overflow-y:
         auto;
 
+      padding:
+        17px;
+
       background:
         linear-gradient(
           180deg,
-          rgba(11, 14, 24, 0.94),
-          rgba(7, 9, 16, 0.97)
+          rgba(11,14,24,0.94),
+          rgba(7,9,16,0.97)
         );
 
       border-left:
@@ -1428,15 +1836,16 @@
         15px;
 
       background:
-        rgba(255, 255, 255, 0.034);
+        rgba(255,255,255,0.034);
 
       transition:
-        0.2s ease;
+        0.2s
+        ease;
     }
 
     .card:hover {
       border-color:
-        rgba(111, 99, 255, 0.23);
+        rgba(111,99,255,0.23);
 
       transform:
         translateY(-2px);
@@ -1482,7 +1891,8 @@
     }
 
     .quick-btn {
-      width: 100%;
+      width:
+        100%;
 
       padding:
         10px 11px;
@@ -1497,7 +1907,7 @@
         10px;
 
       background:
-        rgba(255, 255, 255, 0.035);
+        rgba(255,255,255,0.035);
 
       color:
         var(--text);
@@ -1509,15 +1919,16 @@
         pointer;
 
       transition:
-        0.2s ease;
+        0.2s
+        ease;
     }
 
     .quick-btn:hover {
       background:
-        rgba(111, 99, 255, 0.11);
+        rgba(111,99,255,0.11);
 
       border-color:
-        rgba(111, 99, 255, 0.18);
+        rgba(111,99,255,0.18);
 
       transform:
         translateX(2px);
@@ -1565,6 +1976,10 @@
 
       font-weight:
         900;
+
+      box-shadow:
+        0 0 22px
+        rgba(111,99,255,0.22);
     }
 
     .profile-big-avatar img {
@@ -1601,11 +2016,14 @@
       justify-content:
         center;
 
+      padding:
+        15px;
+
       background:
-        rgba(2, 4, 9, 0.70);
+        rgba(2,4,9,0.72);
 
       backdrop-filter:
-        blur(12px);
+        blur(13px);
 
       opacity:
         0;
@@ -1614,7 +2032,8 @@
         none;
 
       transition:
-        0.3s ease;
+        0.3s
+        ease;
     }
 
     .modal.show {
@@ -1628,9 +2047,18 @@
     .modal-card {
       width:
         min(
-          470px,
-          calc(100% - 28px)
+          500px,
+          100%
         );
+
+      max-height:
+        min(
+          90dvh,
+          700px
+        );
+
+      overflow-y:
+        auto;
 
       padding:
         25px;
@@ -1640,20 +2068,20 @@
 
       border:
         1px solid
-        rgba(255, 255, 255, 0.10);
+        rgba(255,255,255,0.10);
 
       background:
         linear-gradient(
           145deg,
-          rgba(19, 23, 37, 0.97),
-          rgba(9, 12, 20, 0.97)
+          rgba(19,23,37,0.98),
+          rgba(9,12,20,0.98)
         );
 
       box-shadow:
         0 30px 100px
-        rgba(0, 0, 0, 0.62),
+        rgba(0,0,0,0.62),
         0 0 50px
-        rgba(111, 99, 255, 0.10);
+        rgba(111,99,255,0.10);
 
       transform:
         translateY(14px)
@@ -1776,7 +2204,7 @@
 
       box-shadow:
         0 0 38px
-        rgba(111, 99, 255, 0.26);
+        rgba(111,99,255,0.26);
 
       animation:
         profileFloat
@@ -1853,7 +2281,10 @@
         grid;
 
       grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+        repeat(
+          2,
+          minmax(0, 1fr)
+        );
 
       gap:
         8px;
@@ -1883,7 +2314,8 @@
         left;
 
       transition:
-        0.2s ease;
+        0.2s
+        ease;
     }
 
     .effect-option:hover {
@@ -1900,6 +2332,10 @@
 
       background:
         rgba(111,99,255,0.12);
+
+      box-shadow:
+        0 0 18px
+        rgba(111,99,255,0.08);
     }
 
     .effect-option-name {
@@ -1944,11 +2380,14 @@
       justify-content:
         center;
 
+      padding:
+        15px;
+
       background:
         radial-gradient(
           circle at center,
-          rgba(111, 99, 255, 0.10),
-          rgba(1, 3, 8, 0.89)
+          rgba(111,99,255,0.10),
+          rgba(1,3,8,0.90)
         );
 
       backdrop-filter:
@@ -1972,7 +2411,7 @@
       width:
         min(
           420px,
-          calc(100% - 28px)
+          100%
         );
 
       padding:
@@ -1991,8 +2430,8 @@
       background:
         linear-gradient(
           145deg,
-          rgba(20,24,39,0.97),
-          rgba(9,12,20,0.97)
+          rgba(20,24,39,0.98),
+          rgba(9,12,20,0.98)
         );
 
       box-shadow:
@@ -2137,7 +2576,8 @@
         10px;
 
       transition:
-        0.2s ease;
+        0.2s
+        ease;
     }
 
     .google-btn:hover {
@@ -2240,34 +2680,39 @@
     }
 
     /* =========================================================
-       LIGHT MODE
+       LIGHT
        ========================================================= */
 
     body.light {
-      --bg: #edf1f8;
-      --text: #151a27;
-      --muted: #667086;
+      --bg:
+        #edf1f8;
+
+      --text:
+        #151a27;
+
+      --muted:
+        #667086;
     }
 
     body.light .sidebar-left,
     body.light .sidebar-right {
       background:
-        rgba(247,249,253,0.94);
+        rgba(247,249,253,0.95);
     }
 
     body.light .chat-area {
       background:
-        rgba(245,248,252,0.77);
+        rgba(245,248,252,0.78);
     }
 
     body.light .chat-header {
       background:
-        rgba(245,248,252,0.67);
+        rgba(245,248,252,0.68);
     }
 
     body.light .input-box {
       background:
-        rgba(255,255,255,0.89);
+        rgba(255,255,255,0.90);
     }
 
     body.light #msgInput {
@@ -2281,10 +2726,11 @@
     }
 
     /* =========================================================
-       MOBILE
+       RESPONSIVE
        ========================================================= */
 
     @media (max-width: 1050px) {
+
       .app {
         grid-template-columns:
           225px
@@ -2298,6 +2744,7 @@
     }
 
     @media (max-width: 700px) {
+
       .app {
         grid-template-columns:
           68px
@@ -2339,22 +2786,42 @@
 
       .messages {
         padding:
-          12px 7px 10px;
+          12px 7px 8px;
       }
 
       .input-area {
         padding:
-          9px 8px 12px;
-      }
-
-      .effect-bar {
-        margin-left:
-          1px;
+          7px 8px
+          calc(12px + var(--safe-bottom));
       }
 
       .effect-options {
         grid-template-columns:
           1fr;
+      }
+
+      .modal-card {
+        padding:
+          20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration:
+          0.001ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        scroll-behavior:
+          auto !important;
+
+        transition-duration:
+          0.001ms !important;
       }
     }
   </style>
@@ -2367,14 +2834,16 @@
        ======================================================= -->
 
   <div class="background">
+
     <div class="orb one"></div>
     <div class="orb two"></div>
     <div class="orb three"></div>
 
-    <div class="laser"></div>
-    <div class="laser"></div>
-    <div class="laser"></div>
-    <div class="laser"></div>
+    <div class="laser one"></div>
+    <div class="laser two"></div>
+    <div class="laser three"></div>
+    <div class="laser four"></div>
+
   </div>
 
 
@@ -2408,11 +2877,13 @@
         id="googleLogin"
         class="google-btn"
       >
+
         <span class="google-icon">
           G
         </span>
 
         Zaloguj przez Google
+
       </button>
 
       <div
@@ -2444,6 +2915,7 @@
         </div>
 
         <div>
+
           <div class="brand-name">
             ClassHub
           </div>
@@ -2451,6 +2923,7 @@
           <div class="brand-sub">
             Przestrzeń klasy
           </div>
+
         </div>
 
       </div>
@@ -2472,6 +2945,7 @@
           <span class="label">
             ogólny
           </span>
+
         </div>
 
 
@@ -2484,6 +2958,7 @@
           <span class="label">
             ogłoszenia
           </span>
+
         </div>
 
 
@@ -2496,6 +2971,7 @@
           <span class="label">
             szkoła
           </span>
+
         </div>
 
 
@@ -2508,6 +2984,7 @@
           <span class="label">
             memy
           </span>
+
         </div>
 
 
@@ -2528,6 +3005,7 @@
           <span class="label">
             cichy pokój
           </span>
+
         </div>
 
       </nav>
@@ -2544,6 +3022,7 @@
           <span class="label">
             Zmień motyw
           </span>
+
         </button>
 
       </div>
@@ -2653,6 +3132,10 @@
       </header>
 
 
+      <!-- ===================================================
+           TYLKO TEN ELEMENT PRZEWIJA WIADOMOŚCI
+           =================================================== -->
+
       <section
         id="msgs"
         class="messages"
@@ -2675,7 +3158,9 @@
       </section>
 
 
-      <!-- INPUT -->
+      <!-- ===================================================
+           INPUT — ZAWSZE NA DOLE
+           =================================================== -->
 
       <div class="input-area">
 
@@ -2695,21 +3180,21 @@
             class="effect-chip"
             data-effect="fire"
           >
-            🔥 Płonąca
+            🔥 Płomień
           </button>
 
           <button
             class="effect-chip"
             data-effect="ice"
           >
-            ❄️ Lodowa
+            ❄️ Ice
           </button>
 
           <button
             class="effect-chip"
             data-effect="electric"
           >
-            ⚡ Elektryczna
+            ⚡ Electric
           </button>
 
           <button
@@ -2726,6 +3211,27 @@
             🌈 Rainbow
           </button>
 
+          <button
+            class="effect-chip"
+            data-effect="glitch"
+          >
+            👾 Glitch
+          </button>
+
+          <button
+            class="effect-chip"
+            data-effect="plasma"
+          >
+            🔮 Plasma
+          </button>
+
+          <button
+            class="effect-chip"
+            data-effect="sparkle"
+          >
+            ✨ Sparkle
+          </button>
+
         </div>
 
 
@@ -2738,7 +3244,6 @@
             autocomplete="off"
             placeholder="Napisz wiadomość..."
           >
-
 
           <button
             id="sendBtn"
@@ -2843,7 +3348,7 @@
       <div class="card">
 
         <div class="card-title">
-          ClassHub
+          Efekty
         </div>
 
         <div
@@ -2853,9 +3358,10 @@
             line-height:1.55;
           "
         >
-          Każdy może mieć własny efekt wiadomości.
-          Role dostają dodatkowe wizualne efekty.
-          ✦
+          🔥 🔮 ⚡ 🌈 👾 ✨
+          <br>
+          Wybierz efekt wiadomości
+          pod czatem lub w swoim profilu.
         </div>
 
       </div>
@@ -2890,6 +3396,7 @@
 
         </div>
 
+
         <button
           id="closeProfile"
           class="close-btn"
@@ -2919,8 +3426,7 @@
         <div
           id="profileModalEmail"
           class="profile-email"
-        >
-        </div>
+        ></div>
 
       </div>
 
@@ -2944,8 +3450,9 @@
           </div>
 
           <div class="effect-option-desc">
-            Czysty, klasyczny wygląd
+            Klasyczny wygląd
           </div>
+
         </button>
 
 
@@ -2958,8 +3465,9 @@
           </div>
 
           <div class="effect-option-desc">
-            Delikatna poświata ognia
+            Ciepła poświata
           </div>
+
         </button>
 
 
@@ -2972,8 +3480,9 @@
           </div>
 
           <div class="effect-option-desc">
-            Zimny neonowy połysk
+            Lodowy neon
           </div>
+
         </button>
 
 
@@ -2986,8 +3495,9 @@
           </div>
 
           <div class="effect-option-desc">
-            Krótkie elektryczne impulsy
+            Elektryczne impulsy
           </div>
+
         </button>
 
 
@@ -3000,8 +3510,9 @@
           </div>
 
           <div class="effect-option-desc">
-            Fioletowo-cyjanowa poświata
+            Fioletowo-cyjanowa aura
           </div>
+
         </button>
 
 
@@ -3016,6 +3527,52 @@
           <div class="effect-option-desc">
             Animowany gradient
           </div>
+
+        </button>
+
+
+        <button
+          class="effect-option"
+          data-profile-effect="glitch"
+        >
+          <div class="effect-option-name">
+            👾 Glitch
+          </div>
+
+          <div class="effect-option-desc">
+            Cyberpunkowe zakłócenie
+          </div>
+
+        </button>
+
+
+        <button
+          class="effect-option"
+          data-profile-effect="plasma"
+        >
+          <div class="effect-option-name">
+            🔮 Plasma
+          </div>
+
+          <div class="effect-option-desc">
+            Kosmiczna poświata
+          </div>
+
+        </button>
+
+
+        <button
+          class="effect-option"
+          data-profile-effect="sparkle"
+        >
+          <div class="effect-option-name">
+            ✨ Sparkle
+          </div>
+
+          <div class="effect-option-desc">
+            Delikatne błyszczenie
+          </div>
+
         </button>
 
       </div>
@@ -3089,11 +3646,12 @@
 
       appId:
         "1:728180059739:web:d0a70cd02c8ef96700d97e"
+
     };
 
 
     /* ========================================================
-       FIREBASE
+       INIT
        ======================================================== */
 
     const app =
@@ -3114,7 +3672,8 @@
        STATE
        ======================================================== */
 
-    let currentUser = null;
+    let currentUser =
+      null;
 
     let currentUserRole =
       "student";
@@ -3123,6 +3682,9 @@
       "ogólny";
 
     let selectedEffect =
+      localStorage.getItem(
+        "classhub_message_effect"
+      ) ||
       "none";
 
     let unsubscribeMessages =
@@ -3141,13 +3703,12 @@
 
 
     /* ========================================================
-       ROLE CONFIG
+       ROLES
        ======================================================== */
 
     const ROLE_CONFIG = {
 
       admin: {
-
         name:
           "Administrator",
 
@@ -3159,12 +3720,10 @@
 
         defaultEffect:
           "electric"
-
       },
 
 
       moderator: {
-
         name:
           "Moderator",
 
@@ -3176,12 +3735,10 @@
 
         defaultEffect:
           "neon"
-
       },
 
 
       teacher: {
-
         name:
           "Nauczyciel",
 
@@ -3193,12 +3750,10 @@
 
         defaultEffect:
           "ice"
-
       },
 
 
       student: {
-
         name:
           "Uczeń",
 
@@ -3210,14 +3765,38 @@
 
         defaultEffect:
           "none"
-
       }
 
     };
 
 
+    function normalizeRole(
+      role
+    ) {
+
+      return ROLE_CONFIG[role]
+        ? role
+        : "student";
+
+    }
+
+
+    function getRoleInfo(
+      role
+    ) {
+
+      return (
+        ROLE_CONFIG[
+          normalizeRole(role)
+        ] ||
+        ROLE_CONFIG.student
+      );
+
+    }
+
+
     /* ========================================================
-       CHANNEL CONFIG
+       CHANNELS
        ======================================================== */
 
     const CHANNEL_CONFIG = {
@@ -3230,6 +3809,7 @@
           "Rozmowy całej klasy"
       },
 
+
       "ogłoszenia": {
         icon:
           "📢",
@@ -3237,6 +3817,7 @@
         description:
           "Najważniejsze informacje"
       },
+
 
       "szkoła": {
         icon:
@@ -3246,6 +3827,7 @@
           "Szkoła i nauka"
       },
 
+
       "memy": {
         icon:
           "🎨",
@@ -3253,6 +3835,7 @@
         description:
           "Memy klasy"
       },
+
 
       "cichy-pokoj": {
         icon:
@@ -3268,31 +3851,6 @@
     /* ========================================================
        HELPERS
        ======================================================== */
-
-    function normalizeRole(
-      role
-    ) {
-
-      return ROLE_CONFIG[role]
-        ? role
-        : "student";
-
-    }
-
-
-    function getRole(
-      role
-    ) {
-
-      return (
-        ROLE_CONFIG[
-          normalizeRole(role)
-        ] ||
-        ROLE_CONFIG.student
-      );
-
-    }
-
 
     function getInitial(
       name
@@ -3358,7 +3916,7 @@
 
 
     /* ========================================================
-       PROFILE DATA
+       PROFILE
        ======================================================== */
 
     async function getUserProfile(
@@ -3407,9 +3965,8 @@
 
 
       /*
-       * Jeśli to aktualnie zalogowany user,
-       * Firebase Auth jest najlepszym źródłem
-       * nazwy i avatara.
+       * Aktualnie zalogowany użytkownik:
+       * korzystamy bezpośrednio z Firebase Auth.
        */
 
       if (
@@ -3430,11 +3987,8 @@
 
 
       /*
-       * Następnie próbujemy pobrać
-       * profil z Firestore.
-       *
-       * Firestore nie może nadpisać
-       * poprawnych danych pustą wartością.
+       * Firestore jest dodatkowym źródłem
+       * danych profilu / roli.
        */
 
       try {
@@ -3514,24 +4068,22 @@
     function updateUserUI() {
 
       if (!currentUser) {
-
         return;
-
       }
 
 
       const role =
-        getRole(
+        getRoleInfo(
           currentUserRole
         );
 
 
-      const displayName =
+      const name =
         currentUser.displayName ||
         "Użytkownik";
 
 
-      const photoURL =
+      const photo =
         cleanPhotoUrl(
           currentUser.photoURL
         );
@@ -3539,7 +4091,7 @@
 
       $("#userName")
         .textContent =
-        displayName;
+        name;
 
 
       $("#userRole")
@@ -3554,7 +4106,7 @@
 
       $("#profileSideName")
         .textContent =
-        displayName;
+        name;
 
 
       $("#profileSideRole")
@@ -3567,15 +4119,24 @@
         role.color;
 
 
-      if (photoURL) {
+      $("#profileModalName")
+        .textContent =
+        name;
+
+
+      $("#profileModalEmail")
+        .textContent =
+        currentUser.email ||
+        "";
+
+
+      if (photo) {
 
         $("#userAvatar")
           .innerHTML =
           `
             <img
-              src="${escapeHtml(
-                photoURL
-              )}"
+              src="${escapeHtml(photo)}"
               alt=""
             >
           `;
@@ -3585,9 +4146,7 @@
           .innerHTML =
           `
             <img
-              src="${escapeHtml(
-                photoURL
-              )}"
+              src="${escapeHtml(photo)}"
               alt=""
             >
           `;
@@ -3597,9 +4156,7 @@
           .innerHTML =
           `
             <img
-              src="${escapeHtml(
-                photoURL
-              )}"
+              src="${escapeHtml(photo)}"
               alt=""
             >
           `;
@@ -3607,9 +4164,7 @@
       } else {
 
         const initial =
-          getInitial(
-            displayName
-          );
+          getInitial(name);
 
 
         $("#userAvatar")
@@ -3628,22 +4183,11 @@
 
       }
 
-
-      $("#profileModalName")
-        .textContent =
-        displayName;
-
-
-      $("#profileModalEmail")
-        .textContent =
-        currentUser.email ||
-        "";
-
     }
 
 
     /* ========================================================
-       SAVE USER PROFILE
+       SAVE USER
        ======================================================== */
 
     async function saveUserProfile(
@@ -3654,14 +4198,6 @@
         return;
       }
 
-
-      /*
-       * Bardzo ważne:
-       * nie zapisujemy tutaj role.
-       *
-       * Dzięki temu ręcznie nadana rola
-       * w Firebase nie zostanie nadpisana.
-       */
 
       try {
 
@@ -3701,13 +4237,8 @@
 
       } catch (error) {
 
-        /*
-         * Jeżeli reguły Firestore nie pozwalają
-         * na zapis profilu, logowanie nadal działa.
-         */
-
         console.warn(
-          "Profil nie został zapisany w Firestore:",
+          "Profil nie został zapisany:",
           error
         );
 
@@ -3717,7 +4248,7 @@
 
 
     /* ========================================================
-       GET CURRENT USER ROLE
+       LOAD ROLE
        ======================================================== */
 
     async function loadCurrentUserRole() {
@@ -3779,7 +4310,7 @@
 
 
     /* ========================================================
-       GOOGLE LOGIN
+       LOGIN
        ======================================================== */
 
     $("#googleLogin").onclick =
@@ -3799,9 +4330,7 @@
 
 
         button.innerHTML =
-          `
-            ⏳ Logowanie...
-          `;
+          "⏳ Logowanie...";
 
 
         try {
@@ -3823,6 +4352,7 @@
             provider
           );
 
+
         } catch (error) {
 
           console.error(
@@ -3834,6 +4364,7 @@
           if (
             error.code ===
               "auth/popup-blocked" ||
+
             error.code ===
               "auth/popup-closed-by-user"
           ) {
@@ -3929,7 +4460,7 @@
       ) {
 
         return (
-          "Ta domena nie znajduje się w Authorized domains Firebase."
+          "Ta domena nie jest dodana do Authorized domains Firebase."
         );
 
       }
@@ -4000,57 +4531,81 @@
               "hidden"
             );
 
-
-          currentUserRole =
-            "student";
-
-
           return;
 
         }
 
 
         /*
-         * Firebase Auth posiada tutaj
-         * prawdziwe dane Google:
-         *
-         * user.displayName
-         * user.email
-         * user.photoURL
+         * Czyścimy cache aktualnego użytkownika,
+         * aby po zmianach wszystko było świeże.
+         */
+
+        userCache.delete(
+          user.uid
+        );
+
+
+        /*
+         * Najpierw pokazujemy dane
+         * bezpośrednio z Firebase Auth.
          */
 
         updateUserUI();
 
+
+        /*
+         * Potem zapisujemy profil.
+         */
 
         await saveUserProfile(
           user
         );
 
 
+        /*
+         * Pobieramy rolę.
+         */
+
         await loadCurrentUserRole();
 
 
         /*
-         * Domyślny efekt zależny od roli
-         * obowiązuje tylko wtedy, gdy user
-         * nie wybrał własnego efektu.
+         * Jeżeli użytkownik nie ma jeszcze
+         * własnego efektu, używamy domyślnego
+         * efektu jego roli.
          */
 
-        const savedEffect =
+        const storedEffect =
           localStorage.getItem(
             "classhub_message_effect"
           );
 
 
-        if (savedEffect) {
+        if (
+          storedEffect &&
+          [
+            "none",
+            "fire",
+            "ice",
+            "electric",
+            "neon",
+            "rainbow",
+            "glitch",
+            "plasma",
+            "sparkle"
+          ].includes(
+            storedEffect
+          )
+        ) {
 
           selectedEffect =
-            savedEffect;
+            storedEffect;
 
         } else {
 
           selectedEffect =
-            getRole(
+            getRoleInfo(
               currentUserRole
             ).defaultEffect;
 
@@ -4110,9 +4665,11 @@
           return;
         }
 
+
         updateUserUI();
 
         updateProfileEffectUI();
+
 
         $("#profileModal")
           .classList.add(
@@ -4152,7 +4709,7 @@
 
 
     /* ========================================================
-       PROFILE EFFECT
+       EFFECT UI
        ======================================================== */
 
     document
@@ -4165,61 +4722,25 @@
           button.onclick =
             () => {
 
-              const effect =
+              selectedEffect =
                 button.getAttribute(
                   "data-profile-effect"
                 );
 
 
-              selectedEffect =
-                effect;
-
-
               localStorage.setItem(
                 "classhub_message_effect",
-                effect
+                selectedEffect
               );
 
 
               updateEffectUI();
-
-              updateProfileEffectUI();
 
             };
 
         }
       );
 
-
-    function updateProfileEffectUI() {
-
-      document
-        .querySelectorAll(
-          "[data-profile-effect]"
-        )
-        .forEach(
-          (button) => {
-
-            const value =
-              button.getAttribute(
-                "data-profile-effect"
-              );
-
-
-            button.classList.toggle(
-              "active",
-              value === selectedEffect
-            );
-
-          }
-        );
-
-    }
-
-
-    /* ========================================================
-       INPUT EFFECT CHIPS
-       ======================================================== */
 
     document
       .querySelectorAll(
@@ -4262,6 +4783,7 @@
 
             button.classList.toggle(
               "active",
+
               button.getAttribute(
                 "data-effect"
               ) ===
@@ -4277,6 +4799,30 @@
     }
 
 
+    function updateProfileEffectUI() {
+
+      document
+        .querySelectorAll(
+          "[data-profile-effect]"
+        )
+        .forEach(
+          (button) => {
+
+            button.classList.toggle(
+              "active",
+
+              button.getAttribute(
+                "data-profile-effect"
+              ) ===
+                selectedEffect
+            );
+
+          }
+        );
+
+    }
+
+
     /* ========================================================
        SEND MESSAGE
        ======================================================== */
@@ -4284,9 +4830,7 @@
     async function sendMessage() {
 
       if (!currentUser) {
-
         return;
-
       }
 
 
@@ -4299,9 +4843,7 @@
 
 
       if (!text) {
-
         return;
-
       }
 
 
@@ -4317,23 +4859,13 @@
 
 
       const effect =
-        selectedEffect ||
-        getRole(
-          currentUserRole
-        ).defaultEffect;
+        selectedEffect || "none";
 
-
-      /*
-       * To jest kluczowa poprawka.
-       *
-       * Imię + avatar są pobierane
-       * BEZPOŚREDNIO z Firebase Auth
-       * i zapisywane wraz z wiadomością.
-       */
 
       try {
 
-        input.value = "";
+        input.value =
+          "";
 
 
         await addDoc(
@@ -4369,6 +4901,7 @@
 
           }
         );
+
 
       } catch (error) {
 
@@ -4429,14 +4962,7 @@
       }
 
 
-      if (!db) {
-
-        return;
-
-      }
-
-
-      const config =
+      const channelInfo =
         CHANNEL_CONFIG[
           channel
         ] ||
@@ -4450,12 +4976,17 @@
 
       $("#channelIcon")
         .textContent =
-        config.icon;
+        channelInfo.icon;
 
 
       $("#channelDesc")
         .textContent =
-        config.description;
+        channelInfo.description;
+
+
+      $("#msgInput")
+        .placeholder =
+        `Napisz wiadomość na #${channel}...`;
 
 
       $("#msgs").innerHTML =
@@ -4463,11 +4994,13 @@
           <div class="empty">
 
             <div>
+
               <div class="empty-icon">
                 ✦
               </div>
 
               Ładowanie wiadomości...
+
             </div>
 
           </div>
@@ -4552,14 +5085,11 @@
             }
 
 
-            container.innerHTML =
-              "";
-
-
             /*
-             * Przy starych wiadomościach,
+             * Pobieramy profile autorów.
+             * Dzięki temu także starsze wiadomości,
              * które nie mają displayName/photoURL,
-             * próbujemy pobrać profil autora.
+             * mogą zostać uzupełnione z users/{uid}.
              */
 
             const enriched =
@@ -4603,6 +5133,18 @@
               );
 
 
+            /*
+             * Czyścimy kontener.
+             */
+
+            container.innerHTML =
+              "";
+
+
+            /*
+             * Renderujemy.
+             */
+
             enriched.forEach(
               (message) => {
 
@@ -4614,6 +5156,12 @@
               }
             );
 
+
+            /*
+             * Scroll na sam dół.
+             * requestAnimationFrame gwarantuje,
+             * że layout został już wyrenderowany.
+             */
 
             requestAnimationFrame(
               () => {
@@ -4643,9 +5191,7 @@
 
                     <div
                       class="empty-icon"
-                      style="
-                        filter:none;
-                      "
+                      style="filter:none;"
                     >
                       ⚠️
                     </div>
@@ -4681,7 +5227,7 @@
 
 
       const roleInfo =
-        getRole(
+        getRoleInfo(
           role
         );
 
@@ -4697,20 +5243,26 @@
         );
 
 
+      const validEffects = [
+
+        "fire",
+        "ice",
+        "electric",
+        "neon",
+        "rainbow",
+        "glitch",
+        "plasma",
+        "sparkle"
+
+      ];
+
+
       const effect =
-        [
-          "fire",
-          "ice",
-          "electric",
-          "neon",
-          "rainbow"
-        ].includes(
+        validEffects.includes(
           message.effect
         )
-          ?
-            message.effect
-          :
-            "none";
+          ? message.effect
+          : "none";
 
 
       let time =
@@ -4741,20 +5293,16 @@
       }
 
 
-      const avatar =
+      const avatarHtml =
         photoURL
 
           ?
 
           `
-            <div
-              class="message-avatar"
-            >
+            <div class="message-avatar">
 
               <img
-                src="${escapeHtml(
-                  photoURL
-                )}"
+                src="${escapeHtml(photoURL)}"
                 alt=""
               >
 
@@ -4764,11 +5312,11 @@
           :
 
           `
-            <div
-              class="message-avatar"
-            >
-              ${getInitial(
-                displayName
+            <div class="message-avatar">
+              ${escapeHtml(
+                getInitial(
+                  displayName
+                )
               )}
             </div>
           `;
@@ -4791,27 +5339,33 @@
               "
             >
               ${roleInfo.icon}
+
               ${escapeHtml(
                 roleInfo.name
               )}
+
             </span>
           `;
 
 
-      const element =
+      const el =
         document.createElement(
           "div"
         );
 
 
-      element.className =
-        `message ${effect !== "none" ? `effect-${effect}` : ""} role-${role}`;
+      el.className =
+        `message role-${role} ${
+          effect !== "none"
+            ? `effect-${effect}`
+            : ""
+        }`;
 
 
-      element.innerHTML =
+      el.innerHTML =
         `
 
-          ${avatar}
+          ${avatarHtml}
 
           <div class="message-body">
 
@@ -4826,31 +5380,37 @@
                     ${roleInfo.color}28;
                 "
               >
+
                 ${escapeHtml(
                   displayName
                 )}
+
               </span>
 
+
               ${badge}
+
 
               <span
                 class="message-time"
               >
+
                 ${escapeHtml(
                   time
                 )}
+
               </span>
 
             </div>
 
 
-            <div
-              class="message-text"
-            >
+            <div class="message-text">
+
               ${escapeHtml(
                 message.text ||
                 ""
               )}
+
             </div>
 
           </div>
@@ -4859,7 +5419,7 @@
 
 
       container.appendChild(
-        element
+        el
       );
 
     }
@@ -4905,20 +5465,9 @@
                 );
 
 
-              $("#msgInput")
-                .placeholder =
-                `Napisz wiadomość na #${currentChannel}...`;
-
-
-              if (
-                currentUser
-              ) {
-
-                subscribeMessages(
-                  currentChannel
-                );
-
-              }
+              subscribeMessages(
+                currentChannel
+              );
 
             };
 
