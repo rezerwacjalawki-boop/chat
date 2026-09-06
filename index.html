@@ -4,425 +4,1330 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>ClassHub — Przestrzeń Klasy</title>
 
   <style>
     :root {
-      --bg-main: #13131a;
-      --bg-sidebar: #0d0d11;
-      --bg-panel: #181820;
-      --bg-hover: #22222d;
-      --accent: #5865f2;
-      --accent-hover: #4752c4;
-      --text-main: #dbdee1;
-      --text-muted: #949ba4;
-      --border: #232428;
-      --danger: #f23f43;
-      --success: #23a55a;
-    }
+      --bg: #080a12;
+      --bg-soft: #0d101a;
+      --panel: rgba(17, 20, 32, 0.82);
+      --panel-strong: rgba(20, 24, 38, 0.96);
 
-    .light-theme {
-      --bg-main: #ffffff;
-      --bg-sidebar: #f2f3f5;
-      --bg-panel: #e3e5e8;
-      --bg-hover: #dbdee1;
-      --accent: #5865f2;
-      --accent-hover: #4752c4;
-      --text-main: #060607;
-      --text-muted: #4e5058;
-      --border: #d8d8d8;
+      --text: #f4f7ff;
+      --muted: #8d96aa;
+
+      --accent: #6c63ff;
+      --accent-2: #00d9ff;
+      --accent-3: #ff4fd8;
+
+      --green: #29e58c;
+      --red: #ff5370;
+
+      --border: rgba(255, 255, 255, 0.08);
+
+      --shadow:
+        0 20px 60px rgba(0, 0, 0, 0.45);
+
+      --glow:
+        0 0 30px rgba(108, 99, 255, 0.20);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family:
+        Inter,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
     }
 
+    html,
     body {
-      background: var(--bg-main);
-      color: var(--text-main);
-      height: 100vh;
-      display: flex;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
     }
 
-    /* LAYOUT */
-    .sidebar-left {
-      width: 260px;
-      background: var(--bg-sidebar);
-      border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-    }
+    body {
+      background:
+        radial-gradient(
+          circle at 20% 10%,
+          rgba(108, 99, 255, 0.15),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 80% 90%,
+          rgba(0, 217, 255, 0.10),
+          transparent 30%
+        ),
+        var(--bg);
 
-    .chat-area {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      background: var(--bg-main);
+      color: var(--text);
       position: relative;
     }
 
-    .sidebar-right {
-      width: 280px;
-      background: var(--bg-sidebar);
-      border-left: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      padding: 16px;
-      gap: 16px;
-      overflow-y: auto;
+
+    /* =========================================================
+       LASER BACKGROUND
+       ========================================================= */
+
+    .space {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    /* BRANDING & CHANNELS */
+    .space::before,
+    .space::after {
+      content: "";
+      position: absolute;
+      width: 80vw;
+      height: 2px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(108, 99, 255, 0.0),
+          rgba(108, 99, 255, 0.85),
+          rgba(0, 217, 255, 0.8),
+          transparent
+        );
+
+      filter: blur(1px);
+
+      animation: laserMove 9s linear infinite;
+    }
+
+    .space::before {
+      top: 18%;
+      left: -20%;
+      transform: rotate(17deg);
+    }
+
+    .space::after {
+      top: 67%;
+      left: -10%;
+      transform: rotate(-13deg);
+      animation-delay: -4s;
+    }
+
+    .laser {
+      position: absolute;
+      width: 55vw;
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 79, 216, 0.0),
+          rgba(255, 79, 216, 0.8),
+          rgba(0, 217, 255, 0.7),
+          transparent
+        );
+
+      filter: blur(1px);
+      opacity: 0.6;
+
+      animation: laserFloat 13s linear infinite;
+    }
+
+    .laser:nth-child(1) {
+      top: 30%;
+      left: -10%;
+      transform: rotate(8deg);
+    }
+
+    .laser:nth-child(2) {
+      top: 80%;
+      left: 30%;
+      transform: rotate(-19deg);
+      animation-delay: -5s;
+    }
+
+    .laser:nth-child(3) {
+      top: 45%;
+      left: 55%;
+      transform: rotate(25deg);
+      animation-delay: -8s;
+    }
+
+    @keyframes laserMove {
+      0% {
+        transform: translateX(-30%) rotate(17deg);
+      }
+
+      100% {
+        transform: translateX(130%) rotate(17deg);
+      }
+    }
+
+    @keyframes laserFloat {
+      0% {
+        transform: translateX(-50%) rotate(8deg);
+      }
+
+      50% {
+        transform: translateX(30%) rotate(12deg);
+      }
+
+      100% {
+        transform: translateX(120%) rotate(8deg);
+      }
+    }
+
+
+    /* =========================================================
+       APP
+       ========================================================= */
+
+    .app {
+      position: relative;
+      z-index: 2;
+
+      width: 100%;
+      height: 100%;
+
+      display: grid;
+
+      grid-template-columns:
+        255px
+        minmax(0, 1fr)
+        280px;
+
+      backdrop-filter: blur(12px);
+    }
+
+
+    /* =========================================================
+       LEFT SIDEBAR
+       ========================================================= */
+
+    .sidebar-left {
+      height: 100%;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(11, 14, 24, 0.96),
+          rgba(7, 9, 16, 0.94)
+        );
+
+      border-right: 1px solid var(--border);
+
+      display: flex;
+      flex-direction: column;
+
+      box-shadow: var(--shadow);
+    }
+
     .brand {
-      padding: 16px;
-      font-weight: bold;
-      font-size: 1.1rem;
-      border-bottom: 1px solid var(--border);
+      height: 72px;
+
       display: flex;
       align-items: center;
-      gap: 10px;
-    }
-
-    .brand span {
-      background: var(--accent);
-      color: white;
-      padding: 4px 8px;
-      border-radius: 6px;
-    }
-
-    .nav-section {
-      padding: 12px;
-      overflow-y: auto;
-      flex: 1;
-    }
-
-    .nav-title {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      font-weight: bold;
-      margin-bottom: 8px;
-      letter-spacing: 0.5px;
-    }
-
-    .nav-item {
-      padding: 8px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 2px;
-      transition: 0.2s;
-    }
-
-    .nav-item:hover,
-    .nav-item.active {
-      background: var(--bg-hover);
-      color: var(--text-main);
-    }
-
-    /* HEADER & CHAT MESSAGES */
-    .chat-header {
-      padding: 16px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--bg-main);
-    }
-
-    .messages-container {
-      flex: 1;
-      overflow-y: auto;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .message {
-      display: flex;
       gap: 12px;
-      align-items: flex-start;
-    }
 
-    .message img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
+      padding: 0 18px;
 
-    .message-content {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .message-header {
-      display: flex;
-      gap: 8px;
-      align-items: baseline;
-    }
-
-    .message-username {
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .message-time {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    .message-text {
-      font-size: 0.9rem;
-      color: var(--text-main);
-      line-height: 1.4;
-      word-break: break-word;
-    }
-
-    .day {
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--text-muted);
       border-bottom: 1px solid var(--border);
-      line-height: 0.1em;
-      margin: 15px 0;
+
+      font-size: 19px;
+      font-weight: 800;
+
+      letter-spacing: 0.2px;
     }
 
-    .day span {
-      background: var(--bg-main);
-      padding: 0 10px;
-    }
+    .brand-logo {
+      width: 38px;
+      height: 38px;
 
-    /* INPUT AREA */
-    .chat-input-area {
-      padding: 20px;
-      background: var(--bg-main);
-    }
-
-    .input-box {
-      background: var(--bg-panel);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      padding: 10px 16px;
-      gap: 12px;
-      border: 1px solid var(--border);
-    }
-
-    .input-box input {
-      flex: 1;
-      background: none;
-      border: none;
-      color: var(--text-main);
-      font-size: 0.95rem;
-      outline: none;
-    }
-
-    .input-box button {
-      background: var(--accent);
-      border: none;
-      color: white;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: 0.2s;
+
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--accent),
+          var(--accent-2)
+        );
+
+      color: white;
+
+      box-shadow:
+        0 0 25px rgba(108, 99, 255, 0.35);
+
+      animation: logoPulse 3s ease-in-out infinite;
     }
 
-    .input-box button:hover {
-      background: var(--accent-hover);
+    @keyframes logoPulse {
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow:
+          0 0 20px rgba(108, 99, 255, 0.25);
+      }
+
+      50% {
+        transform: scale(1.04);
+        box-shadow:
+          0 0 35px rgba(0, 217, 255, 0.28);
+      }
     }
 
-    /* PANELS & SIDEBAR RIGHT */
-    .panel-card {
-      background: var(--bg-panel);
-      border-radius: 8px;
-      padding: 12px;
-      border: 1px solid var(--border);
+
+    /* =========================================================
+       NAVIGATION
+       ========================================================= */
+
+    .nav {
+      padding: 18px 12px;
+      flex: 1;
+      overflow-y: auto;
     }
 
-    .panel-title {
-      font-size: 0.8rem;
+    .nav-title {
+      color: var(--muted);
+
+      font-size: 11px;
+      font-weight: 800;
+
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-      font-weight: bold;
+
+      letter-spacing: 1px;
+
+      padding: 0 10px 8px;
     }
 
-    .action-btn {
-      width: 100%;
-      padding: 8px;
-      background: var(--bg-hover);
-      border: none;
-      border-radius: 6px;
-      color: var(--text-main);
+    .nav-item {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      padding: 10px 12px;
+      margin-bottom: 5px;
+
+      color: var(--muted);
+
+      border-radius: 10px;
+
       cursor: pointer;
-      text-align: left;
-      margin-bottom: 6px;
-      font-size: 0.85rem;
-      transition: 0.2s;
+
+      transition:
+        0.2s ease;
+
+      user-select: none;
     }
 
-    .action-btn:hover {
-      background: var(--border);
+    .nav-item:hover {
+      color: var(--text);
+
+      background:
+        rgba(255, 255, 255, 0.055);
+
+      transform:
+        translateX(3px);
     }
 
-    /* USER PROFILE FOOTER */
+    .nav-item.active {
+      color: white;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(108, 99, 255, 0.25),
+          rgba(0, 217, 255, 0.08)
+        );
+
+      box-shadow:
+        inset 3px 0 0 var(--accent);
+    }
+
+    .nav-item.active::after {
+      content: "";
+
+      position: absolute;
+
+      right: 10px;
+
+      width: 5px;
+      height: 5px;
+
+      border-radius: 50%;
+
+      background: var(--accent-2);
+
+      box-shadow:
+        0 0 10px var(--accent-2);
+    }
+
+
+    /* =========================================================
+       THEME BUTTON
+       ========================================================= */
+
+    .sidebar-controls {
+      padding: 12px;
+    }
+
+    .theme-btn {
+      width: 100%;
+
+      border: 1px solid var(--border);
+
+      background:
+        rgba(255, 255, 255, 0.035);
+
+      color: var(--text);
+
+      padding: 10px;
+
+      border-radius: 10px;
+
+      cursor: pointer;
+
+      transition: 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      background:
+        rgba(255, 255, 255, 0.07);
+
+      transform:
+        translateY(-1px);
+    }
+
+
+    /* =========================================================
+       USER FOOTER
+       ========================================================= */
+
     .user-footer {
       padding: 12px;
-      background: var(--bg-sidebar);
-      border-top: 1px solid var(--border);
+
+      border-top:
+        1px solid var(--border);
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
+      background:
+        rgba(255, 255, 255, 0.018);
     }
 
     .user-info {
       display: flex;
       align-items: center;
       gap: 10px;
+
+      min-width: 0;
     }
 
     .user-avatar {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
+
       border-radius: 50%;
-      background: var(--accent);
+
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-weight: bold;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--accent),
+          var(--accent-2)
+        );
+
+      font-size: 14px;
+      font-weight: 800;
+
       overflow: hidden;
+
+      flex-shrink: 0;
+
+      border:
+        2px solid rgba(255, 255, 255, 0.08);
+
+      box-shadow:
+        0 0 20px rgba(108, 99, 255, 0.22);
+
+      animation:
+        avatarAppear 0.55s cubic-bezier(.2,.8,.2,1);
     }
 
     .user-avatar img {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
     }
 
+    @keyframes avatarAppear {
+      from {
+        opacity: 0;
+        transform:
+          scale(0.7)
+          rotate(-10deg);
+      }
+
+      to {
+        opacity: 1;
+        transform:
+          scale(1)
+          rotate(0deg);
+      }
+    }
+
     .user-details {
+      min-width: 0;
+
       display: flex;
       flex-direction: column;
+      gap: 2px;
     }
 
     .user-name {
-      font-size: 0.85rem;
-      font-weight: 600;
+      max-width: 130px;
+
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      font-size: 13px;
+      font-weight: 700;
     }
 
     .user-status {
-      font-size: 0.7rem;
-      color: var(--text-muted);
+      color: var(--muted);
+      font-size: 11px;
     }
 
-    /* MODAL LOGIN OVERLAY */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      opacity: 0;
-      pointer-events: none;
-      transition: 0.3s;
+    .logout-btn {
+      width: 34px;
+      height: 34px;
+
+      border: none;
+      border-radius: 9px;
+
+      background: transparent;
+
+      color: var(--muted);
+
+      cursor: pointer;
+
+      transition: 0.2s;
     }
 
-    .modal-overlay.show {
-      opacity: 1;
-      pointer-events: auto;
+    .logout-btn:hover {
+      color: white;
+
+      background:
+        rgba(255, 83, 112, 0.15);
+
+      transform: scale(1.05);
     }
 
-    .modal {
-      background: var(--bg-panel);
-      padding: 30px;
-      border-radius: 12px;
-      width: 350px;
-      text-align: center;
-      border: 1px solid var(--border);
+
+    /* =========================================================
+       CHAT
+       ========================================================= */
+
+    .chat-area {
+      min-width: 0;
+
       display: flex;
       flex-direction: column;
-      gap: 16px;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(8, 10, 18, 0.70),
+          rgba(8, 10, 18, 0.86)
+        );
     }
 
-    /* GOOGLE BUTTON */
-    .btn-google {
-      background: #ffffff;
-      color: #222222;
-      border: 1px solid #dadce0;
-      padding: 10px;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
-      width: 100%;
-      transition: 0.2s;
+    .chat-header {
+      min-height: 72px;
+
+      padding:
+        0 22px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      border-bottom:
+        1px solid var(--border);
+
+      background:
+        rgba(8, 10, 18, 0.55);
+
+      backdrop-filter:
+        blur(16px);
+    }
+
+    .channel-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .channel-hash {
+      color: var(--accent-2);
+      font-size: 24px;
+
+      text-shadow:
+        0 0 15px rgba(0, 217, 255, 0.45);
+    }
+
+    .channel-name {
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .channel-description {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+
+    /* =========================================================
+       MESSAGES
+       ========================================================= */
+
+    .messages {
+      flex: 1;
+
+      padding: 24px;
+
+      overflow-y: auto;
+
+      scroll-behavior: smooth;
+    }
+
+    .messages::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    .messages::-webkit-scrollbar-thumb {
+      background:
+        rgba(255, 255, 255, 0.08);
+
+      border-radius: 20px;
+    }
+
+    .message {
+      display: flex;
+      align-items: flex-start;
+
+      gap: 12px;
+
+      padding: 10px 12px;
+
+      border-radius: 13px;
+
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+
+      animation:
+        messageIn 0.38s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .message:hover {
+      background:
+        rgba(255, 255, 255, 0.025);
+
+      transform:
+        translateX(2px);
+    }
+
+    @keyframes messageIn {
+      from {
+        opacity: 0;
+        transform:
+          translateY(12px)
+          scale(0.985);
+      }
+
+      to {
+        opacity: 1;
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+    .message-avatar {
+      width: 40px;
+      height: 40px;
+
+      flex-shrink: 0;
+
+      border-radius: 50%;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--accent),
+          var(--accent-3)
+        );
+
       display: flex;
       align-items: center;
       justify-content: center;
+
+      font-weight: 800;
+
+      box-shadow:
+        0 0 17px rgba(108, 99, 255, 0.14);
+    }
+
+    .message-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .message-body {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .message-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+
+      margin-bottom: 3px;
+    }
+
+    .message-author {
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .message-time {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .message-text {
+      color: #dce2ef;
+
+      font-size: 14px;
+
+      line-height: 1.5;
+
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+
+    /* =========================================================
+       EMPTY STATE
+       ========================================================= */
+
+    .empty {
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      color: var(--muted);
+    }
+
+    .empty-box {
+      animation:
+        emptyFloat 3.5s ease-in-out infinite;
+    }
+
+    .empty-icon {
+      font-size: 42px;
+
+      margin-bottom: 10px;
+
+      filter:
+        drop-shadow(
+          0 0 18px
+          rgba(108, 99, 255, 0.35)
+        );
+    }
+
+    @keyframes emptyFloat {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+
+    /* =========================================================
+       INPUT
+       ========================================================= */
+
+    .input-area {
+      padding: 16px 20px 20px;
+    }
+
+    .input-box {
+      min-height: 55px;
+
+      display: flex;
+      align-items: center;
+
       gap: 10px;
+
+      padding: 7px;
+
+      border:
+        1px solid rgba(255, 255, 255, 0.10);
+
+      border-radius: 15px;
+
+      background:
+        rgba(20, 24, 38, 0.84);
+
+      backdrop-filter:
+        blur(15px);
+
+      box-shadow:
+        var(--shadow),
+        var(--glow);
+
+      transition:
+        border 0.2s,
+        box-shadow 0.2s;
+    }
+
+    .input-box:focus-within {
+      border-color:
+        rgba(108, 99, 255, 0.55);
+
+      box-shadow:
+        0 0 0 3px rgba(108, 99, 255, 0.08),
+        0 15px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    #msgInput {
+      flex: 1;
+
+      min-width: 0;
+
+      background: transparent;
+
+      border: none;
+      outline: none;
+
+      color: white;
+
+      padding:
+        0 10px;
+
       font-size: 14px;
     }
 
-    .btn-google:hover {
-      background: #f8f9fa;
+    #msgInput::placeholder {
+      color:
+        #727a8e;
+    }
+
+    .send-btn {
+      width: 42px;
+      height: 42px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--accent),
+          var(--accent-2)
+        );
+
+      color: white;
+
+      cursor: pointer;
+
+      font-size: 18px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      box-shadow:
+        0 0 20px
+        rgba(108, 99, 255, 0.25);
+
+      transition:
+        0.2s ease;
+    }
+
+    .send-btn:hover {
+      transform:
+        translateY(-2px)
+        rotate(-3deg);
+
+      box-shadow:
+        0 0 28px
+        rgba(0, 217, 255, 0.30);
+    }
+
+    .send-btn:active {
+      transform:
+        scale(0.94);
+    }
+
+
+    /* =========================================================
+       RIGHT PANEL
+       ========================================================= */
+
+    .sidebar-right {
+      padding: 18px;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(11, 14, 24, 0.92),
+          rgba(7, 9, 16, 0.96)
+        );
+
+      border-left:
+        1px solid var(--border);
+
+      overflow-y: auto;
+    }
+
+    .card {
+      background:
+        rgba(255, 255, 255, 0.035);
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 15px;
+
+      padding: 15px;
+
+      margin-bottom: 14px;
+
+      box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.15);
+
+      transition:
+        transform 0.2s ease,
+        border 0.2s ease;
+    }
+
+    .card:hover {
+      transform:
+        translateY(-2px);
+
+      border-color:
+        rgba(108, 99, 255, 0.25);
+    }
+
+    .card-title {
+      color: var(--muted);
+
+      font-size: 10px;
+
+      font-weight: 800;
+
+      letter-spacing: 1px;
+
+      text-transform: uppercase;
+
+      margin-bottom: 12px;
+    }
+
+    .event-title {
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .event-meta {
+      margin-top: 5px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+    }
+
+    .quick-btn {
+      width: 100%;
+
+      text-align: left;
+
+      border:
+        1px solid transparent;
+
+      background:
+        rgba(255, 255, 255, 0.04);
+
+      color: var(--text);
+
+      padding: 10px 11px;
+
+      border-radius: 10px;
+
+      margin-top: 7px;
+
+      cursor: pointer;
+
+      transition:
+        0.2s ease;
+    }
+
+    .quick-btn:hover {
+      background:
+        rgba(108, 99, 255, 0.12);
+
+      border-color:
+        rgba(108, 99, 255, 0.20);
+
+      transform:
+        translateX(2px);
+    }
+
+
+    /* =========================================================
+       LOGIN
+       ========================================================= */
+
+    .login-overlay {
+      position: fixed;
+      inset: 0;
+
+      z-index: 100;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(108, 99, 255, 0.09),
+          rgba(0, 0, 0, 0.82)
+        );
+
+      backdrop-filter:
+        blur(12px);
+
+      transition:
+        opacity 0.4s ease;
+    }
+
+    .login-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .login-card {
+      width: min(420px, calc(100% - 30px));
+
+      padding: 32px;
+
+      border:
+        1px solid rgba(255, 255, 255, 0.10);
+
+      border-radius: 22px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(20, 24, 38, 0.96),
+          rgba(10, 12, 21, 0.96)
+        );
+
+      box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.65),
+        0 0 50px rgba(108, 99, 255, 0.13);
+
+      text-align: center;
+
+      animation:
+        loginIn 0.55s cubic-bezier(.2,.8,.2,1);
+    }
+
+    @keyframes loginIn {
+      from {
+        opacity: 0;
+        transform:
+          translateY(18px)
+          scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+    .login-logo {
+      width: 72px;
+      height: 72px;
+
+      margin:
+        0 auto 18px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 20px;
+
+      font-size: 28px;
+      font-weight: 900;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--accent),
+          var(--accent-2)
+        );
+
+      box-shadow:
+        0 0 45px rgba(108, 99, 255, 0.32);
+
+      animation:
+        logoPulse 3s ease-in-out infinite;
+    }
+
+    .login-title {
+      font-size: 25px;
+      font-weight: 900;
+    }
+
+    .login-subtitle {
+      margin-top: 8px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.5;
+    }
+
+    .google-btn {
+      width: 100%;
+
+      margin-top: 22px;
+
+      min-height: 48px;
+
+      border-radius: 13px;
+
+      border:
+        1px solid rgba(255, 255, 255, 0.12);
+
+      background: white;
+
+      color: #202124;
+
+      font-weight: 800;
+
+      font-size: 14px;
+
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+
+      transition:
+        0.2s ease;
+
+      box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.22);
+    }
+
+    .google-btn:hover {
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.35);
     }
 
     .google-icon {
-      width: 18px;
-      height: 18px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
+      font-weight: 900;
+      color: #4285f4;
     }
 
-    .error {
-      color: var(--danger);
-      font-size: 0.8rem;
+    .login-error {
+      margin-top: 12px;
+
+      color: var(--red);
+
+      font-size: 12px;
+
+      line-height: 1.4;
+
+      min-height: 18px;
     }
 
-    .empty-state {
-      text-align: center;
-      color: var(--text-muted);
-      margin: auto;
-      padding: 40px;
+    .login-foot {
+      margin-top: 20px;
+
+      color: #626b7c;
+
+      font-size: 10px;
     }
 
-    /* RESPONSYWNOŚĆ */
-    @media (max-width: 900px) {
+
+    /* =========================================================
+       LIGHT THEME
+       ========================================================= */
+
+    body.light {
+      --bg: #edf1f9;
+      --bg-soft: #f8faff;
+
+      --text: #121521;
+      --muted: #687188;
+
+      --panel: rgba(255, 255, 255, 0.82);
+
+      background:
+        radial-gradient(
+          circle at 20% 10%,
+          rgba(108, 99, 255, 0.12),
+          transparent 30%
+        ),
+        #edf1f9;
+    }
+
+    body.light .sidebar-left,
+    body.light .sidebar-right {
+      background:
+        rgba(247, 249, 253, 0.92);
+    }
+
+    body.light .chat-area {
+      background:
+        rgba(246, 248, 252, 0.75);
+    }
+
+    body.light .chat-header {
+      background:
+        rgba(246, 248, 252, 0.65);
+    }
+
+    body.light .message-text {
+      color: #2f3749;
+    }
+
+    body.light .input-box {
+      background:
+        rgba(255, 255, 255, 0.9);
+    }
+
+    body.light #msgInput {
+      color: #111522;
+    }
+
+    body.light .card,
+    body.light .theme-btn,
+    body.light .quick-btn {
+      background:
+        rgba(255, 255, 255, 0.72);
+    }
+
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 1050px) {
+      .app {
+        grid-template-columns:
+          220px
+          minmax(0, 1fr);
+      }
+
       .sidebar-right {
         display: none;
       }
     }
 
-    @media (max-width: 650px) {
-      .sidebar-left {
-        width: 210px;
-      }
-    }
-
-    @media (max-width: 500px) {
-      .sidebar-left {
-        width: 180px;
+    @media (max-width: 700px) {
+      .app {
+        grid-template-columns:
+          70px
+          minmax(0, 1fr);
       }
 
-      .modal {
-        width: calc(100% - 30px);
+      .brand {
+        justify-content: center;
+        padding: 0;
+      }
+
+      .brand-name,
+      .nav-title,
+      .nav-item span.label,
+      .user-details,
+      .theme-btn {
+        display: none;
+      }
+
+      .nav-item {
+        justify-content: center;
+        padding: 12px;
+      }
+
+      .user-footer {
+        justify-content: center;
+      }
+
+      .logout-btn {
+        display: none;
+      }
+
+      .brand-logo {
+        width: 40px;
+        height: 40px;
+      }
+
+      .messages {
+        padding: 15px 10px;
+      }
+
+      .input-area {
+        padding:
+          10px 10px 14px;
       }
     }
   </style>
@@ -430,185 +1335,396 @@
 
 <body>
 
-  <!-- MODAL LOGOWANIA -->
-  <div id="login" class="modal-overlay show">
-    <div class="modal">
-      <h2>Witaj w ClassHub</h2>
+  <!-- =========================================================
+       ANIMOWANE LASERY
+       ========================================================= -->
 
-      <p style="font-size: 0.85rem; color: var(--text-muted);">
-        Zaloguj się przez konto Google, aby móc pisać wiadomości na czacie.
-      </p>
-
-      <button id="googleLogin" class="btn-google">
-        <span class="google-icon">G</span>
-        Zaloguj przez Google
-      </button>
-
-      <div id="loginNotice" class="error"></div>
-    </div>
+  <div class="space">
+    <div class="laser"></div>
+    <div class="laser"></div>
+    <div class="laser"></div>
   </div>
 
-  <!-- LEWY PANEL -->
-  <div class="sidebar-left">
 
-    <div class="brand">
-      <span>C</span> ClassHub
-    </div>
+  <!-- =========================================================
+       LOGIN
+       ========================================================= -->
 
-    <div class="nav-section">
+  <div
+    id="login"
+    class="login-overlay"
+  >
 
-      <div class="nav-title">Kanały</div>
+    <div class="login-card">
 
-      <div class="nav-item active" data-channel="ogólny">
-        # ogólny
+      <div class="login-logo">
+        C
       </div>
 
-      <div class="nav-item" data-channel="ogłoszenia">
-        📢 ogłoszenia
+      <div class="login-title">
+        Witaj w ClassHub
       </div>
 
-      <div class="nav-item" data-channel="szkoła">
-        🏫 szkoła
-      </div>
-
-      <div class="nav-item" data-channel="memy">
-        🎨 memy
-      </div>
-
-      <div class="nav-title" style="margin-top: 20px;">
-        Strefy
-      </div>
-
-      <div class="nav-item" data-channel="cichy-pokoj">
-        🌙 cichy pokój
-      </div>
-
-    </div>
-
-    <div style="padding: 10px 12px;">
-      <button id="themeToggle" class="action-btn" style="text-align: center;">
-        ☀️ / 🌙 Przełącz motyw
-      </button>
-    </div>
-
-    <div class="user-footer">
-
-      <div class="user-info">
-
-        <div id="userAvatar" class="user-avatar">
-          ?
-        </div>
-
-        <div class="user-details">
-          <span id="userName" class="user-name">
-            Niezalogowany
-          </span>
-
-          <span id="userStatusTag" class="user-status">
-            Offline
-          </span>
-        </div>
-
+      <div class="login-subtitle">
+        Prywatna przestrzeń Twojej klasy.
+        <br>
+        Zaloguj się przez konto Google,
+        aby wejść do czatu.
       </div>
 
       <button
-        id="logoutBtn"
-        style="background:none;border:none;color:var(--text-muted);cursor:pointer;"
-        title="Wyloguj"
+        id="googleLogin"
+        class="google-btn"
       >
-        🚪
+        <span class="google-icon">
+          G
+        </span>
+
+        Zaloguj przez Google
       </button>
+
+      <div
+        id="loginNotice"
+        class="login-error"
+      ></div>
+
+      <div class="login-foot">
+        ClassHub • Przestrzeń Klasy
+      </div>
 
     </div>
   </div>
 
-  <!-- GŁÓWNY OBSZAR CZATU -->
-  <div class="chat-area">
 
-    <div class="chat-header">
-      <span id="currentChannelName" style="font-weight: 600;">
-        # ogólny
-      </span>
-    </div>
+  <!-- =========================================================
+       APP
+       ========================================================= -->
 
-    <div id="msgs" class="messages-container">
-      <div class="empty-state">
-        Ładowanie wiadomości...
+  <div class="app">
+
+
+    <!-- =======================================================
+         LEFT SIDEBAR
+         ======================================================= -->
+
+    <aside class="sidebar-left">
+
+      <div class="brand">
+
+        <div class="brand-logo">
+          C
+        </div>
+
+        <div class="brand-name">
+          ClassHub
+        </div>
+
       </div>
-    </div>
 
-    <div class="chat-input-area">
 
-      <div class="input-box">
+      <nav class="nav">
 
-        <input
-          type="text"
-          id="msgInput"
-          placeholder="Napisz wiadomość na #ogólny..."
+        <div class="nav-title">
+          Kanały
+        </div>
+
+
+        <div
+          class="nav-item active"
+          data-channel="ogólny"
         >
+          💬
+          <span class="label">
+            ogólny
+          </span>
+        </div>
 
-        <button id="sendBtn">
-          ➤
+
+        <div
+          class="nav-item"
+          data-channel="ogłoszenia"
+        >
+          📢
+          <span class="label">
+            ogłoszenia
+          </span>
+        </div>
+
+
+        <div
+          class="nav-item"
+          data-channel="szkoła"
+        >
+          🏫
+          <span class="label">
+            szkoła
+          </span>
+        </div>
+
+
+        <div
+          class="nav-item"
+          data-channel="memy"
+        >
+          🎨
+          <span class="label">
+            memy
+          </span>
+        </div>
+
+
+        <div
+          class="nav-title"
+          style="margin-top: 22px;"
+        >
+          Strefy
+        </div>
+
+
+        <div
+          class="nav-item"
+          data-channel="cichy-pokoj"
+        >
+          🌙
+          <span class="label">
+            cichy pokój
+          </span>
+        </div>
+
+      </nav>
+
+
+      <div class="sidebar-controls">
+
+        <button
+          id="themeToggle"
+          class="theme-btn"
+        >
+          ☀️ / 🌙
+          <span class="label">
+            Motyw
+          </span>
         </button>
 
       </div>
 
-    </div>
+
+      <div class="user-footer">
+
+        <div class="user-info">
+
+          <div
+            id="userAvatar"
+            class="user-avatar"
+          >
+            ?
+          </div>
+
+          <div class="user-details">
+
+            <div
+              id="userName"
+              class="user-name"
+            >
+              Niezalogowany
+            </div>
+
+            <div
+              id="userStatusTag"
+              class="user-status"
+            >
+              Offline
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <button
+          id="logoutBtn"
+          class="logout-btn"
+          title="Wyloguj"
+        >
+          🚪
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =======================================================
+         CHAT
+         ======================================================= -->
+
+    <main class="chat-area">
+
+      <header class="chat-header">
+
+        <div class="channel-header">
+
+          <div class="channel-hash">
+            #
+          </div>
+
+          <div>
+
+            <div
+              id="currentChannelName"
+              class="channel-name"
+            >
+              ogólny
+            </div>
+
+            <div class="channel-description">
+              Rozmowy całej klasy
+            </div>
+
+          </div>
+
+        </div>
+
+      </header>
+
+
+      <section
+        id="msgs"
+        class="messages"
+      >
+
+        <div class="empty">
+
+          <div class="empty-box">
+
+            <div class="empty-icon">
+              ✦
+            </div>
+
+            Ładowanie wiadomości...
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <div class="input-area">
+
+        <div class="input-box">
+
+          <input
+            id="msgInput"
+            type="text"
+            autocomplete="off"
+            maxlength="1000"
+            placeholder="Napisz wiadomość na #ogólny..."
+          >
+
+          <button
+            id="sendBtn"
+            class="send-btn"
+            title="Wyślij"
+          >
+            ➤
+          </button>
+
+        </div>
+
+      </div>
+
+    </main>
+
+
+    <!-- =======================================================
+         RIGHT SIDEBAR
+         ======================================================= -->
+
+    <aside class="sidebar-right">
+
+      <div class="card">
+
+        <div class="card-title">
+          Najbliższe wydarzenie
+        </div>
+
+        <div class="event-title">
+          Matematyka — sprawdzian
+        </div>
+
+        <div class="event-meta">
+          06.09 • sala 12
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-title">
+          Szybkie akcje
+        </div>
+
+        <button class="quick-btn">
+          📊 &nbsp; Nowa ankieta
+        </button>
+
+        <button class="quick-btn">
+          💡 &nbsp; Mam pomysł
+        </button>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-title">
+          ClassHub
+        </div>
+
+        <div
+          style="
+            color:var(--muted);
+            font-size:12px;
+            line-height:1.5;
+          "
+        >
+          Mała przestrzeń klasy.
+          Dużo rozmów.
+          Zero chaosu.
+        </div>
+
+      </div>
+
+    </aside>
 
   </div>
 
-  <!-- PRAWY PANEL -->
-  <div class="sidebar-right">
 
-    <div class="panel-card">
+  <!-- =========================================================
+       FIREBASE
+       ========================================================= -->
 
-      <div class="panel-title">
-        Najbliższe wydarzenia
-      </div>
-
-      <div style="font-size: 0.85rem; font-weight: 600;">
-        Matematyka — sprawdzian
-      </div>
-
-      <div style="font-size: 0.75rem; color: var(--text-muted);">
-        06.09 · sala 12
-      </div>
-
-    </div>
-
-    <div class="panel-card">
-
-      <div class="panel-title">
-        Szybkie akcje
-      </div>
-
-      <button class="action-btn">
-        📊 Nowa ankieta
-      </button>
-
-      <button class="action-btn">
-        💡 Mam pomysł
-      </button>
-
-    </div>
-
-  </div>
-
-  <!-- FIREBASE -->
   <script type="module">
 
     import {
       initializeApp
-    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+    } from
+      "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
 
     import {
       getAuth,
       GoogleAuthProvider,
+      signInWithPopup,
       signInWithRedirect,
       getRedirectResult,
       onAuthStateChanged,
       signOut
-    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+    } from
+      "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
 
     import {
       getFirestore,
@@ -622,300 +1738,547 @@
       serverTimestamp,
       setDoc,
       doc
-    } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+    } from
+      "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
-    // ==========================================
-    // FIREBASE CONFIG
-    // ==========================================
+    /* ========================================================
+       FIREBASE CONFIG
+       ======================================================== */
 
     const firebaseConfig = {
-      apiKey: "AIzaSyBBU7MXXucUbvt1fEACLVln9dVzXOIe7o",
-      authDomain: "czacik-24d94.firebaseapp.com",
-      projectId: "czacik-24d94",
-      storageBucket: "czacik-24d94.firebasestorage.app",
-      messagingSenderId: "728180059739",
-      appId: "1:728180059739:web:d0a70cd02c8ef96700d97e6"
+      apiKey:
+        "AIzaSyBBU7MXXucUbvtf1kEACLVLn9dVzXOIe7o",
+
+      authDomain:
+        "czacik-24d94.firebaseapp.com",
+
+      projectId:
+        "czacik-24d94",
+
+      storageBucket:
+        "czacik-24d94.firebasestorage.app",
+
+      messagingSenderId:
+        "728180059739",
+
+      appId:
+        "1:728180059739:web:d0a70cd02c8ef96700d97e"
     };
 
+
+    /* ========================================================
+       GLOBAL VARIABLES
+       ======================================================== */
 
     let app;
     let auth;
     let db;
 
     let currentUser = null;
-    let currentChannel = "ogólny";
-    let unsubscribeMessages = null;
+
+    let currentChannel =
+      "ogólny";
+
+    let unsubscribeMessages =
+      null;
 
 
-    const $ = (selector) =>
-      document.querySelector(selector);
+    const $ =
+      (selector) =>
+        document.querySelector(selector);
 
 
-    // ==========================================
-    // INICJALIZACJA FIREBASE
-    // ==========================================
+    /* ========================================================
+       FIREBASE INIT
+       ======================================================== */
 
-    async function initFirebase() {
+    function initFirebase() {
 
       try {
 
-        app = initializeApp(firebaseConfig);
+        app =
+          initializeApp(firebaseConfig);
 
-        auth = getAuth(app);
+        auth =
+          getAuth(app);
 
-        db = getFirestore(app);
+        db =
+          getFirestore(app);
 
 
-        // ======================================
-        // ODBIÓR WYNIKU LOGOWANIA GOOGLE
-        // ======================================
+        /*
+         * Obsługa logowania przez redirect.
+         */
+
+        getRedirectResult(auth)
+          .catch((error) => {
+
+            console.error(
+              "Błąd redirect:",
+              error
+            );
+
+            showLoginError(
+              getFriendlyAuthError(error)
+            );
+
+          });
+
+
+        /*
+         * Stan użytkownika.
+         */
+
+        onAuthStateChanged(
+          auth,
+          async (user) => {
+
+            currentUser =
+              user;
+
+
+            if (user) {
+
+              $("#login")
+                .classList.add(
+                  "hidden"
+                );
+
+
+              $("#loginNotice")
+                .textContent =
+                "";
+
+
+              /*
+               * Profil użytkownika.
+               */
+
+              try {
+
+                await setDoc(
+                  doc(
+                    db,
+                    "users",
+                    user.uid
+                  ),
+                  {
+
+                    uid:
+                      user.uid,
+
+                    displayName:
+                      user.displayName ||
+                      "Użytkownik",
+
+                    email:
+                      user.email ||
+                      "",
+
+                    photoURL:
+                      user.photoURL ||
+                      "",
+
+                    lastLogin:
+                      serverTimestamp()
+
+                  },
+                  {
+                    merge: true
+                  }
+                );
+
+              } catch (error) {
+
+                console.error(
+                  "Błąd zapisu profilu:",
+                  error
+                );
+
+              }
+
+
+              setUserUI(user);
+
+              subscribeMessages(
+                currentChannel
+              );
+
+            } else {
+
+              setUserUI(
+                null
+              );
+
+              $("#login")
+                .classList.remove(
+                  "hidden"
+                );
+
+            }
+
+          }
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "Firebase init error:",
+          error
+        );
+
+        showLoginError(
+          "Nie udało się uruchomić Firebase."
+        );
+
+      }
+
+    }
+
+
+    /* ========================================================
+       GOOGLE LOGIN
+       ======================================================== */
+
+    $("#googleLogin").onclick =
+      async () => {
+
+        const button =
+          $("#googleLogin");
+
+
+        button.disabled =
+          true;
+
+        button.innerHTML =
+          "⏳ Logowanie...";
+
 
         try {
 
-          const result = await getRedirectResult(auth);
+          const provider =
+            new GoogleAuthProvider();
 
-          if (result && result.user) {
 
-            currentUser = result.user;
-
-          }
-
-        } catch (redirectError) {
-
-          console.error(
-            "Błąd podczas odbierania logowania:",
-            redirectError
+          provider.setCustomParameters(
+            {
+              prompt:
+                "select_account"
+            }
           );
 
-        }
+
+          /*
+           * Popup jest wygodniejszy
+           * na komputerze.
+           */
+
+          await signInWithPopup(
+            auth,
+            provider
+          );
 
 
-        // ======================================
-        // OBSERWUJEMY STAN LOGOWANIA
-        // ======================================
+        } catch (error) {
 
-        onAuthStateChanged(auth, async (user) => {
-
-          currentUser = user;
-
-
-          if (user) {
-
-            // Ukrywamy ekran logowania
-            $("#login").classList.remove("show");
-
-            $("#loginNotice").textContent = "";
+          console.error(
+            "Google Login Error:",
+            error
+          );
 
 
-            // ==================================
-            // ZAPIS PROFILU W FIRESTORE
-            // ==================================
+          /*
+           * Jeżeli popup jest zablokowany,
+           * próbujemy redirect.
+           */
+
+          if (
+            error.code ===
+            "auth/popup-blocked" ||
+            error.code ===
+            "auth/popup-closed-by-user"
+          ) {
 
             try {
 
-              const userRef =
-                doc(db, "users", user.uid);
+              const provider =
+                new GoogleAuthProvider();
 
-
-              await setDoc(
-                userRef,
+              provider.setCustomParameters(
                 {
-                  uid: user.uid,
-
-                  displayName:
-                    user.displayName ||
-                    "Użytkownik",
-
-                  email:
-                    user.email ||
-                    "",
-
-                  photoURL:
-                    user.photoURL ||
-                    "",
-
-                  lastLogin:
-                    serverTimestamp()
-
-                },
-                {
-                  merge: true
+                  prompt:
+                    "select_account"
                 }
               );
 
-            } catch (firestoreError) {
+              await signInWithRedirect(
+                auth,
+                provider
+              );
 
-              console.error(
-                "Błąd zapisu użytkownika:",
-                firestoreError
+              return;
+
+            } catch (redirectError) {
+
+              showLoginError(
+                getFriendlyAuthError(
+                  redirectError
+                )
               );
 
             }
 
-
-            setUserUI(user);
-
-            subscribeMessages(currentChannel);
-
           } else {
 
-            setUserUI(null);
-
-            $("#login").classList.add("show");
+            showLoginError(
+              getFriendlyAuthError(
+                error
+              )
+            );
 
           }
 
-        });
+        } finally {
 
+          button.disabled =
+            false;
 
-      } catch (e) {
+          button.innerHTML =
+            `
+              <span class="google-icon">
+                G
+              </span>
 
-        console.error(
-          "Błąd inicjalizacji Firebase:",
-          e
-        );
-
-        $("#loginNotice").innerHTML =
-          '<span class="error">Błąd:</span> ' +
-          (e?.message || "Nieznany błąd");
-
-      }
-
-    }
-
-
-    // ==========================================
-    // UI UŻYTKOWNIKA
-    // ==========================================
-
-    function setUserUI(user) {
-
-      if (user) {
-
-        $("#userName").textContent =
-          user.displayName ||
-          "Użytkownik";
-
-
-        $("#userStatusTag").textContent =
-          "Online";
-
-
-        $("#userStatusTag").style.color =
-          "var(--success)";
-
-
-        if (user.photoURL) {
-
-          $("#userAvatar").innerHTML =
-            `<img
-              src="${escapeHtml(user.photoURL)}"
-              alt="Avatar"
-            >`;
-
-        } else {
-
-          $("#userAvatar").textContent =
-            "?";
+              Zaloguj przez Google
+            `;
 
         }
 
-      } else {
-
-        $("#userName").textContent =
-          "Niezalogowany";
+      };
 
 
-        $("#userStatusTag").textContent =
-          "Offline";
+    /* ========================================================
+       FRIENDLY ERROR
+       ======================================================== */
+
+    function getFriendlyAuthError(
+      error
+    ) {
+
+      const code =
+        error?.code ||
+        "";
 
 
-        $("#userStatusTag").style.color =
-          "var(--text-muted)";
+      if (
+        code.includes(
+          "api-key-not-valid"
+        )
+      ) {
 
-
-        $("#userAvatar").textContent =
-          "?";
+        return `
+          Firebase odrzucił klucz API.
+          Sprawdź Firebase Console → Project settings → General
+          i skopiuj aktualny firebaseConfig.
+        `;
 
       }
+
+
+      if (
+        code.includes(
+          "unauthorized-domain"
+        )
+      ) {
+
+        return `
+          Ta domena nie jest autoryzowana.
+          Dodaj ją w Firebase Console →
+          Authentication → Settings → Authorized domains.
+        `;
+
+      }
+
+
+      if (
+        code.includes(
+          "operation-not-allowed"
+        )
+      ) {
+
+        return `
+          Logowanie Google nie jest włączone.
+          Firebase Console → Authentication →
+          Sign-in method → Google → Enable.
+        `;
+
+      }
+
+
+      if (
+        code.includes(
+          "popup"
+        )
+      ) {
+
+        return `
+          Przeglądarka zablokowała okno logowania Google.
+          Spróbuj ponownie.
+        `;
+
+      }
+
+
+      return (
+        error?.message ||
+        "Wystąpił nieznany błąd logowania."
+      );
 
     }
 
 
-    // ==========================================
-    // LOGOWANIE GOOGLE
-    // ==========================================
+    function showLoginError(
+      message
+    ) {
 
-    $("#googleLogin").onclick = async () => {
+      $("#loginNotice")
+        .textContent =
+        message;
 
-      try {
-
-        const provider =
-          new GoogleAuthProvider();
-
-
-        // Opcjonalnie prosimy o konto Google
-        provider.setCustomParameters({
-          prompt: "select_account"
-        });
+    }
 
 
-        await signInWithRedirect(
-          auth,
-          provider
-        );
+    /* ========================================================
+       USER UI
+       ======================================================== */
 
-      } catch (e) {
+    function setUserUI(
+      user
+    ) {
 
-        console.error(
-          "Logowanie Google nieudane:",
-          e
-        );
+      if (!user) {
+
+        $("#userName")
+          .textContent =
+          "Niezalogowany";
 
 
-        $("#loginNotice").innerHTML =
-          '<span class="error">Logowanie nieudane:</span> ' +
-          escapeHtml(
-            e?.message ||
-            "Nieznany błąd"
+        $("#userStatusTag")
+          .textContent =
+          "Offline";
+
+
+        $("#userStatusTag")
+          .style.color =
+          "var(--muted)";
+
+
+        $("#userAvatar")
+          .textContent =
+          "?";
+
+        return;
+
+      }
+
+
+      $("#userName")
+        .textContent =
+        user.displayName ||
+        "Użytkownik";
+
+
+      $("#userStatusTag")
+        .textContent =
+        "Online";
+
+
+      $("#userStatusTag")
+        .style.color =
+        "var(--green)";
+
+
+      if (user.photoURL) {
+
+        $("#userAvatar")
+          .innerHTML =
+          `
+            <img
+              src="${escapeHtml(
+                user.photoURL
+              )}"
+              alt=""
+            >
+          `;
+
+      } else {
+
+        $("#userAvatar")
+          .textContent =
+          getInitial(
+            user.displayName
           );
 
       }
 
-    };
+    }
 
 
-    // ==========================================
-    // WYLOGOWANIE
-    // ==========================================
+    function getInitial(
+      name
+    ) {
 
-    $("#logoutBtn").onclick = async () => {
-
-      try {
-
-        await signOut(auth);
-
-      } catch (e) {
-
-        console.error(
-          "Błąd wylogowania:",
-          e
-        );
-
+      if (!name) {
+        return "?";
       }
 
-    };
+      return name
+        .trim()
+        .charAt(0)
+        .toUpperCase();
+
+    }
 
 
-    // ==========================================
-    // WYSYŁANIE WIADOMOŚCI
-    // ==========================================
+    /* ========================================================
+       LOGOUT
+       ======================================================== */
+
+    $("#logoutBtn").onclick =
+      async () => {
+
+        try {
+
+          await signOut(
+            auth
+          );
+
+        } catch (error) {
+
+          console.error(
+            "Logout error:",
+            error
+          );
+
+        }
+
+      };
+
+
+    /* ========================================================
+       SEND MESSAGE
+       ======================================================== */
 
     async function sendMessage() {
 
+      const input =
+        $("#msgInput");
+
+
       const text =
-        $("#msgInput").value.trim();
+        input.value.trim();
 
 
       if (
@@ -923,20 +2286,27 @@
         !currentUser ||
         !db
       ) {
+
         return;
+
       }
 
 
       try {
 
-        $("#msgInput").value = "";
+        input.value =
+          "";
 
 
         await addDoc(
-          collection(db, "messages"),
+          collection(
+            db,
+            "messages"
+          ),
           {
 
-            text,
+            text:
+              text,
 
             channel:
               currentChannel,
@@ -958,12 +2328,16 @@
           }
         );
 
-      } catch (e) {
+
+      } catch (error) {
 
         console.error(
           "Błąd wysyłania:",
-          e
+          error
         );
+
+        input.value =
+          text;
 
         alert(
           "Nie udało się wysłać wiadomości."
@@ -979,9 +2353,14 @@
 
 
     $("#msgInput").onkeydown =
-      (e) => {
+      (event) => {
 
-        if (e.key === "Enter") {
+        if (
+          event.key ===
+          "Enter"
+        ) {
+
+          event.preventDefault();
 
           sendMessage();
 
@@ -990,13 +2369,17 @@
       };
 
 
-    // ==========================================
-    // SUBSKRYPCJA WIADOMOŚCI
-    // ==========================================
+    /* ========================================================
+       SUBSCRIBE MESSAGES
+       ======================================================== */
 
-    function subscribeMessages(channel) {
+    function subscribeMessages(
+      channel
+    ) {
 
-      if (unsubscribeMessages) {
+      if (
+        unsubscribeMessages
+      ) {
 
         unsubscribeMessages();
 
@@ -1008,256 +2391,363 @@
       }
 
 
-      const q = query(
+      $("#msgs").innerHTML =
+        `
+          <div class="empty">
 
-        collection(
-          db,
-          "messages"
-        ),
+            <div class="empty-box">
 
-        where(
-          "channel",
-          "==",
-          channel
-        ),
+              <div class="empty-icon">
+                ✦
+              </div>
 
-        orderBy(
-          "createdAt",
-          "desc"
-        ),
+              Ładowanie wiadomości...
 
-        limit(50)
+            </div>
 
-      );
+          </div>
+        `;
 
 
-      unsubscribeMessages = onSnapshot(
+      const messagesQuery =
+        query(
 
-        q,
+          collection(
+            db,
+            "messages"
+          ),
 
-        (snapshot) => {
+          where(
+            "channel",
+            "==",
+            channel
+          ),
 
-          const docs =
-            snapshot.docs
-              .map(d => ({
-                id: d.id,
-                ...d.data()
-              }))
-              .reverse();
+          orderBy(
+            "createdAt",
+            "desc"
+          ),
 
+          limit(50)
 
-          const container =
-            $("#msgs");
-
-
-          if (docs.length === 0) {
-
-            container.innerHTML =
-              `<div class="empty-state">
-                Brak wiadomości. Napisz pierwszą!
-              </div>`;
-
-            return;
-
-          }
+        );
 
 
-          container.innerHTML =
-            '<div class="day">' +
-              '<span>DZISIAJ</span>' +
-            '</div>';
+      unsubscribeMessages =
+        onSnapshot(
+
+          messagesQuery,
+
+          (snapshot) => {
+
+            const docs =
+              snapshot.docs
+                .map(
+                  (docSnap) => ({
+                    id:
+                      docSnap.id,
+
+                    ...docSnap.data()
+
+                  })
+                )
+                .reverse();
 
 
-          for (const msg of docs) {
-
-            let timeStr =
-              "przed chwilą";
+            const container =
+              $("#msgs");
 
 
             if (
-              msg.createdAt &&
-              typeof msg.createdAt.toDate ===
-              "function"
+              docs.length === 0
             ) {
 
-              timeStr =
-                msg.createdAt
-                  .toDate()
-                  .toLocaleTimeString(
-                    [],
-                    {
-                      hour: "2-digit",
-                      minute: "2-digit"
-                    }
-                  );
+              container.innerHTML =
+                `
+                  <div class="empty">
+
+                    <div class="empty-box">
+
+                      <div class="empty-icon">
+                        💬
+                      </div>
+
+                      <div>
+                        Brak wiadomości.
+                        <br>
+                        Napisz pierwszą!
+                      </div>
+
+                    </div>
+
+                  </div>
+                `;
+
+              return;
 
             }
 
 
-            const avatarHtml =
-              msg.photoURL
+            container.innerHTML =
+              "";
 
-                ? `<img
-                    src="${escapeHtml(
-                      msg.photoURL
-                    )}"
-                    alt=""
-                  >`
 
-                : `<div
-                    class="user-avatar"
-                    style="width:40px;height:40px;"
+            for (
+              const msg of docs
+            ) {
+
+              const el =
+                document.createElement(
+                  "div"
+                );
+
+
+              el.className =
+                "message";
+
+
+              let time =
+                "przed chwilą";
+
+
+              if (
+                msg.createdAt &&
+                typeof
+                  msg.createdAt.toDate ===
+                    "function"
+              ) {
+
+                time =
+                  msg.createdAt
+                    .toDate()
+                    .toLocaleTimeString(
+                      "pl-PL",
+                      {
+                        hour:
+                          "2-digit",
+
+                        minute:
+                          "2-digit"
+                      }
+                    );
+
+              }
+
+
+              const initial =
+                getInitial(
+                  msg.displayName
+                );
+
+
+              const avatar =
+                msg.photoURL
+                  ?
+                  `
+                    <div class="message-avatar">
+
+                      <img
+                        src="${escapeHtml(
+                          msg.photoURL
+                        )}"
+                        alt=""
+                      >
+
+                    </div>
+                  `
+                  :
+                  `
+                    <div class="message-avatar">
+                      ${initial}
+                    </div>
+                  `;
+
+
+              el.innerHTML =
+                `
+
+                  ${avatar}
+
+                  <div class="message-body">
+
+                    <div class="message-header">
+
+                      <span class="message-author">
+                        ${escapeHtml(
+                          msg.displayName ||
+                          "Użytkownik"
+                        )}
+                      </span>
+
+                      <span class="message-time">
+                        ${escapeHtml(
+                          time
+                        )}
+                      </span>
+
+                    </div>
+
+
+                    <div class="message-text">
+                      ${escapeHtml(
+                        msg.text ||
+                        ""
+                      )}
+                    </div>
+
+                  </div>
+
+                `;
+
+
+              container.appendChild(
+                el
+              );
+
+            }
+
+
+            requestAnimationFrame(
+              () => {
+
+                container.scrollTop =
+                  container.scrollHeight;
+
+              }
+            );
+
+          },
+
+
+          (error) => {
+
+            console.error(
+              "Messages error:",
+              error
+            );
+
+
+            $("#msgs").innerHTML =
+              `
+                <div class="empty">
+
+                  <div
+                    class="empty-box"
+                    style="
+                      color:var(--red);
+                    "
                   >
-                    ?
-                  </div>`;
 
+                    ⚠️
 
-            const el =
-              document.createElement("div");
+                    <div>
+                      Błąd pobierania
+                      wiadomości.
+                    </div>
 
-
-            el.className =
-              "message";
-
-
-            el.innerHTML = `
-
-              ${avatarHtml}
-
-              <div class="message-content">
-
-                <div class="message-header">
-
-                  <span class="message-username">
-                    ${escapeHtml(
-                      msg.displayName ||
-                      "Użytkownik"
-                    )}
-                  </span>
-
-                  <span class="message-time">
-                    ${escapeHtml(timeStr)}
-                  </span>
+                  </div>
 
                 </div>
-
-                <div class="message-text">
-                  ${escapeHtml(
-                    msg.text || ""
-                  )}
-                </div>
-
-              </div>
-            `;
-
-
-            container.appendChild(el);
+              `;
 
           }
 
-
-          container.scrollTop =
-            container.scrollHeight;
-
-        },
-
-        (err) => {
-
-          console.error(
-            "Błąd pobierania wiadomości:",
-            err
-          );
-
-
-          $("#msgs").innerHTML =
-            `<div
-              class="empty-state"
-              style="color:var(--danger)"
-            >
-              Błąd pobierania:
-              ${escapeHtml(err.message)}
-            </div>`;
-
-        }
-
-      );
+        );
 
     }
 
 
-    // ==========================================
-    // ZMIANA KANAŁÓW
-    // ==========================================
+    /* ========================================================
+       CHANNELS
+       ======================================================== */
 
     document
       .querySelectorAll(
         ".nav-item[data-channel]"
       )
-      .forEach(item => {
+      .forEach(
+        (item) => {
 
-        item.onclick = () => {
+          item.onclick =
+            () => {
 
-          document
-            .querySelectorAll(
-              ".nav-item"
-            )
-            .forEach(i =>
-              i.classList.remove(
+              document
+                .querySelectorAll(
+                  ".nav-item"
+                )
+                .forEach(
+                  (element) => {
+
+                    element.classList
+                      .remove(
+                        "active"
+                      );
+
+                  }
+                );
+
+
+              item.classList.add(
                 "active"
-              )
-            );
+              );
 
 
-          item.classList.add(
-            "active"
-          );
+              currentChannel =
+                item.getAttribute(
+                  "data-channel"
+                );
 
 
-          currentChannel =
-            item.getAttribute(
-              "data-channel"
-            );
+              $("#currentChannelName")
+                .textContent =
+                currentChannel;
 
 
-          $("#currentChannelName")
-            .textContent =
-              `# ${currentChannel}`;
+              $("#msgInput")
+                .placeholder =
+                `Napisz wiadomość na #${currentChannel}...`;
 
 
-          $("#msgInput")
-            .placeholder =
-              `Napisz wiadomość na #${currentChannel}...`;
+              if (currentUser) {
 
+                subscribeMessages(
+                  currentChannel
+                );
 
-          subscribeMessages(
-            currentChannel
-          );
+              }
 
-        };
+            };
 
-      });
-
-
-    // ==========================================
-    // MOTYW
-    // ==========================================
-
-    $("#themeToggle").onclick = () => {
-
-      document.body.classList.toggle(
-        "light-theme"
+        }
       );
 
-    };
+
+    /* ========================================================
+       THEME
+       ======================================================== */
+
+    $("#themeToggle").onclick =
+      () => {
+
+        document.body
+          .classList.toggle(
+            "light"
+          );
+
+      };
 
 
-    // ==========================================
-    // ESCAPE HTML
-    // ==========================================
+    /* ========================================================
+       ESCAPE HTML
+       ======================================================== */
 
-    function escapeHtml(text) {
+    function escapeHtml(
+      value
+    ) {
 
-      return String(text)
+      return String(
+        value ?? ""
+      )
 
         .replace(
           /&/g,
@@ -1287,9 +2777,9 @@
     }
 
 
-    // ==========================================
-    // START
-    // ==========================================
+    /* ========================================================
+       START
+       ======================================================== */
 
     initFirebase();
 
