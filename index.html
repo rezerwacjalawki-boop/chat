@@ -3418,57 +3418,81 @@ async function loadCurrentUserRole(){
    AUTH DIAGNOSTICS
    ======================================================== */
 
-function getDetailedAuthError(
-  error
-){
-
-  const code =
-    error?.code ||
-    "brak-kodu";
-
-  const message =
-    error?.message ||
-    "Brak komunikatu Firebase.";
-
-  const customData =
-    error?.customData
-      ? JSON.stringify(
-          error.customData
-        )
-      : "brak";
-
+function getDetailedAuthError(error){
 
   console.error(
     "========== CLASSHUB AUTH ERROR =========="
   );
 
   console.error(
-    "Kod:",
-    code
+    "typeof:",
+    typeof error
   );
 
   console.error(
-    "Komunikat:",
-    message
+    "name:",
+    error?.name
   );
 
   console.error(
-    "customData:",
-    customData
+    "code:",
+    error?.code
   );
 
   console.error(
-    "Pełny błąd:",
+    "message:",
+    error?.message
+  );
+
+  console.error(
+    "stack:",
+    error?.stack
+  );
+
+  console.error(
+    "raw:",
     error
   );
 
-  console.error(
-    "=========================================="
-  );
+  let code =
+    error?.code ||
+    "";
 
+  let message =
+    error?.message ||
+    "";
 
-  let friendly =
-    "Nie udało się zalogować.";
+  let name =
+    error?.name ||
+    "";
+
+  if(!code){
+
+    const serialized =
+      (() => {
+        try{
+          return JSON.stringify(
+            error,
+            Object.getOwnPropertyNames(
+              error || {}
+            ),
+            2
+          );
+        }
+        catch(e){
+          return String(error);
+        }
+      })();
+
+    return (
+      "Nie udało się zalogować.\n\n" +
+      "Firebase nie zwrócił standardowego kodu błędu.\n\n" +
+      `Typ: ${typeof error}\n` +
+      `Nazwa: ${name || "brak"}\n` +
+      `Wiadomość: ${message || "brak"}\n\n` +
+      `Szczegóły:\n${serialized}`
+    );
+  }
 
 
   if(
@@ -3476,113 +3500,88 @@ function getDetailedAuthError(
       "api-key-not-valid"
     )
   ){
-
-    friendly =
-      "Firebase odrzucił klucz API.";
-
+    return "Firebase odrzucił klucz API.\n\nKod: " + code;
   }
-  else if(
+
+
+  if(
     code.includes(
       "unauthorized-domain"
     )
   ){
-
-    friendly =
-      "Ta domena nie jest dodana do Authorized domains Firebase.";
-
+    return "Ta domena nie jest dodana do Authorized domains Firebase.\n\nKod: " + code;
   }
-  else if(
+
+
+  if(
     code.includes(
       "operation-not-allowed"
     )
   ){
-
-    friendly =
-      "Logowanie Google nie jest włączone w Firebase Authentication.";
-
+    return "Logowanie Google nie jest włączone w Firebase Authentication.\n\nKod: " + code;
   }
-  else if(
+
+
+  if(
     code.includes(
       "popup-blocked"
     )
   ){
-
-    friendly =
-      "Przeglądarka zablokowała okno Google.";
-
+    return "Przeglądarka zablokowała okno Google.\n\nKod: " + code;
   }
-  else if(
+
+
+  if(
     code.includes(
       "popup-closed-by-user"
     )
   ){
-
-    friendly =
-      "Okno Google zostało zamknięte przed zakończeniem logowania.";
-
+    return "Okno Google zostało zamknięte przed zakończeniem logowania.\n\nKod: " + code;
   }
-  else if(
+
+
+  if(
     code.includes(
       "cancelled-popup-request"
     )
   ){
-
-    friendly =
-      "Poprzednia próba logowania została anulowana.";
-
+    return "Poprzednia próba logowania została anulowana.\n\nKod: " + code;
   }
-  else if(
+
+
+  if(
     code.includes(
       "network-request-failed"
     )
   ){
-
-    friendly =
-      "Problem z połączeniem z Firebase.";
-
+    return "Problem z połączeniem z Firebase.\n\nKod: " + code;
   }
-  else if(
+
+
+  if(
     code.includes(
       "account-exists-with-different-credential"
     )
   ){
-
-    friendly =
-      "To konto Google jest już powiązane z inną metodą logowania.";
-
+    return "To konto Google jest już powiązane z inną metodą logowania.\n\nKod: " + code;
   }
-  else if(
+
+
+  if(
     code.includes(
       "too-many-requests"
     )
   ){
-
-    friendly =
-      "Firebase tymczasowo zablokował kolejne próby logowania. Spróbuj później.";
-
-  }
-  else if(
-    code.includes(
-      "internal-error"
-    )
-  ){
-
-    friendly =
-      "Firebase zwrócił błąd wewnętrzny.";
-
+    return "Firebase tymczasowo ograniczył kolejne próby logowania.\n\nKod: " + code;
   }
 
 
   return (
-    `${friendly}\n\n` +
-    `Kod: ${code}`
+    (message || "Nie udało się zalogować.") +
+    "\n\nKod: " +
+    code
   );
 }
-
-
-function showLoginError(
-  message
-){
 
   $("#loginError")
     .textContent =
