@@ -770,7 +770,11 @@ button{
     opacity:0;
     transform:translateY(6px) scale(.7);
   }
-  25%{opacity:.8}
+
+  25%{
+    opacity:.8;
+  }
+
   100%{
     opacity:0;
     transform:translateY(-22px) translateX(8px) scale(1.25);
@@ -2306,77 +2310,24 @@ body.light .message-text{
 
       <div class="effect-bar">
 
-        <button class="effect-chip active" data-effect="none">
-          ✦ Normalna
-        </button>
-
-        <button class="effect-chip" data-effect="fire">
-          🔥 Fire
-        </button>
-
-        <button class="effect-chip" data-effect="ice">
-          ❄️ Ice
-        </button>
-
-        <button class="effect-chip" data-effect="electric">
-          ⚡ ELECTRIC
-        </button>
-
-        <button class="effect-chip" data-effect="neon">
-          💜 Neon
-        </button>
-
-        <button class="effect-chip" data-effect="rainbow">
-          🌈 Rainbow
-        </button>
-
-        <button class="effect-chip" data-effect="glitch">
-          👾 Glitch
-        </button>
-
-        <button class="effect-chip" data-effect="plasma">
-          🔮 Plasma
-        </button>
-
-        <button class="effect-chip" data-effect="sparkle">
-          ✨ Sparkle
-        </button>
-
-        <button class="effect-chip" data-effect="void">
-          🕳️ Void
-        </button>
-
-        <button class="effect-chip" data-effect="hologram">
-          🧊 Hologram
-        </button>
-
-        <button class="effect-chip" data-effect="gold">
-          🏆 Gold
-        </button>
-
-        <button class="effect-chip" data-effect="toxic">
-          ☢️ Toxic
-        </button>
-
-        <button class="effect-chip" data-effect="cosmic">
-          🌌 Cosmic
-        </button>
-
-        <button class="effect-chip" data-effect="ruby">
-          💎 Ruby
-        </button>
-
-        <button class="effect-chip" data-effect="matrix">
-          🟢 Matrix
-        </button>
-
-        <button class="effect-chip" data-effect="galaxy">
-          🌌 GALAXY
-        </button>
-
-        <button class="effect-chip" data-effect="supernova">
-          💥 SUPERNOVA
-        </button>
+        <button class="effect-chip active" data-effect="none">✦ Normalna</button>
+        <button class="effect-chip" data-effect="fire">🔥 Fire</button>
+        <button class="effect-chip" data-effect="ice">❄️ Ice</button>
+        <button class="effect-chip" data-effect="electric">⚡ ELECTRIC</button>
+        <button class="effect-chip" data-effect="neon">💜 Neon</button>
+        <button class="effect-chip" data-effect="rainbow">🌈 Rainbow</button>
+        <button class="effect-chip" data-effect="glitch">👾 Glitch</button>
+        <button class="effect-chip" data-effect="plasma">🔮 Plasma</button>
+        <button class="effect-chip" data-effect="sparkle">✨ Sparkle</button>
+        <button class="effect-chip" data-effect="void">🕳️ Void</button>
+        <button class="effect-chip" data-effect="hologram">🧊 Hologram</button>
+        <button class="effect-chip" data-effect="gold">🏆 Gold</button>
+        <button class="effect-chip" data-effect="toxic">☢️ Toxic</button>
+        <button class="effect-chip" data-effect="cosmic">🌌 Cosmic</button>
+        <button class="effect-chip" data-effect="ruby">💎 Ruby</button>
+        <button class="effect-chip" data-effect="matrix">🟢 Matrix</button>
+        <button class="effect-chip" data-effect="galaxy">🌌 GALAXY</button>
+        <button class="effect-chip" data-effect="supernova">💥 SUPERNOVA</button>
 
       </div>
 
@@ -2707,7 +2658,7 @@ from
    ======================================================== */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBBU7MXXucUbvtf1kEACLVLn9dVzXOIe7o",
+  apiKey: "AIzaSyBBU7MXXucUbvtf1kEACLVn9DzV9dVzXOIe7o",
   authDomain: "czacik-24d94.firebaseapp.com",
   projectId: "czacik-24d94",
   storageBucket: "czacik-24d94.firebasestorage.app",
@@ -3583,9 +3534,15 @@ function getDetailedAuthError(error){
   );
 }
 
+
+function showLoginError(
+  message
+){
+
   $("#loginError")
     .textContent =
     message;
+
 }
 
 
@@ -3599,11 +3556,6 @@ $("#googleLogin").onclick =
     const button =
       $("#googleLogin");
 
-
-    /*
-      Nie pozwalamy uruchomić dwóch popupów jednocześnie.
-      To może powodować auth/cancelled-popup-request.
-    */
 
     if(
       loginInProgress
@@ -3634,7 +3586,10 @@ $("#googleLogin").onclick =
 
     try{
 
-      await persistenceReady;
+      await setPersistence(
+        auth,
+        browserLocalPersistence
+      );
 
 
       const provider =
@@ -3649,21 +3604,10 @@ $("#googleLogin").onclick =
       });
 
 
-      /*
-        Zostawiamy dokładnie Firebase Popup.
-        Nie używamy tutaj redirectu ani GSI.
-      */
-
       await signInWithPopup(
         auth,
         provider
       );
-
-
-      /*
-        Udane logowanie zostanie obsłużone
-        również przez onAuthStateChanged().
-      */
 
     }
     catch(error){
